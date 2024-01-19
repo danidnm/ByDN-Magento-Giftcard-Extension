@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="invoice_totals">
+            <block class="Bydn\Giftcard\Block\Adminhtml\Sales\Total\Order\Invoice\Giftcard" name="giftcard_discount" />
+        </referenceBlock>
+    </body>
+</page>
+

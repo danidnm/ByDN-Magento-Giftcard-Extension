@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <bydn_giftcard>
+            <general>
+                <default_amounts>30,50,75,100,150,200,250</default_amounts>
+            </general>
+            <emails>
+                <send_by_email>1</send_by_email>
+                <sender_email_identity>general</sender_email_identity>
+                <email_template>bydn_giftcard_emails_email_template</email_template>
+            </emails>
+            <expiration>
+                <expire_cards>0</expire_cards>
+            </expiration>
+            <discounts>
+                <avoid_giftcard_with_giftcard>1</avoid_giftcard_with_giftcard>
+                <avoid_discounts_on_giftcards>1</avoid_discounts_on_giftcards>
+            </discounts>
+        </bydn_giftcard>
+    </default>
+</config>

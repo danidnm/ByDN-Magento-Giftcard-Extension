@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Bydn_Giftcard::giftcard" title="Giftcards" module="Bydn_Giftcard" sortOrder="110" resource="Bydn_Giftcard::giftcard" parent="Bydn_Base::menu" />
+        <add id="Bydn_Giftcard::grid" title="Giftcard List" module="Bydn_Giftcard" sortOrder="120" resource="Bydn_Giftcard::grid" parent="Bydn_Giftcard::giftcard" action="bydngiftcard/giftcard/grid"/>
+    </menu>
+</config>

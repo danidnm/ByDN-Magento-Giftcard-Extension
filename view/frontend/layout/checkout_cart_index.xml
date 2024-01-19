@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="cart.summary">
+            <block class="Bydn\Giftcard\Block\Cart\Giftcard" name="checkout.cart.giftcard" as="giftcard" after="coupon" template="Bydn_Giftcard::cart/giftcard.phtml">
+                <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
+                       name="giftcard_recaptcha" as="giftcard_recaptcha"
+                       after="-"
+                       template="Magento_ReCaptchaFrontendUi::recaptcha.phtml"
+                       ifconfig="recaptcha_frontend/type_for/coupon_code">
+                    <arguments>
+                        <argument name="recaptcha_for" xsi:type="string">coupon_code</argument>
+                        <argument name="jsLayout" xsi:type="array">
+                            <item name="components" xsi:type="array">
+                                <item name="recaptcha" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_ReCaptchaFrontendUi/js/reCaptcha</item>
+                                </item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="giftcard_discount" xsi:type="array">
+                                    <item name="component" xsi:type="string">Bydn_Giftcard/js/view/checkout/cart/totals/giftcard_discount</item>
+                                    <item name="sortOrder" xsi:type="string">50</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Bydn_Giftcard/checkout/cart/totals/giftcard_discount</item>
+                                        <item name="title" xsi:type="string">Giftcard discount</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

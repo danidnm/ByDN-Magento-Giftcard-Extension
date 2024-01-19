@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="bydn_giftcard">
+        <job name="send_cards" instance="Bydn\Giftcard\Cron\Send" method="sendCards">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+        <job name="expire_cards" instance="Bydn\Giftcard\Cron\Expire" method="expireCards">
+            <schedule>0 */8 * * *</schedule>
+        </job>
+    </group>
+</config>

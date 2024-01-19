@@ -1,0 +1,24 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    body {
+        &.product-giftcard {
+            .product-info-price {
+                display: none !important;
+            }
+        }
+    }
+}
+
+// till 768
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+
+// from 768
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}

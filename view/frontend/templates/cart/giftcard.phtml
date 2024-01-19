@@ -1,0 +1,63 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\AbstractBlock $block
+ */
+$hasGiftcardCode = $block->getGiftcardCode() !== null && strlen($block->getGiftcardCode()) > 0;
+?>
+<div class="block giftcard"
+     id="block-giftcard"
+     data-mage-init='{"collapsible":{"active": <?= $hasGiftcardCode ? 'true' : 'false' ?>, "openedState": "active", "saveState": false}}'>
+    <div class="title" data-role="title">
+        <strong id="block-giftcard-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Apply Giftcard Code')) ?></strong>
+    </div>
+    <div class="content" data-role="content" aria-labelledby="block-giftcard-heading">
+        <form id="giftcard-form"
+              action="<?= $block->escapeUrl($block->getUrl('checkout/cart/giftcardPost')) ?>"
+              method="post"
+              data-mage-init='{"giftcardCode":{"giftcardCodeSelector": "#giftcard_code",
+                                               "removeGiftcardSelector": "#remove-giftcard",
+                                               "applyButton": "button.action.apply-giftcard",
+                                               "cancelButton": "button.action.cancel-giftcard"}}'>
+            <div class="fieldset giftcard<?= $hasGiftcardCode ? ' applied' : '' ?>">
+                <input type="hidden" name="remove" id="remove-giftcard" value="0" />
+                <div class="field">
+                    <label for="giftcard_code" class="label">
+                        <span><?= $block->escapeHtml(__('Enter giftcard code')) ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text"
+                               class="input-text"
+                               id="giftcard_code"
+                               name="giftcard_code"
+                               value="<?= $block->escapeHtmlAttr($block->getGiftcardCode()) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Enter giftcard code')) ?>"
+                            <?php if ($hasGiftcardCode): ?>
+                                disabled="disabled"
+                            <?php endif; ?>
+                        />
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <?php if (!$hasGiftcardCode): ?>
+                        <div class="primary">
+                            <button class="action apply-giftcard primary" type="button"
+                                    value="<?= $block->escapeHtmlAttr(__('Apply Giftcard')) ?>">
+                                <span><?= $block->escapeHtml(__('Apply Giftcard')) ?></span>
+                            </button>
+                        </div>
+                    <?php else: ?>
+                        <div class="primary">
+                            <button  type="button" class="action cancel-giftcard primary"
+                                     value="<?= $block->escapeHtmlAttr(__('Cancel Giftcard')) ?>">
+                                <span><?= $block->escapeHtml(__('Cancel Giftcard')) ?></span>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php if (!$hasGiftcardCode): ?>
+                <?= /* @noEscape */ $block->getChildHtml('giftcard_recaptcha') ?>
+            <?php endif; ?>
+        </form>
+    </div>
+</div>

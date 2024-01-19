@@ -1,0 +1,85 @@
+<?php
+
+namespace Bydn\Giftcard\Plugin\Magento\Sales\Api;
+
+use phpseclib3\Exception\FileNotFoundException;
+
+class CreditmemoRepositoryInterface
+{
+    /**
+     * @var \Bydn\Giftcard\Model\GiftcardCreditmemoRepository
+     */
+    private $giftcardCreditmemoRepository;
+
+    /**
+     * @param \Bydn\Giftcard\Model\GiftcardCreditmemoRepository $giftcardCreditmemoRepository
+     */
+    public function __construct(
+        \Bydn\Giftcard\Model\GiftcardCreditmemoRepository $giftcardCreditmemoRepository
+    ) {
+       $this->giftcardCreditmemoRepository = $giftcardCreditmemoRepository;
+    }
+
+    /**
+     * @param \Magento\Sales\Api\CreditmemoRepositoryInterface $subject
+     * @param \Magento\Sales\Api\Data\CreditmemoInterface $entity
+     * @return \Magento\Sales\Api\Data\CreditmemoInterface
+     */
+    public function afterGet
+    (
+        \Magento\Sales\Api\CreditmemoRepositoryInterface $subject,
+        \Magento\Sales\Api\Data\CreditmemoInterface $entity
+    ) {
+        $giftcardData = $this->giftcardCreditmemoRepository->getByCreditmemoId($entity->getId());
+        $extensionAttributes = $entity->getExtensionAttributes();
+        $extensionAttributes->setGiftcardData($giftcardData);
+        $entity->setExtensionAttributes($extensionAttributes);
+
+        return $entity;
+    }
+
+    /**
+     * @param \Magento\Sales\Api\CreditmemoRepositoryInterface $subject
+     * @param \Magento\Sales\Api\Data\CreditmemoSearchResultInterface $searchResults
+     * @return \Magento\Sales\Api\Data\CreditmemoSearchResultInterface
+     */
+    public function afterGetList(
+        \Magento\Sales\Api\CreditmemoRepositoryInterface $subject,
+        \Magento\Sales\Api\Data\CreditmemoSearchResultInterface $searchResults
+    ) : \Magento\Sales\Api\Data\CreditmemoSearchResultInterface {
+
+        $creditmemos = [];
+        foreach ($searchResults->getItems() as $entity) {
+            $giftcardData = $this->giftcardCreditmemoRepository->getByCreditmemoId($entity->getId());
+            $extensionAttributes = $entity->getExtensionAttributes();
+            $extensionAttributes->setGiftcardData($giftcardData);
+            $entity->setExtensionAttributes($extensionAttributes);
+            $creditmemos[] = $entity;
+        }
+        $searchResults->setItems($creditmemos);
+        return $searchResults;
+    }
+
+    /**
+     * @param \Magento\Sales\Api\CreditmemoRepositoryInterface $subject
+     * @param $result
+     * @param \Magento\Sales\Api\Data\CreditmemoInterface $entity
+     * @return \Magento\Sales\Api\Data\CreditmemoInterface
+     */
+    public function afterSave
+    (
+        \Magento\Sales\Api\CreditmemoRepositoryInterface $subject,
+        $result,
+        \Magento\Sales\Api\Data\CreditmemoInterface $entity
+    ) {
+        // IMPORTANT: Magento does not always use Creditmemo Repository to save the invoices, so sometimes saving the creditmemo
+        // does not reach here. See CreditmemoSaveExtensionAttribute observer for the rest of the cases.
+        $extensionAttributes = $entity->getExtensionAttributes();
+        $giftcardData = $extensionAttributes->getGiftcardData();
+        if ($giftcardData) {
+            $giftcardData->setCreditmemoId($entity->getId());
+            $this->giftcardCreditmemoRepository->save($giftcardData);
+        }
+        return $result;
+    }
+}

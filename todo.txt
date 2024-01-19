@@ -1,0 +1,31 @@
++ Traducciones
++ Cron para activar y enviar tarjetas
+o Envío de email al receptor
++ Totales en email de pedido y factura
++ Actualizar estado cuando la giftcard queda con balance 0
++ Cancelación de pedido y devolución de saldo
++ Comprobar PayPal, Apple Pay y Google Pay
++ Comprobar comportamiento con cupones de descuento aplicados y pago con giftcard
++ Impedir que se apliquen giftcards para comprar otras giftcards (configurable)
++ Impedir cupones de descuento para comprar giftcards (configurable)
++ Backoffice para ver tarjetas, saldos y movimientos
++ Expirar tarjetas
++ Cron para expirar tarjetas
++ Facturar un pedido en varias veces
++ Guardar cantidades abonadas (en extension attributes y movements) y ajustar balance tras devolución
++ Comprobar que es virtual para los envíos (no se debe cobrar gastos de envío)
++ Totales en email de devolución
++ Crear tarjetas desde backoffice
++ Cancelar tarjeta regalo si hay devolución
+
+- Aplicar varias tarjetas en un pedido
+- Asociar tarjeta regalo a email del amigo
+- Varias facturas de abono en un pedido
+- Varias facturas de abono en un pedido de compra de giftcards
+- Comprobar giftcard with giftcard en carrito
+- Comprobar descuento de giftcard en carrito
+- Aplicar varias tarjetas en un pedido
+
+
+
+

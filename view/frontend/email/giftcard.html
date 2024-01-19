@@ -1,0 +1,309 @@
+<!--@subject {{trans "%amount to use in our store" amount=$giftcard_amount}} 🥳 @-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="supported-color-schemes" content="light dark" />
+    <style type="text/css">
+        a {
+            color: black !important; text-decoration: none;
+        }
+        img {
+            max-width: 100%;
+        }
+        .wrapper-table {
+            width: 700px;
+        }
+        .inner-table {
+            width: 650px;
+            margin: 0 auto;
+        }
+        .inner-table table {
+            width: 100%;
+        }
+        .block-header {
+            text-align: center;
+        }
+        .block-header .logo {
+            width: 300px;
+        }
+        .block-big-image {
+            text-align: center;
+        }
+        .block-opiniones {
+            text-align: center; padding-top: 30px;
+        }
+        .block-text {
+            padding-top: 30px;
+        }
+        .block-button {
+            padding-top: 15px;
+        }
+        .block-club-benefits {
+            padding-top: 40px; font-size: 0.8em; text-transform: uppercase;
+        }
+        .block-club-benefits table td {
+            vertical-align: middle;
+        }
+        .block-club-benefits .icons-table {
+            margin-top: 25px;
+        }
+        .block-club-benefits .icons-table td.icon {
+            width: 40px; padding: 10px;
+        }
+        .block-club-benefits .icons-table td.text {
+            text-transform: uppercase;
+        }
+        .block-id {
+            background-color: #e7e6e6; padding: 10px 10%;
+        }
+        .block-id p {
+            padding: 0; margin: 0;
+        }
+        .block-shipment-id {
+            padding: 10px 0; margin: 0; background-color: #e7e6e6;
+        }
+        .block-shipment-id .shipment-track {
+
+        }
+        .block-shipment-id .shipment-track th,
+        .block-shipment-id .shipment-track td {
+            text-align: center;
+        }
+        .block-cart-items .product-item-delivery {
+            font-size: 0.8em;
+        }
+        .block-social-logos {
+            padding-top: 30px;
+            text-align: right;
+        }
+        .block-social-logos span {
+            vertical-align: middle;
+        }
+        .block-footer {
+            padding-top: 30px;
+        }
+        .block-trademark {
+            padding-top: 20px;
+        }
+        .email-items {
+            border-collapse: collapse;
+            border: 1px solid #d5d5d5;
+        }
+        .email-items thead {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        .email-items thead th {
+            padding: 5px 10px;
+        }
+        .email-items td {
+            padding: 5px 10px;
+        }
+        .email-items .item-info {
+            text-align: left;
+        }
+        .email-items .item-info p {
+            margin: 0;
+        }
+        .email-items .item-info .product-name {
+            font-weight: bold;
+        }
+        .email-items .item-qty {
+            text-align: center;
+        }
+        .email-items .item-price {
+            text-align: center;
+        }
+        .email-items tfoot {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: right;
+            font-weight: normal;
+        }
+        .email-items tfoot th {
+            padding: 5px 10px;
+            font-weight: normal;
+        }
+        .email-items tfoot .grand_total th,
+        .email-items tfoot .grand_total td {
+            font-weight: bold;
+        }
+        .email-items tfoot td {
+            padding: 5px 10px;
+        }
+        .column-50 {
+            width: 48%;
+        }
+        .no-padding {
+            padding-top: 0;
+        }
+        .text {
+            font-family: sans-serif; font-size: 1em; color: black;
+        }
+        .left {
+            text-align: left;
+        }
+        .right {
+            text-align: right;
+        }
+        .huge {
+            font-size: 1.6em;
+        }
+        .big {
+            font-size: 1.3em;
+        }
+        .small {
+            font-size: 0.8em;
+        }
+        .center {
+            text-align: center;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .uppercase {
+            text-transform: uppercase;
+        }
+        .background-red {
+            background-color: #ff8571;
+            padding: 10px;
+        }
+        .red {
+            color: #ff8571;
+        }
+        .background-green {
+            background-color: #9eda74; padding: 10px;
+        }
+        .green {
+            color: #9eda74;
+        }
+        .padding-left {
+            padding-left: 10px;
+        }
+        .button-green {
+            width: 40%; padding: 10px 30px; margin: 0 auto; background-color: #9EDA74;
+        }
+        .button-transparent {
+            width: 40%;
+            padding: 10px 30px;
+            margin: 0 auto;
+            border: 2px solid #9EDA74;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Begin wrapper table -->
+<table class="wrapper-table" style="width: 700px;" width="700px">
+    <tr>
+        <td>
+            <table class="inner-table" style="width: 650px; margin: 0 auto;" width="650px">
+                <tr>
+                    <td class="block-main-content">
+
+                        <table style="width: 100%;" width="100%;" bgcolor="#FFFFFF" background="https://cdn.bydn.com/media/email/data/tarjeta-regalo-bg.png" style="background: url('https://cdn.bydn.com/media/email/data/tarjeta-regalo-bg.png') center / cover no-repeat #FFFFFF;">
+                            <!-- Begin Content -->
+
+                            <tr>
+                                <td class="block-header" style="text-align: center; padding-top: 20px;">
+                                    <a style="color: black !important; text-decoration: none;" href="{{store url=""}}">
+                                        <span style="display: none;">{{trans "%name has a gift for you!" name=$sender_name}} 🎁</span><img class="logo" style="width: 300px; max-width: 100%;" width="300" src="https://cdn.bydn.com/media/email/data/logo-email-claro-oscuro-v2.png" alt="{{var logo_alt}}" />
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="block-text no-padding">
+                                    <p class="text center" style="font-family: sans-serif; font-weight: bold; font-size: 2em; line-height: 1.2em; color: #ff8571; text-align: center; margin-top: 0px; margin-bottom: 10px;">
+                                        <span style="color: #ff8571; font-style: italic;">{{trans "%name" name=$friend_name}}</span>,<br/>
+                                        <span style="color: black; font-style: italic;">{{trans "This is for you!"}}</span>
+                                    </p>
+                                    <p class="text center" style="font-family: sans-serif; font-weight: bold; font-size: 2em; line-height: 1.2em; color: #ff8571; text-align: center; margin-top: 5px; margin-bottom: 15px;">
+                                        <span style="color: black; text-transform: uppercase;">{{trans "Giftcard"}}</span>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="block-card-code" style="text-align: center;" align="center">
+                                    <a style="color: black !important; text-decoration: none;" href="{{store url=""}}">
+                                        <table style="width: 100%; height: 125px" width="100%" height="125">
+                                            <tr>
+                                                <td width="230" style="width: 230px;">&nbsp;</td>
+                                                <td background="https://cdn.bydn.com/media/email/data/tarjeta-regalo-v3.png" width="187" style="width: 187px; text-align: center; background: url('https://cdn.bydn.com/media/email/data/tarjeta-regalo-v3.png') center / cover no-repeat;">
+                                                    <p style="font-family: sans-serif; font-size: 4em; color: #353e47; font-weight: bold; padding:0; margin: 0; padding-top: 20px; text-align: right; padding-right: 60px; color: white;">{{trans "%amount" amount=$giftcard_amount}}</p>
+                                                </td>
+                                                <td width="230" style="width: 230px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="block-card-code" style="padding-top: 15px;text-align: center;" align="center">
+                                    <a style="color: black !important; text-decoration: none;" href="{{store url=""}}">
+                                        <table style="width: 100%;" width="100%">
+                                            <tr>
+                                                <td width="187" style="width: 187px;">&nbsp;</td>
+                                                <td background="https://cdn.bydn.com/media/email/data/tarjeta-regalo-codigo-bg-v2.png" width="275" height="41" style="width: 275px; height=41px; text-align: center; background: url('https://cdn.bydn.com/media/email/data/tarjeta-regalo-codigo-bg-v2.png') center / cover no-repeat;">
+                                                    <p style="font-family: sans-serif; font-size: 1.3em; color: white; font-weight: bold; padding:0; margin: 0;">{{trans "Code: %code" code=$giftcard_code}}</p>
+                                                </td>
+                                                <td width="187" style="width: 187px;">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="block-text no-padding">
+                                    <p class="text center" style="font-family: sans-serif; font-size: 1.2em; font-weight: bold; color: #353e47; text-align: center;">{{trans "From someone special:"}}&nbsp;<span style="color: #ff8571; font-style: italic; border-bottom: 1px solid #353e47;">{{trans "%sender" sender=$sender_name}}</span></p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="block-text no-padding">
+                                    <table style="width: 100%;" width="100%">
+                                        <tr>
+                                            <td width="15%" style="width: 15%;">&nbsp;</td>
+                                            <td width="70%" style="width: 70%; text-align: center;">
+                                                <p class="text center" style="font-family: sans-serif; font-size: 1em; color: #353e47; text-align: center; font-weight: bold;">{{trans "Has something to tell you!"}}</p>
+                                                <p class="text center" style="font-family: sans-serif; font-size: 1em; font-style: italic; color: #353e47; text-align: center; border: 1px solid #353e47; padding: 15px;">{{trans "%message" message=$friend_message}}</p>
+                                            </td>
+                                            <td width="15%" style="width: 15%;">&nbsp;</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="block-text no-padding">
+                                    <p class="text center" style="font-family: sans-serif; font-size: 0.8em; color: #353e47; text-align: right;">{{trans "Apply the code in our website. One year valid. Valid to be applied in only one order."}}</p>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                        <table style="width: 100%;" width="100%;">
+
+                            <tr>
+                                <td class="block-text no-padding">
+                                    <p class="text center" style="font-family: sans-serif; font-size: 1em; color: black; text-align: center;">&nbsp;</p>
+                                    <p class="text center" style="font-family: sans-serif; font-size: 1em; color: black; text-align: center; font-weight: bold;">{{trans "VIRTUAL GIFTCARD"}}</p>
+                                    <p class="text center" style="font-family: sans-serif; font-size: 1em; color: black; text-align: center;">{{trans "Store name"}}</p>
+                                    <p class="text center" style="font-family: sans-serif; font-size: 1em; color: black; text-align: center;">{{trans "If you have received this email, it's because a special person wanted to surprise you by gifting our virtual gift card."}}</p>
+                                    <p class="text center" style="font-family: sans-serif; font-size: 1em; color: black; text-align: center;">{{trans "How is it used? It's very simple. Visit bydn.com, our pharmacy website, and add everything that interests you to the cart. Once you have selected everything, click on 'view cart', and you will see the option 'Apply giftcard code'. Enter the code there (do not share it with anyone), and the discount will be applied."}}</p>
+                                    <p class="text center" style="font-family: sans-serif; font-size: 1em; color: black; text-align: center;">{{trans "You have an entire year to use it, but remember, you can only use it on a single order, so think it through carefully."}}</p>
+                                    <p class="text center" style="font-family: sans-serif; font-size: 1em; color: black; text-align: center;">{{trans "We will prepare a very special order for you."}}</p>
+                                </td>
+                            </tr>
+
+{{block class='Magento\\Framework\\View\\Element\\Template' area='frontend' template='Bydn_Marketing::email/benefits.phtml'}}
+
+{{template config_path="design/email/footer_template"}}
+

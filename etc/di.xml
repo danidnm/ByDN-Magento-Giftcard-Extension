@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- CRUD model for giftcard entities (giftcard) -->
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardInterface" type="Bydn\Giftcard\Model\Giftcard" />
+    <preference for="Bydn\Giftcard\Api\GiftcardRepositoryInterface" type="Bydn\Giftcard\Model\GiftcardRepository" />
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <!-- CRUD model for giftcard entities (giftcard movement) -->
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardMovementInterface" type="Bydn\Giftcard\Model\GiftcardMovement" />
+    <preference for="Bydn\Giftcard\Api\GiftcardMovementRepositoryInterface" type="Bydn\Giftcard\Model\GiftcardMovementRepository" />
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardMovementSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <!-- CRUD model for giftcard extension attribute (quote) -->
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardQuoteInterface" type="Bydn\Giftcard\Model\GiftcardQuote" />
+    <preference for="Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface" type="Bydn\Giftcard\Model\GiftcardQuoteRepository" />
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardQuoteSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <!-- CRUD model for giftcard extension attribute (order) -->
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardOrderInterface" type="Bydn\Giftcard\Model\GiftcardOrder" />
+    <preference for="Bydn\Giftcard\Api\GiftcardOrderRepositoryInterface" type="Bydn\Giftcard\Model\GiftcardOrderRepository" />
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardOrderSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <!-- CRUD model for giftcard extension attribute (invoice) -->
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardInvoiceInterface" type="Bydn\Giftcard\Model\GiftcardInvoice" />
+    <preference for="Bydn\Giftcard\Api\GiftcardInvoiceRepositoryInterface" type="Bydn\Giftcard\Model\GiftcardInvoiceRepository" />
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardInvoiceSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <!-- CRUD model for giftcard extension attribute (creditmemo) -->
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardCreditmemoInterface" type="Bydn\Giftcard\Model\GiftcardCreditmemo" />
+    <preference for="Bydn\Giftcard\Api\GiftcardCreditmemoRepositoryInterface" type="Bydn\Giftcard\Model\GiftcardCreditmemoRepository" />
+    <preference for="Bydn\Giftcard\Api\Data\GiftcardCreditmemoSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
+
+    <!-- Plugin for extension attributes (quote) -->
+    <type name="Magento\Quote\Api\CartRepositoryInterface">
+        <plugin name="BydnGiftcardQuoteExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Quote\Api\CartRepositoryInterface"/>
+    </type>
+
+    <!-- Plugin for extension attributes (order) -->
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="BydnGiftcardOrderExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\OrderRepositoryInterface"/>
+    </type>
+
+    <!-- Plugin for extension attributes (invoice) -->
+    <type name="Magento\Sales\Api\InvoiceRepositoryInterface">
+        <plugin name="BydnGiftcardInvoiceExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\InvoiceRepositoryInterface"/>
+    </type>
+
+    <!-- Plugin for extension attributes (creditmemo) -->
+    <type name="Magento\Sales\Api\CreditmemoRepositoryInterface">
+        <plugin name="BydnGiftcardCreditmemoExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\CreditmemoRepositoryInterface"/>
+    </type>
+
+    <!-- Quote validations -->
+    <type name="Magento\Quote\Model\ValidationRules\QuoteValidationComposite">
+        <arguments>
+            <argument name="validationRules" xsi:type="array">
+                <item name="bydn-quote-validation" xsi:type="object">Bydn\Giftcard\Model\Validation\Quote\Giftcard</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Klarna total -->
+    <type name="Klarna\Base\Model\Api\EntityHolder">
+        <arguments>
+            <argument name="instances" xsi:type="array">
+                <item name="bydn_giftcard" xsi:type="object">Bydn\Giftcard\Model\Total\Klarna\OrderLine</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Giftcard listing data provider and classes -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="giftcard_giftcard_grid_data_source" xsi:type="string">GiftcardGridCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="GiftcardGridCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bydn_giftcard</argument>
+            <argument name="resourceModel" xsi:type="string">Bydn\Giftcard\Model\ResourceModel\Giftcard\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Giftcard movement listing data provider and classes -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="giftcard_movement_grid_data_source" xsi:type="string">GiftcardMovementCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="GiftcardMovementCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bydn_giftcard_movement</argument>
+            <argument name="resourceModel" xsi:type="string">Bydn\Giftcard\Model\ResourceModel\GiftcardMovement\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- LOG bydn_giftcard (definition) -->
+    <virtualType name="Bydn\Giftcard\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/bydn_giftcard.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Bydn\Giftcard\Logger\Logger" type="Bydn\Logger\Model\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">bydn_giftcard_logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Bydn\Giftcard\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- LOG bydn_giftcard (usages) -->
+    <type name="Bydn\Giftcard\Controller\Cart\GiftcardPost">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Model\GiftcardRepository">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Model\GiftcardMovementRepository">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Model\GiftcardQuoteRepository">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Model\Total\Order\Invoice\Giftcard">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Model\Total\Order\Creditmemo\Giftcard">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Model\Validation\Quote\Giftcard">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Model\Total\Quote\Giftcard">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Model\MailSender">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\PayPal\AddTotal">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\Quote\CopyToOrder">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\Order\ProcessGiftcardPayment">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\Order\CreateGiftcards">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\Catalog\SetCustomOptions">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\OrderLoadExtensionAttribute">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\OrderSaveExtensionAttribute">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\InvoiceLoadExtensionAttribute">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\CreditmemoSaveExtensionAttribute">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\CreditmemoLoadExtensionAttribute">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Observer\InvoiceSaveExtensionAttribute">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Cron\Send">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Cron\Expire">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+
+</config>
+

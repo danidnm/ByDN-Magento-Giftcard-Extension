@@ -1,0 +1,86 @@
+{
+    "bydn_giftcard": {
+        "column": {
+            "id": true,
+            "code": true,
+            "total_amount":  true,
+            "available_amount": true,
+            "currency_code":  true,
+            "order_id": true,
+            "item_id": true,
+            "sender_name":  true,
+            "friend_name":  true,
+            "friend_email": true,
+            "friend_message":  true,
+            "email_sent": true,
+            "status":  true,
+            "email_date": true,
+            "created_at":  true,
+            "updated_at": true,
+            "expire_at":  true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "bydn_giftcard_movement": {
+        "column": {
+            "id": true,
+            "card_id": true,
+            "amount":  true,
+            "concept": true,
+            "created_at":  true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "bydn_giftcard_quote": {
+        "column": {
+            "id": true,
+            "quote_id": true,
+            "giftcard_code": true,
+            "giftcard_amount": true,
+            "giftcard_base_amount": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "bydn_giftcard_order": {
+        "column": {
+            "id": true,
+            "order_id": true,
+            "giftcard_code": true,
+            "giftcard_amount": true,
+            "giftcard_base_amount": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "bydn_giftcard_invoice": {
+        "column": {
+            "id": true,
+            "order_id": true,
+            "giftcard_code": true,
+            "giftcard_amount": true,
+            "giftcard_base_amount": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "bydn_giftcard_creditmemo": {
+        "column": {
+            "id": true,
+            "order_id": true,
+            "giftcard_code": true,
+            "giftcard_amount": true,
+            "giftcard_base_amount": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

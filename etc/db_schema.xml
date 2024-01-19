@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="bydn_giftcard">
+
+        <column xsi:type="int" name="id" nullable="false" identity="true" unsigned="true" comment="Card Id"/>
+        <column xsi:type="varchar" name="code" nullable="false" length="32" comment="Card code"/>
+        <column xsi:type="decimal" name="total_amount" scale="6" precision="20" unsigned="false" nullable="true" comment="Original amount of the giftcard"/>
+        <column xsi:type="decimal" name="available_amount" scale="6" precision="20" unsigned="false" nullable="true" comment="Available amount of the giftcard"/>
+        <column xsi:type="varchar" name="currency_code" nullable="false" length="8" comment="Currency code of the giftcard"/>
+        <column xsi:type="int" name="order_id" nullable="true" unsigned="true" default="null" comment="Order Id"/>
+        <column xsi:type="int" name="item_id" nullable="true" unsigned="true" default="null" comment="Item Id"/>
+        <column xsi:type="varchar" name="sender_name" nullable="false" length="64" comment="Sender name"/>
+        <column xsi:type="varchar" name="friend_name" nullable="false" length="64" comment="Friend name"/>
+        <column xsi:type="varchar" name="friend_email" nullable="false" length="128" comment="Friend email"/>
+        <column xsi:type="text" name="friend_message" nullable="true" comment="Friend message"/>
+        <column xsi:type="int" name="email_sent" nullable="false" unsigned="true" default="0" comment="Card Id"/>
+        <column xsi:type="int" name="status" nullable="false" unsigned="true" default="0" comment="Card Status"/>
+        <column xsi:type="timestamp" name="email_date" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Date of the email"/>
+        <column xsi:type="timestamp" name="created_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated date"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Create date"/>
+        <column xsi:type="timestamp" name="expire_at" on_update="false" nullable="false" comment="Expiration date"/>
+
+        <constraint xsi:type="unique" referenceId="BYDN_GIFTCARD_UNIQUE_CODE">
+            <column name="code"/>
+        </constraint>
+
+        <index referenceId="BYDN_GIFTCARD_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+
+    <table name="bydn_giftcard_movement">
+
+        <column xsi:type="int" name="id" nullable="false" identity="true" unsigned="true" comment="Movement Id"/>
+        <column xsi:type="int" name="card_id" nullable="false" unsigned="true" comment="Card Id"/>
+        <column xsi:type="int" name="order_id" nullable="true" unsigned="true" default="null" comment="Order Id"/>
+        <column xsi:type="decimal" name="amount" scale="6" precision="20" unsigned="false" nullable="false" comment="Movement amount"/>
+        <column xsi:type="varchar" name="concept" nullable="true" length="128" comment="Movement description"/>
+        <column xsi:type="timestamp" name="created_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated date"/>
+
+        <index referenceId="BYDN_GIFTCARD_MOVEMENTS_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+
+    <table name="bydn_giftcard_quote">
+
+        <column xsi:type="int" name="id" nullable="false" identity="true" unsigned="true" comment="Entity ID"/>
+        <column xsi:type="int" name="quote_id" nullable="false" unsigned="true" comment="Quote Id"/>
+        <column xsi:type="varchar" name="giftcard_code" length="256" nullable="false" comment="Applied amount"/>
+        <column xsi:type="decimal" name="giftcard_amount" scale="6" precision="20" nullable="false" comment="Applied amount"/>
+        <column xsi:type="decimal" name="giftcard_base_amount" scale="6" precision="20" nullable="false" comment="Applied amount"/>
+
+        <constraint xsi:type="foreign" referenceId="BYDN_GIFTCARD_QUOTE_ID_TO_QUOTE_ID"
+                    table="bydn_giftcard_quote" column="quote_id"
+                    referenceTable="quote" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+
+        <constraint xsi:type="unique" referenceId="BYDN_GIFTCARD_UNIQUE_QUOTE_ID">
+            <column name="quote_id"/>
+        </constraint>
+
+        <index referenceId="BYDN_GIFTCARD_QUOTE_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+
+    <table name="bydn_giftcard_order">
+
+        <column xsi:type="int" name="id" nullable="false" identity="true" unsigned="true" comment="Entity ID"/>
+        <column xsi:type="int" name="order_id" nullable="false" unsigned="true" comment="Order Id"/>
+        <column xsi:type="varchar" name="giftcard_code" length="256" nullable="false" comment="Applied amount"/>
+        <column xsi:type="decimal" name="giftcard_amount" scale="6" precision="20" nullable="false" comment="Applied amount"/>
+        <column xsi:type="decimal" name="giftcard_base_amount" scale="6" precision="20" nullable="false" comment="Applied amount"/>
+
+        <constraint xsi:type="foreign" referenceId="BYDN_GIFTCARD_ORDER_ID_TO_ORDER_ID"
+                    table="bydn_giftcard_order" column="order_id"
+                    referenceTable="sales_order" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+
+        <constraint xsi:type="unique" referenceId="BYDN_GIFTCARD_UNIQUE_ORDER_ID">
+            <column name="order_id"/>
+        </constraint>
+
+        <index referenceId="BYDN_GIFTCARD_ORDER_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+
+    <table name="bydn_giftcard_invoice">
+
+        <column xsi:type="int" name="id" nullable="false" identity="true" unsigned="true" comment="Entity ID"/>
+        <column xsi:type="int" name="invoice_id" nullable="false" unsigned="true" comment="Invoice Id"/>
+        <column xsi:type="varchar" name="giftcard_code" length="256" nullable="false" comment="Applied amount"/>
+        <column xsi:type="decimal" name="giftcard_amount" scale="6" precision="20" nullable="false" comment="Applied amount"/>
+        <column xsi:type="decimal" name="giftcard_base_amount" scale="6" precision="20" nullable="false" comment="Applied amount"/>
+
+        <constraint xsi:type="foreign" referenceId="BYDN_GIFTCARD_INVOICE_ID_TO_INVOICE_ID"
+                    table="bydn_giftcard_invoice" column="invoice_id"
+                    referenceTable="sales_invoice" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+
+        <constraint xsi:type="unique" referenceId="BYDN_GIFTCARD_UNIQUE_INVOICE_ID">
+            <column name="invoice_id"/>
+        </constraint>
+
+        <index referenceId="BYDN_GIFTCARD_INVOICE_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+
+    <table name="bydn_giftcard_creditmemo">
+
+        <column xsi:type="int" name="id" nullable="false" identity="true" unsigned="true" comment="Entity ID"/>
+        <column xsi:type="int" name="creditmemo_id" nullable="false" unsigned="true" comment="Creditmemo Id"/>
+        <column xsi:type="varchar" name="giftcard_code" length="256" nullable="false" comment="Applied amount"/>
+        <column xsi:type="decimal" name="giftcard_amount" scale="6" precision="20" nullable="false" comment="Applied amount"/>
+        <column xsi:type="decimal" name="giftcard_base_amount" scale="6" precision="20" nullable="false" comment="Applied amount"/>
+
+        <constraint xsi:type="foreign" referenceId="BYDN_GIFTCARD_MEMO_ID_TO_MEMO_ID"
+                    table="bydn_giftcard_creditmemo" column="creditmemo_id"
+                    referenceTable="sales_creditmemo" referenceColumn="entity_id"
+                    onDelete="CASCADE"/>
+
+        <constraint xsi:type="unique" referenceId="BYDN_GIFTCARD_UNIQUE_MEMO_ID">
+            <column name="creditmemo_id"/>
+        </constraint>
+
+        <index referenceId="BYDN_GIFTCARD_MEMO_ID" indexType="btree">
+            <column name="id"/>
+        </index>
+
+    </table>
+
+
+</schema>

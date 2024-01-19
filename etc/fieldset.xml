@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:DataObject/etc/fieldset.xsd">
+    <scope id="global">
+        <!-- Cannot make this with the automatic copy because it is an object. Instead we use the Observer CopyToOrder.php) -->
+        <!--
+        <fieldset id="sales_convert_quote">
+            <field name="giftcard_data">
+                <aspect name="to_order" />
+            </field>
+        </fieldset>
+        -->
+    </scope>
+</config>
