@@ -105,7 +105,7 @@
                 </item>
             </argument>
         </column>
-        <column name="total_amount" class="Amasty\Reports\Ui\Component\Listing\Column\Price">
+        <column name="total_amount" class="Magento\Sales\Ui\Component\Listing\Column\Price">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
@@ -114,7 +114,7 @@
                 </item>
             </argument>
         </column>
-        <column name="available_amount" class="Amasty\Reports\Ui\Component\Listing\Column\Price">
+        <column name="available_amount" class="Magento\Sales\Ui\Component\Listing\Column\Price">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>

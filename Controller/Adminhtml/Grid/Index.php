@@ -1,10 +1,10 @@
 <?php
 
-namespace Bydn\Giftcard\Controller\Adminhtml\Giftcard;
+namespace Bydn\Giftcard\Controller\Adminhtml\Grid;
 
 use Magento\Framework\View\Result\Page;
 
-class Grid extends \Magento\Backend\App\Action implements \Magento\Framework\App\Action\HttpGetActionInterface {
+class Index extends \Magento\Backend\App\Action implements \Magento\Framework\App\Action\HttpGetActionInterface {
 
     const MENU_ID = 'Bydn_Giftcard::giftcard';
     const ADMIN_RESOURCE = 'Bydn_Giftcard::grid';

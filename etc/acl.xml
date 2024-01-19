@@ -3,7 +3,7 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Bydn_Base::menu">
+                <resource id="Magento_Backend::marketing">
                     <resource id="Bydn_Giftcard::giftcard" title="Giftcards" sortOrder="10">
                         <resource id="Bydn_Giftcard::grid" title="Giftcard list" sortOrder="10" />
                     </resource>

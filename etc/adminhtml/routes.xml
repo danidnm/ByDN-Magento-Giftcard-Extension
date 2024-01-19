@@ -2,8 +2,8 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xml" >
     <router id="admin">
-        <route id="bydngiftcard" frontName="bydngiftcard">
-            <module name="Bydn_Giftcard" />
+        <route id="giftcard" frontName="giftcard">
+            <module name="Bydn_Giftcard"/>
         </route>
     </router>
 </config>
