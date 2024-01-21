@@ -1,15 +1,20 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <section id="bydn_giftcard" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="bydn_giftcard" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Giftcard</label>
-            <tab>bydn</tab>
+            <tab>sales</tab>
             <resource>Bydn_Giftcard::giftcard_config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If disable, customer won't be able to purchase giftcards nor redeem giftcards in cart or checkout.</comment>
+                </field>
                 <field id="default_amounts" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Card default amounts</label>
-                    <comment>A new giftcard will be created with this default amounts. You can change it later in the products.</comment>
+                    <comment>When you create a new giftcard product, this will be the amounts configured. You can change it later during the product creation.</comment>
                 </field>
             </group>
             <group id="emails" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">

@@ -3,6 +3,7 @@
     <default>
         <bydn_giftcard>
             <general>
+                <enable>1</enable>
                 <default_amounts>30,50,75,100,150,200,250</default_amounts>
             </general>
             <emails>

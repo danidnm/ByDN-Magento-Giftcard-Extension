@@ -4,6 +4,7 @@ namespace Bydn\Giftcard\Helper;
 
 class Config extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    const PATH_GIFTCARD_ENABLE = 'bydn_giftcard/general/enable';
     const PATH_GIFTCARD_AMOUNTS = 'bydn_giftcard/general/amounts';
     const PATH_GIFTCARD_EMAIL_ENABLED = 'bydn_giftcard/emails/send_by_email';
     const PATH_GIFTCARD_EMAIL_SENDER = 'bydn_giftcard/emails/sender_email_identity';
@@ -13,6 +14,19 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
     const PATH_GIFTCARD_EXPIRATION = 'bydn_giftcard/expiration/expiration';
     const PATH_GIFTCARD_WITH_GIFTCARD = 'bydn_giftcard/discounts/avoid_giftcard_with_giftcard';
     const PATH_GIFTCARD_AVOID_DISCOUNTS = 'bydn_giftcard/discounts/avoid_discounts_on_giftcards';
+
+    /**
+     * Get default giftcard amounts
+     * @param $store_id
+     * @return mixed
+     */
+    public function isEnabled($store_id = null) {
+        return $this->scopeConfig->getValue(
+            self::PATH_GIFTCARD_ENABLE,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
 
     /**
      * Get default giftcard amounts
