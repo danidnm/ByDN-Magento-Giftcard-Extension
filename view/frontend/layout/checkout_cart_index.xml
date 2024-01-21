@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="cart.summary">
-            <block class="Bydn\Giftcard\Block\Cart\Giftcard" name="checkout.cart.giftcard" as="giftcard" after="coupon" template="Bydn_Giftcard::cart/giftcard.phtml">
+        <referenceContainer name="checkout.cart.container">
+            <container name="cart.giftcard" label="Cart Giftcard Container" htmlTag="div" htmlClass="cart-discount" after="cart.discount" />
+        </referenceContainer>
+        <referenceContainer name="cart.giftcard">
+            <block class="Bydn\Giftcard\Block\Cart\Giftcard" name="checkout.cart.giftcard" as="giftcard" after="-" template="Bydn_Giftcard::cart/giftcard.phtml">
                 <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
                        name="giftcard_recaptcha" as="giftcard_recaptcha"
                        after="-"
@@ -20,7 +23,7 @@
                     </arguments>
                 </block>
             </block>
-        </referenceBlock>
+        </referenceContainer>
         <referenceBlock name="checkout.cart.totals">
             <arguments>
                 <argument name="jsLayout" xsi:type="array">
