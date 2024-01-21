@@ -15,19 +15,19 @@ class CancelGiftcard implements \Magento\Framework\Event\ObserverInterface
     private $giftcardResource;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
     /**
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard\CollectionFactory $giftcardCollectionFactory
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Bydn\Giftcard\Model\ResourceModel\Giftcard\CollectionFactory $giftcardCollectionFactory,
         \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->giftcardCollectionFactory = $giftcardCollectionFactory;
         $this->giftcardResource = $giftcardResource;
@@ -42,13 +42,13 @@ class CancelGiftcard implements \Magento\Framework\Event\ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+        $this->logger->info('Ini');
 
         // Get order
         $creditmemo = $observer->getEvent()->getCreditmemo();
         if ($creditmemo) {
 
-            $this->logger->writeInfo(__METHOD__, __LINE__, 'Processing creditmemo: ' . $creditmemo->getId());
+            $this->logger->info('Processing creditmemo: ' . $creditmemo->getId());
 
             //  Extract giftcards
             $giftcardItems = $this->extractCreditmemoGiftcards($creditmemo);
@@ -59,7 +59,7 @@ class CancelGiftcard implements \Magento\Framework\Event\ObserverInterface
             }
         }
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');
+        $this->logger->info('End');
     }
 
     /**
@@ -83,7 +83,7 @@ class CancelGiftcard implements \Magento\Framework\Event\ObserverInterface
             $giftcard->setStatus(\Bydn\Giftcard\Model\Giftcard::GIFTCARD_CANCELED);
             $this->giftcardResource->save($giftcard);
 
-            $this->logger->writeInfo(__METHOD__, __LINE__, 'Giftcard canceled: ' . $giftcard->getCode());
+            $this->logger->info('Giftcard canceled: ' . $giftcard->getCode());
 
             if ((--$qty) <= 0) {
                 break;

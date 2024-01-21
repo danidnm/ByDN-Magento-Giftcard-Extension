@@ -9,7 +9,7 @@ use Bydn\Giftcard\Api\Data\GiftcardSearchResultsInterface;
 use Bydn\Giftcard\Api\Data\GiftcardSearchResultsInterfaceFactory;
 use Bydn\Giftcard\Model\ResourceModel\Giftcard as GiftcardResource;
 use Bydn\Giftcard\Model\ResourceModel\Giftcard\CollectionFactory as GiftcardCollectionFactory;
-use \Bydn\Logger\Model\LoggerInterface as Logger;
+use \Psr\Log\LoggerInterface as Logger;
 use Bydn\Giftcard\Model\GiftcardFactory;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;

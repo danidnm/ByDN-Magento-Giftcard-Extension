@@ -25,19 +25,19 @@ class Expire
     private $giftcardResource;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
     /**
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Framework\Stdlib\DateTime\DateTime $date,
         \Bydn\Giftcard\Helper\Config $giftcardConfig,
         \Bydn\Giftcard\Model\ResourceModel\Giftcard\CollectionFactory $giftcardCollectionFactory,
         \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->date = $date;
         $this->giftcardConfig = $giftcardConfig;
@@ -46,11 +46,11 @@ class Expire
         $this->logger = $logger;    }
 
     public function expireCards() {
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+        $this->logger->info('Ini');
 
         // Check expiration enabled
         if (!$this->giftcardConfig->isExpirationEnabled()) {
-            $this->logger->writeInfo(__METHOD__, __LINE__, 'Not enabled');
+            $this->logger->info('Not enabled');
         }
 
         // Get all giftcards pending or active
@@ -71,5 +71,5 @@ class Expire
             $this->giftcardResource->save($giftcard);
         }
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');    }
+        $this->logger->info('End');    }
 }

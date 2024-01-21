@@ -25,7 +25,7 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
     private $giftcardFactory;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -34,14 +34,14 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
      * @param \Bydn\Giftcard\Helper\Config $giftcardConfig
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
      * @param \Bydn\Giftcard\Model\GiftcardFactory $giftcardFactory
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Framework\Validation\ValidationResultFactory $validationResultFactory,
         \Bydn\Giftcard\Helper\Config $giftcardConfig,
         \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource,
         \Bydn\Giftcard\Model\GiftcardFactory $giftcardFactory,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->validationResultFactory = $validationResultFactory;
         $this->giftcardConfig = $giftcardConfig;
@@ -77,7 +77,7 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
      */
     public function validate(\Magento\Quote\Model\Quote $quote): array
     {
-        $this->logger->writeInfo(__METHOD__, __LINE__, ': Ini');
+        $this->logger->info(': Ini');
 
         $validationErrors = [];
 
@@ -106,7 +106,7 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
             }
         }
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, ': End');
+        $this->logger->info(': End');
 
         return [$this->validationResultFactory->create(['errors' => $validationErrors])];
     }

@@ -14,17 +14,17 @@ class InvoiceLoadExtensionAttribute implements \Magento\Framework\Event\Observer
     private $giftcardInvoiceRepository;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
     /**
      * @param \Bydn\Giftcard\Api\GiftcardInvoiceRepositoryInterface $giftcardInvoiceRepository
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Bydn\Giftcard\Api\GiftcardInvoiceRepositoryInterface $giftcardInvoiceRepository,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->giftcardInvoiceRepository = $giftcardInvoiceRepository;
         $this->logger = $logger;
@@ -37,7 +37,7 @@ class InvoiceLoadExtensionAttribute implements \Magento\Framework\Event\Observer
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+//        $this->logger->info('Ini');
 
         $invoice = $observer->getEvent()->getInvoice();
         $invoiceExtension = $invoice->getExtensionAttributes();
@@ -50,6 +50,6 @@ class InvoiceLoadExtensionAttribute implements \Magento\Framework\Event\Observer
             }
         }
 
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');
+//        $this->logger->info('End');
     }
 }

@@ -31,12 +31,12 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     /**
      * @param \Bydn\Giftcard\Api\GiftcardRepositoryInterface $giftcardRepository
      * @param \Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface $giftcardQuoteRepository
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Bydn\Giftcard\Api\GiftcardRepositoryInterface $giftcardRepository,
         \Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface $giftcardQuoteRepository,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->amount = 0;
         $this->baseAmount = 0;
@@ -53,7 +53,7 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
      */
     private function getQuoteGrandTotal($quote)
     {
-//        $this->logger->writeInfo(__METHOD__, __LINE__, '');
+//        $this->logger->info('');
 
         // Iterate over the items and get the value
         $grandTotal = 0;
@@ -70,14 +70,14 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         $shippingAmount = $shippingAddress->getShippingAmount();
         $baseShippingAmount = $shippingAddress->getBaseShippingAmount();
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Items total: ' . $grandTotal);
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Shipping amount: ' . $shippingAmount);
+        $this->logger->info('Items total: ' . $grandTotal);
+        $this->logger->info('Shipping amount: ' . $shippingAmount);
 
         // Add shipping
         $grandTotal += $shippingAmount;
         $baseGrandTotal += $baseShippingAmount;
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Grand total: ' . $grandTotal);
+        $this->logger->info('Grand total: ' . $grandTotal);
 
         return [$grandTotal, $baseGrandTotal];
     }
@@ -95,7 +95,7 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     ) {
         parent::collect($quote, $shippingAssignment, $total);
 
-//        $this->logger->writeInfo(__METHOD__, __LINE__, ': Ini');
+//        $this->logger->info(': Ini');
 
         // FIXME: Check user logging in at checkout and get in more products into the cart
 
@@ -138,17 +138,17 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         //$quoteGrandTotal = $quote->getGrandTotal() + $appliedGiftcardAmount /*+ $shippingAmount*/;
         //$quoteBaseGrandTotal = $quote->getBaseGrandTotal() + $appliedGiftcardBaseAmount /*+ $baseShippingAmount*/;
 
-        //$this->logger->writeInfo(__METHOD__, __LINE__, ': Quote Shipping: ' . $shippingAmount);
-        $this->logger->writeInfo(__METHOD__, __LINE__, ': Quote Grand Total (quote): ' . $quote->getGrandTotal());
-        $this->logger->writeInfo(__METHOD__, __LINE__, ': Quote Grand Total (calculated): ' . $quoteGrandTotal);
-        $this->logger->writeInfo(__METHOD__, __LINE__, ': Giftcard Quote Amount: ' . $appliedGiftcardAmount);
+        //$this->logger->info(': Quote Shipping: ' . $shippingAmount);
+        $this->logger->info('Quote Grand Total (quote): ' . $quote->getGrandTotal());
+        $this->logger->info('Quote Grand Total (calculated): ' . $quoteGrandTotal);
+        $this->logger->info('Giftcard Quote Amount: ' . $appliedGiftcardAmount);
 
         // FIXME for multiple currencies
         // Calculate the highest possible amount
         $this->amount = min($availableAmountInGiftcard, $quoteGrandTotal);
         $this->baseAmount = min($availableAmountInGiftcard, $quoteBaseGrandTotal);
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, ': Calculated Amount: ' . $this->amount);
+        $this->logger->info(': Calculated Amount: ' . $this->amount);
 
         // Save in extension info
         if ($giftcardData) {

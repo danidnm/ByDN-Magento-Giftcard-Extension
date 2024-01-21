@@ -14,17 +14,17 @@ class OrderLoadExtensionAttribute implements \Magento\Framework\Event\ObserverIn
     private $giftcardOrderRepository;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
     /**
      * @param \Bydn\Giftcard\Api\GiftcardOrderRepositoryInterface $giftcardOrderRepository
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Bydn\Giftcard\Api\GiftcardOrderRepositoryInterface $giftcardOrderRepository,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->giftcardOrderRepository = $giftcardOrderRepository;
         $this->logger = $logger;
@@ -37,7 +37,7 @@ class OrderLoadExtensionAttribute implements \Magento\Framework\Event\ObserverIn
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+//        $this->logger->info('Ini');
 
         $order = $observer->getEvent()->getOrder();
         $orderExtension = $order->getExtensionAttributes();
@@ -50,6 +50,6 @@ class OrderLoadExtensionAttribute implements \Magento\Framework\Event\ObserverIn
             }
         }
 
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');
+//        $this->logger->info('End');
     }
 }

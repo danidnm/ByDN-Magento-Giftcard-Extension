@@ -37,7 +37,7 @@ class MailSender
     private $giftcardConfig;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -48,7 +48,7 @@ class MailSender
         \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency,
         \Magento\Framework\Escaper $escaper,
         \Bydn\Giftcard\Helper\Config $giftcardConfig,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->inlineTranslation = $inlineTranslation;
         $this->transportBuilder = $transportBuilder;
@@ -64,7 +64,7 @@ class MailSender
      * @return int
      */
     public function sendGiftcardEmail($giftcard) {
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Sending giftcard: ' . $giftcard->getCode());
+        $this->logger->info('Sending giftcard: ' . $giftcard->getCode());
 
         try {
             $this->inlineTranslation->suspend();
@@ -97,10 +97,10 @@ class MailSender
             $transport->sendMessage();
             $this->inlineTranslation->resume();
 
-            $this->logger->writeInfo(__METHOD__, __LINE__, 'Sent');
+            $this->logger->info('Sent');
         }
         catch (\Exception $e) {
-            $this->logger->writeInfo(__METHOD__, __LINE__, 'ERROR Sending giftcard: ' . $e->getMessage());
+            $this->logger->info('ERROR Sending giftcard: ' . $e->getMessage());
             $this->logger->sendAlertTelegram('ERROR Sending giftcard: ' . $e->getMessage(), 'it');
             return -1;
         }

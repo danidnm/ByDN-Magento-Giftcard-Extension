@@ -37,7 +37,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Invoice\Total\AbstractTotal
     private $giftcardInvoiceRepository;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -53,7 +53,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Invoice\Total\AbstractTotal
      * @param \Bydn\Giftcard\Model\ResourceModel\GiftcardOrder $giftcardOrderResource
      * @param \Bydn\Giftcard\Model\GiftcardInvoiceFactory $giftcardInvoiceFactory
      * @param \Bydn\Giftcard\Api\GiftcardInvoiceRepositoryInterface $giftcardInvoiceRepository
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Sales\Model\ResourceModel\Order $orderResourceModel,
@@ -62,7 +62,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Invoice\Total\AbstractTotal
         \Bydn\Giftcard\Model\ResourceModel\GiftcardOrder $giftcardOrderResource,
         \Bydn\Giftcard\Model\GiftcardInvoiceFactory $giftcardInvoiceFactory,
         \Bydn\Giftcard\Api\GiftcardInvoiceRepositoryInterface $giftcardInvoiceRepository,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->orderResourceModel = $orderResourceModel;
         $this->orderFactory = $orderFactory;

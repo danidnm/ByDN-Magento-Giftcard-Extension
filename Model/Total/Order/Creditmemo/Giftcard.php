@@ -64,7 +64,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
     private $giftcardCreditmemoRepository;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -95,7 +95,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
      * @param \Bydn\Giftcard\Api\GiftcardInvoiceRepositoryInterface $giftcardInvoiceRepository
      * @param \Bydn\Giftcard\Model\GiftcardCreditmemoFactory $giftcardCreditmemoFactory
      * @param \Bydn\Giftcard\Api\GiftcardCreditmemoRepositoryInterface $giftcardCreditmemoRepository
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Framework\App\RequestInterface $request,
@@ -110,7 +110,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
         \Bydn\Giftcard\Api\GiftcardInvoiceRepositoryInterface $giftcardInvoiceRepository,
         \Bydn\Giftcard\Model\GiftcardCreditmemoFactory $giftcardCreditmemoFactory,
         \Bydn\Giftcard\Api\GiftcardCreditmemoRepositoryInterface $giftcardCreditmemoRepository,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->request = $request;
         $this->currency = $currency;

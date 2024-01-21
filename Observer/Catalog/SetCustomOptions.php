@@ -10,16 +10,16 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
     protected $optionFactory;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
-    private \Bydn\Logger\Model\LoggerInterface $logger;
+    private \Psr\Log\LoggerInterface $logger;
 
     /**
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Catalog\Model\Product\OptionFactory $optionFactory,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->optionFactory = $optionFactory;
         $this->logger = $logger;
@@ -37,7 +37,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
         $product = $observer->getEvent()->getProduct();
         if ($product->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
 
-            $this->logger->writeInfo(__METHOD__, __LINE__, ': Adding options to giftcard');
+            $this->logger->info(': Adding options to giftcard');
             $this->addCustomOptionSenderName($product, 1);
             $this->addCustomOptionFriendName($product, 2);
             $this->addCustomOptionFriendEmail($product, 3);

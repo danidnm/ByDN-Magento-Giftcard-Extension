@@ -39,7 +39,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
     private $giftcardMovementFactory;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
@@ -49,7 +49,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
      * @param \Bydn\Giftcard\Model\GiftcardFactory $giftcardFactory
      * @param \Bydn\Giftcard\Model\GiftcardRepository $giftcardRepository
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Bydn\Giftcard\Helper\Config $giftcardConfig,
@@ -59,7 +59,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
         \Bydn\Giftcard\Model\GiftcardRepository $giftcardRepository,
         \Bydn\Giftcard\Model\ResourceModel\GiftcardMovement $giftcardMovementResource,
         \Bydn\Giftcard\Model\GiftcardMovementFactory $giftcardMovementFactory,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->giftcardConfig = $giftcardConfig;
         $this->giftcardMovementCollectionFactory = $giftcardMovementCollectionFactory;
@@ -79,13 +79,13 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+        $this->logger->info('Ini');
 
         // Get order
         $order = $observer->getEvent()->getOrder();
         if ($order) {
 
-            $this->logger->writeInfo(__METHOD__, __LINE__, 'Processing order: ' . $order->getId());
+            $this->logger->info('Processing order: ' . $order->getId());
 
             // Get giftcard data
             $extensionAttributes = $order->getExtensionAttributes();
@@ -97,7 +97,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
                 $giftcardCode = $giftcardData->getGiftcardCode();
                 if ($giftcardCode) {
 
-                    $this->logger->writeInfo(__METHOD__, __LINE__, 'Has giftcard applied: ' . $giftcardCode);
+                    $this->logger->info('Has giftcard applied: ' . $giftcardCode);
 
                     // Check the movement still does not exists
                     if (!$this->movementExists($order->getId())) {
@@ -109,7 +109,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
             }
         }
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');
+        $this->logger->info('End');
     }
 
     /**
@@ -132,13 +132,13 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
      */
     public function createMovement($order, $giftcardCode, $giftcardAmout)
     {
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Saving movement for giftcard: ' . $giftcardCode . ' with value: ' . $giftcardAmout);
+        $this->logger->info('Saving movement for giftcard: ' . $giftcardCode . ' with value: ' . $giftcardAmout);
 
         // Get the giftcard instance
         /** @var \Bydn\Giftcard\Model\Giftcard $giftcard */
         $giftcard = $this->giftcardRepository->getByCode($giftcardCode);
         if (!$giftcard) {
-            $this->logger->writeInfo(__METHOD__, __LINE__, ': GIFTCARD ALERT: Applied giftcard that does not exists in order ' . $order->getIncrementId());
+            $this->logger->info(': GIFTCARD ALERT: Applied giftcard that does not exists in order ' . $order->getIncrementId());
             $this->logger->sendAlertTelegram('GIFTCARD ALERT: Applied giftcard that does not exists in order ' . $order->getIncrementId(), 'it');
             return;
         }
@@ -169,10 +169,10 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
 
         // Do some security checks
         if (($giftcard->getStatus() != \Bydn\Giftcard\Model\Giftcard::GIFTCARD_ACTIVE) || ($availableAmount < 0)) {
-            $this->logger->writeInfo(__METHOD__, __LINE__, ': GIFTCARD ALERT: Fraudulent use of giftcard detected in order ' . $order->getIncrementId());
+            $this->logger->info(': GIFTCARD ALERT: Fraudulent use of giftcard detected in order ' . $order->getIncrementId());
             $this->logger->sendAlertTelegram('GIFTCARD ALERT: Fraudulent use of giftcard detected in order ' . $order->getIncrementId(), 'it');
         }
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'end');
+        $this->logger->info('end');
     }
 }

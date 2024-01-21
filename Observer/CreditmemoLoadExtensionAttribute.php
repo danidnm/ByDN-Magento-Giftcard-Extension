@@ -14,17 +14,17 @@ class CreditmemoLoadExtensionAttribute implements \Magento\Framework\Event\Obser
     private $giftcardCreditmemoRepository;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
     /**
      * @param \Bydn\Giftcard\Api\GiftcardCreditmemoRepositoryInterface $giftcardCreditmemoRepository
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Bydn\Giftcard\Api\GiftcardCreditmemoRepositoryInterface $giftcardCreditmemoRepository,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->giftcardCreditmemoRepository = $giftcardCreditmemoRepository;
         $this->logger = $logger;
@@ -37,7 +37,7 @@ class CreditmemoLoadExtensionAttribute implements \Magento\Framework\Event\Obser
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+//        $this->logger->info('Ini');
 
         $creditmemo = $observer->getEvent()->getCreditmemo();
         $creditmemoExtension = $creditmemo->getExtensionAttributes();
@@ -50,6 +50,6 @@ class CreditmemoLoadExtensionAttribute implements \Magento\Framework\Event\Obser
             }
         }
 
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');
+//        $this->logger->info('End');
     }
 }

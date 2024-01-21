@@ -107,7 +107,7 @@
             <argument name="fileName" xsi:type="string">/var/log/bydn_giftcard.log</argument>
         </arguments>
     </virtualType>
-    <virtualType name="Bydn\Giftcard\Logger\Logger" type="Bydn\Logger\Model\Logger">
+    <virtualType name="Bydn\Giftcard\Logger\Logger" type="\Monolog\Logger">
         <arguments>
             <argument name="name" xsi:type="string">bydn_giftcard_logger</argument>
             <argument name="handlers" xsi:type="array">

@@ -10,18 +10,18 @@ class AddTotal implements \Magento\Framework\Event\ObserverInterface
     private $session;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
     private $logger;
 
 
     /**
      * @param \Magento\Checkout\Model\Session $session
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Checkout\Model\Session $session,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->session = $session;
         $this->logger = $logger;
@@ -35,7 +35,7 @@ class AddTotal implements \Magento\Framework\Event\ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+//        $this->logger->info('Ini');
 
         $cart = $observer->getEvent()->getCart();
         $quote = $this->session->getQuote();
@@ -46,6 +46,6 @@ class AddTotal implements \Magento\Framework\Event\ObserverInterface
             $cart->addCustomItem('Giftcard', 1, (-1) * $quoteGiftcardData->getGiftcardAmount());
         }
 
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');
+//        $this->logger->info('End');
     }
 }

@@ -30,9 +30,9 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
     private $giftcardFactory;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
-    private \Bydn\Logger\Model\LoggerInterface $logger;
+    private \Psr\Log\LoggerInterface $logger;
 
     /**
      * @var array
@@ -46,7 +46,7 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard\CollectionFactory $giftcardCollectionFactory
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
      * @param \Bydn\Giftcard\Model\GiftcardFactory $giftcardFactory
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Framework\Stdlib\DateTime\DateTime $date,
@@ -54,7 +54,7 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
         \Bydn\Giftcard\Model\ResourceModel\Giftcard\CollectionFactory $giftcardCollectionFactory,
         \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource,
         \Bydn\Giftcard\Model\GiftcardFactory $giftcardFactory,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->date = $date;
         $this->giftcardConfig = $giftcardConfig;
@@ -72,20 +72,20 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+        $this->logger->info('Ini');
 
         // Get order
         $order = $observer->getEvent()->getOrder();
         if ($order) {
 
-            $this->logger->writeInfo(__METHOD__, __LINE__, 'Processing order: ' . $order->getId());
+            $this->logger->info('Processing order: ' . $order->getId());
 
             // Check for status change.
             // This event should be only processed once when the order reaches state = complete
             // Also ensure we only give one giftcard per order (even if the orders reaches complete multiple times)
             if ($this->orderTransitionsToComplete($order)) {
 
-                $this->logger->writeInfo(__METHOD__, __LINE__, 'Order is complete');
+                $this->logger->info('Order is complete');
 
                 //  Extract giftcards
                 $giftcards = $this->extractOrderGiftcards($order);
@@ -99,7 +99,7 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
             }
         }
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');
+        $this->logger->info('End');
     }
 
     /**
@@ -163,7 +163,7 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
      */
     private function createGiftcardForItem($order, $item) {
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Creating giftcard for order/item: ' . $order->getIncrementId() . ' / ' . $item->getItemId());
+        $this->logger->info('Creating giftcard for order/item: ' . $order->getIncrementId() . ' / ' . $item->getItemId());
 
         // Improbable case, but possible. Some purchases two or more identical giftcards
         $qty = $item->getQtyOrdered();
@@ -196,10 +196,10 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
 
             // Save the giftcard
             $this->giftcardResource->save($giftcard);
-            $this->logger->writeInfo(__METHOD__, __LINE__, 'Giftcard created: ' . $giftcard->getCode());
+            $this->logger->info('Giftcard created: ' . $giftcard->getCode());
         }
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, ': end');
+        $this->logger->info(': end');
     }
 
     /**

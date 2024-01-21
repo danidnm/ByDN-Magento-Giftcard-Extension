@@ -27,9 +27,9 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
     protected \Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface $giftcardQuoteRepository;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
-    protected \Bydn\Logger\Model\LoggerInterface $logger;
+    protected \Psr\Log\LoggerInterface $logger;
 
     /**
      * @param \Magento\Framework\App\Action\Context $context
@@ -41,7 +41,7 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
      * @param \Magento\Quote\Api\CartRepositoryInterface $quoteRepository
      * @param \Magento\Framework\Escaper $escaper
      * @param \Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface $giftcardQuoteRepository
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -54,7 +54,7 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
         \Magento\Framework\Escaper $escaper,
         \Bydn\Giftcard\Api\GiftcardRepositoryInterface $giftcardRepository,
         \Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface $giftcardQuoteRepository,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         parent::__construct(
             $context,
@@ -108,7 +108,7 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
      */
     public function execute()
     {
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+        $this->logger->info('Ini');
 
         // New code applied or remove
         $newGiftcardCode = $this->getRequest()->getParam('remove') == 1
@@ -131,9 +131,9 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
             return $this->_goBack();
         }
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Quote: ' . $cartQuote->getId());
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'Old: ' . $oldGiftcardCode);
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'New: ' . $newGiftcardCode);
+        $this->logger->info('Quote: ' . $cartQuote->getId());
+        $this->logger->info('Old: ' . $oldGiftcardCode);
+        $this->logger->info('New: ' . $newGiftcardCode);
 
         // Check code is OK
         if (strlen($newGiftcardCode) && !$this->isGiftcardCodeValid($newGiftcardCode)) {
@@ -158,7 +158,7 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
         // One only code support
         $allGiftcardCode = $newGiftcardCode;
 
-        $this->logger->writeInfo(__METHOD__, __LINE__, 'All: ' . $allGiftcardCode);
+        $this->logger->info('All: ' . $allGiftcardCode);
 
         // Set in the quote and save
         $giftcardData->setGiftcardCode($allGiftcardCode);

@@ -10,17 +10,17 @@ class CopyToOrder implements \Magento\Framework\Event\ObserverInterface
     private $giftcardOrderFactory;
 
     /**
-     * @var \Bydn\Logger\Model\LoggerInterface
+     * @var \Psr\Log\LoggerInterface
      */
-    private \Bydn\Logger\Model\LoggerInterface $logger;
+    private \Psr\Log\LoggerInterface $logger;
 
     /**
      * @param \Bydn\Giftcard\Model\GiftcardOrderFactory $giftcardOrderFactory
-     * @param \Bydn\Logger\Model\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         \Bydn\Giftcard\Model\GiftcardOrderFactory $giftcardOrderFactory,
-        \Bydn\Logger\Model\LoggerInterface $logger
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->giftcardOrderFactory = $giftcardOrderFactory;
         $this->logger = $logger;
@@ -34,7 +34,7 @@ class CopyToOrder implements \Magento\Framework\Event\ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'Ini');
+//        $this->logger->info('Ini');
 
         /* @var \Magento\Sales\Model\Order $order */
         $order = $observer->getEvent()->getData('order');
@@ -61,6 +61,6 @@ class CopyToOrder implements \Magento\Framework\Event\ObserverInterface
         $orderExtensionAttributes->setGiftcardData($orderGiftcardData);
         $order->setExtensionAttributes($orderExtensionAttributes);
 
-//        $this->logger->writeInfo(__METHOD__, __LINE__, 'End');
+//        $this->logger->info('End');
     }
 }
