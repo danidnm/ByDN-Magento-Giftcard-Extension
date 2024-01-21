@@ -53,6 +53,6 @@ class Delete extends Action implements HttpPostActionInterface
             }
         }
 
-        return $resultRedirect->setPath('bydngiftcard/giftcard/grid');
+        return $resultRedirect->setPath('giftcard/grid/index');
     }
 }

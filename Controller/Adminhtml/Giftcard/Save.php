@@ -65,7 +65,7 @@ class Save extends Action implements HttpPostActionInterface
             return $resultRedirect->setUrl($this->_redirect->getRefererUrl());
         }
 
-        return $resultRedirect->setPath('bydngiftcard/giftcard/edit', ['id' => $giftcard->getData('id')]);
+        return $resultRedirect->setPath('giftcard/giftcard/edit', ['id' => $giftcard->getData('id')]);
     }
 
     /**

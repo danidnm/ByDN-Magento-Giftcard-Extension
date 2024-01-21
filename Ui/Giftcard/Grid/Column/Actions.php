@@ -43,7 +43,7 @@ class Actions extends Column
                 $item[$this->getData('name')] = [
                     'edit' => [
                         'href' => $this->urlBuilder->getUrl(
-                            'bydngiftcard/giftcard/edit',
+                            'giftcard/giftcard/edit',
                             ['id' => $item['id']]
                         ),
                         'label' => __('Edit')

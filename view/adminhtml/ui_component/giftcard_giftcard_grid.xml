@@ -10,7 +10,7 @@
     <settings>
         <buttons>
             <button name="add">
-                <url path="*/*/create"/>
+                <url path="*/giftcard/create"/>
                 <class>primary</class>
                 <label translate="true">Add New Giftcard</label>
             </button>

@@ -18,7 +18,7 @@
             <button name="save" class="Bydn\Giftcard\Block\Adminhtml\Giftcard\Edit\SaveButton"/>
             <button name="delete" class="Bydn\Giftcard\Block\Adminhtml\Giftcard\Edit\DeleteButton"/>
             <button name="back">
-                <url path="*/giftcard/grid"/>
+                <url path="*/grid/index"/>
                 <class>back</class>
                 <label translate="true">Back</label>
             </button>
@@ -31,8 +31,8 @@
             </item>
         </argument>
         <settings>
-            <validateUrl path="bydngiftcard/giftcard/validate"/>
-            <submitUrl path="bydngiftcard/giftcard/save"/>
+            <validateUrl path="giftcard/giftcard/validate"/>
+            <submitUrl path="giftcard/giftcard/save"/>
         </settings>
         <dataProvider class="Bydn\Giftcard\Ui\Giftcard\DataProvider" name="giftcard_giftcard_create_form_data_source">
             <settings>
