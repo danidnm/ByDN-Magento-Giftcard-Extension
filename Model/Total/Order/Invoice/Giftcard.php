@@ -71,7 +71,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Invoice\Total\AbstractTotal
         $this->giftcardInvoiceFactory = $giftcardInvoiceFactory;
         $this->giftcardInvoiceRepository = $giftcardInvoiceRepository;
         $this->logger = $logger;
-        return parent::__construct();
+        parent::__construct();
     }
 
     /**

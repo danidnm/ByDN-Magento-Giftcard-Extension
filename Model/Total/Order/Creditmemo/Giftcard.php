@@ -125,7 +125,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
         $this->giftcardCreditmemoFactory = $giftcardCreditmemoFactory;
         $this->giftcardCreditmemoRepository = $giftcardCreditmemoRepository;
         $this->logger = $logger;
-        return parent::__construct();
+        parent::__construct();
     }
 
     /**

@@ -22,6 +22,11 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     private $giftcardQuoteRepository;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * Amount total
      * @var double
      */

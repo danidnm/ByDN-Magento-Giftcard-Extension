@@ -72,6 +72,8 @@ class InstallAttributes implements DataPatchInterface
                 );
             }
         }
+
+        return $this;
     }
 
     /**

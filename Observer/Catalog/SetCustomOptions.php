@@ -29,7 +29,6 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
      * Setting attribute tab block for bundle
      *
      * @param \Magento\Framework\Event\Observer $observer
-     * @return $this
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {

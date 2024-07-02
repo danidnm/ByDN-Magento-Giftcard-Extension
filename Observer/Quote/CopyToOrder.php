@@ -30,7 +30,6 @@ class CopyToOrder implements \Magento\Framework\Event\ObserverInterface
      * Check if giftcard has been used and discount the amount from balance
      *
      * @param \Magento\Framework\Event\Observer $observer
-     * @return $this
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
