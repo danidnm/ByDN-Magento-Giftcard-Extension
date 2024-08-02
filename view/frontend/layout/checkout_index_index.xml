@@ -7,6 +7,39 @@
                     <item name="components" xsi:type="array">
                         <item name="checkout" xsi:type="array">
                             <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="afterMethods" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="giftcard" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Bydn_Giftcard/js/view/payment/giftcard</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="errors" xsi:type="array">
+                                                                            <item name="sortOrder" xsi:type="string">0</item>
+                                                                            <item name="component" xsi:type="string">Bydn_Giftcard/js/view/payment/giftcard-messages</item>
+                                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                                        </item>
+                                                                        <item name="captcha" xsi:type="array">
+                                                                            <item name="component" xsi:type="string">Bydn_Giftcard/js/view/payment/captcha</item>
+                                                                            <item name="displayArea" xsi:type="string">captcha</item>
+                                                                            <item name="formId" xsi:type="string">sales_rule_coupon_request</item>
+                                                                            <item name="configSource" xsi:type="string">checkoutConfig</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
                                 <item name="sidebar" xsi:type="array">
                                     <item name="children" xsi:type="array">
                                         <item name="summary" xsi:type="array">
