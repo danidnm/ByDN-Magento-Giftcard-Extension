@@ -1,6 +1,6 @@
 define([
     'Magento_Ui/js/view/messages',
-    '../../model/payment/giftcard-messages'
+    'Bydn_Giftcard/js/model/payment/giftcard-messages'
 ], function (Component, messageContainer) {
     'use strict';
 

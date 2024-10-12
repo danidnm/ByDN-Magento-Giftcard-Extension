@@ -37,7 +37,7 @@ define([
     action =  function (isApplied) {
         var quoteId = quote.getQuoteId(),
             url = urlManager.getCancelCouponUrl(quoteId),
-            message = $t('Your coupon was successfully removed.');
+            message = $t('Your giftcard was successfully removed.');
 
         messageContainer.clear();
         fullScreenLoader.startLoader();

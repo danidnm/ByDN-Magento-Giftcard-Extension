@@ -32,6 +32,11 @@
     <preference for="Bydn\Giftcard\Api\GiftcardCreditmemoRepositoryInterface" type="Bydn\Giftcard\Model\GiftcardCreditmemoRepository" />
     <preference for="Bydn\Giftcard\Api\Data\GiftcardCreditmemoSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
 
+    <!-- Plugin to add giftcard_code to checkout totals -->
+    <type name="Magento\Quote\Model\Cart\CartTotalRepository">
+        <plugin name="BydnGiftcardQuoteTotalExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Quote\Model\Cart\CartTotalRepository" />
+    </type>
+
     <!-- Plugin for extension attributes (quote) -->
     <type name="Magento\Quote\Api\CartRepositoryInterface">
         <plugin name="BydnGiftcardQuoteExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Quote\Api\CartRepositoryInterface"/>
@@ -118,6 +123,11 @@
 
     <!-- LOG bydn_giftcard (usages) -->
     <type name="Bydn\Giftcard\Controller\Cart\GiftcardPost">
+        <arguments>
+            <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
+        </arguments>
+    </type>
+    <type name="Bydn\Giftcard\Controller\Checkout\GiftcardPost">
         <arguments>
             <argument name="logger" xsi:type="object">Bydn\Giftcard\Logger\Logger</argument>
         </arguments>

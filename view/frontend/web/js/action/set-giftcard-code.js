@@ -30,54 +30,58 @@ define([
      */
     action = function (couponCode, isApplied) {
         var quoteId = quote.getQuoteId(),
-            url = urlManager.getApplyCouponUrl(couponCode, quoteId),
-            message = $t('Your coupon was successfully applied.'),
-            data = {},
-            headers = {};
+            url = window.BASE_URL + 'checkout/checkout/giftcardPost',
+            message = $t('Your giftcard was successfully applied.'),
+            errorMessage = $t('The giftcard code is not valid or already used.'),
+            postData = {
+                'giftcard_code' : couponCode,
+            };
 
-        //Allowing to modify coupon-apply request
-        dataModifiers.forEach(function (modifier) {
-            modifier(headers, data);
-        });
         fullScreenLoader.startLoader();
 
-        return storage.put(
-            url,
-            data,
-            false,
-            null,
-            headers
-        ).done(function (response) {
-            var deferred;
+        console.log(url);
+        console.log(postData);
 
-            if (response) {
-                deferred = $.Deferred();
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'POST',
+            data : postData,
+            success : function (response) {
+                var deferred;
+                if(
+                    response.result === 'added' ||
+                    response.result === 'removed'
+                ) {
+                    deferred = $.Deferred();
 
-                isApplied(true);
-                totals.isLoading(true);
-                recollectShippingRates();
-                getPaymentInformationAction(deferred);
-                $.when(deferred).done(function () {
+                    isApplied(true);
+                    totals.isLoading(true);
+                    recollectShippingRates();
+                    getPaymentInformationAction(deferred);
+                    $.when(deferred).done(function () {
+                        fullScreenLoader.stopLoader();
+                        totals.isLoading(false);
+                    });
+                    messageContainer.addSuccessMessage({
+                        'message': response.message
+                    });
+                }
+                else {
                     fullScreenLoader.stopLoader();
                     totals.isLoading(false);
-                });
-                messageContainer.addSuccessMessage({
-                    'message': message
-                });
-                //Allowing to tap into apply-coupon process.
-                successCallbacks.forEach(function (callback) {
-                    callback(response);
+                    messageContainer.addErrorMessage({
+                        'message': response.message
+                    });
+                }
+            },
+            error : function () {
+                alert({
+                    title : 'Error',
+                    content :'There has been an error. Please try again later.'
                 });
             }
-        }).fail(function (response) {
-            fullScreenLoader.stopLoader();
-            totals.isLoading(false);
-            errorProcessor.process(response, messageContainer);
-            //Allowing to tap into apply-coupon process.
-            failCallbacks.forEach(function (callback) {
-                callback(response);
-            });
-        });
+        })
     };
 
     /**
