@@ -7,6 +7,7 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
     const RESULT_APPLIED = 'added';
     const RESULT_REMOVED = 'removed';
     const RESULT_NOT_VALID = 'not_valid';
+    const RESULT_GIFTCARD_WITH_GIFTCARD = 'giftcard_with_giftcard';
 
     /**
      * @var \Magento\Framework\App\RequestInterface
@@ -36,6 +37,11 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
     protected $escaper;
 
     /**
+     * @var \Bydn\Giftcard\Helper\Config
+     */
+    protected $giftcardConfig;
+
+    /**
      * @var \Bydn\Giftcard\Api\GiftcardRepositoryInterface
      */
     protected $giftcardRepository;
@@ -56,6 +62,7 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
      * @param \Magento\Quote\Api\CartRepositoryInterface $quoteRepository
      * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
      * @param \Magento\Framework\Escaper $escaper
+     * @param \Bydn\Giftcard\Helper\Config $giftcardConfig
      * @param \Bydn\Giftcard\Api\GiftcardRepositoryInterface $giftcardRepository
      * @param \Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface $giftcardQuoteRepository
      * @param \Psr\Log\LoggerInterface $logger
@@ -66,6 +73,7 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
         \Magento\Quote\Api\CartRepositoryInterface $quoteRepository,
         \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
         \Magento\Framework\Escaper $escaper,
+        \Bydn\Giftcard\Helper\Config $giftcardConfig,
         \Bydn\Giftcard\Api\GiftcardRepositoryInterface $giftcardRepository,
         \Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface $giftcardQuoteRepository,
         \Psr\Log\LoggerInterface $logger
@@ -75,6 +83,7 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
         $this->quoteRepository = $quoteRepository;
         $this->jsonFactory = $jsonFactory;
         $this->escaper = $escaper;
+        $this->giftcardConfig = $giftcardConfig;
         $this->giftcardRepository = $giftcardRepository;
         $this->giftcardQuoteRepository = $giftcardQuoteRepository;
         $this->logger = $logger;
@@ -107,7 +116,6 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
 
         return true;
     }
-
 
     public function execute()
     {
@@ -142,15 +150,6 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
         if (strlen($newGiftcardCode) && !$this->isGiftcardCodeValid($newGiftcardCode)) {
             return $this->returnResult(self::RESULT_NOT_VALID, $newGiftcardCode);
         }
-
-        // Apply new giftcard code (FIXME for multiple codes)
-//        $allGiftcardCode = explode(',', $oldGiftcardCode);
-//        $allGiftcardCode = array_map('trim', $allGiftcardCode);
-//        if (strlen($newGiftcardCode)) {
-//            $allGiftcardCode[] = $newGiftcardCode;
-//        }
-//        $allGiftcardCode = array_filter($allGiftcardCode);
-//        $allGiftcardCode = implode(',', $allGiftcardCode);
 
         // One only code support
         $allGiftcardCode = $newGiftcardCode;

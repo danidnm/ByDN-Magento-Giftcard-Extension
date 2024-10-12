@@ -24,7 +24,6 @@ o Envío de email al receptor
 - Varias facturas de abono en un pedido de compra de giftcards
 - Comprobar giftcard with giftcard en carrito
 - Comprobar descuento de giftcard en carrito
-- Aplicar varias tarjetas en un pedido
 
 
 

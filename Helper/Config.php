@@ -11,7 +11,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
     const PATH_GIFTCARD_EMAIL_TEMPLATE = 'bydn_giftcard/emails/email_template';
     const PATH_GIFTCARD_SINGLE_USE_ENABLED = 'bydn_giftcard/expiration/single_use';
     const PATH_GIFTCARD_EXPIRATION_ENABLED = 'bydn_giftcard/expiration/expire_cards';
-    const PATH_GIFTCARD_EXPIRATION = 'bydn_giftcard/expiration/expiration';
+    const PATH_GIFTCARD_EXPIRATION_TIME = 'bydn_giftcard/expiration/expiration_time';
     const PATH_GIFTCARD_WITH_GIFTCARD = 'bydn_giftcard/discounts/avoid_giftcard_with_giftcard';
     const PATH_GIFTCARD_AVOID_DISCOUNTS = 'bydn_giftcard/discounts/avoid_discounts_on_giftcards';
 
@@ -113,7 +113,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getExpirationDays($store_id = null) {
         return $this->scopeConfig->getValue(
-            self::PATH_GIFTCARD_EXPIRATION,
+            self::PATH_GIFTCARD_EXPIRATION_TIME,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
             $store_id
         );

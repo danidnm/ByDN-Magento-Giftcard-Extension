@@ -51,6 +51,7 @@ class Expire
         // Check expiration enabled
         if (!$this->giftcardConfig->isExpirationEnabled()) {
             $this->logger->info('Not enabled');
+            return;
         }
 
         // Get all giftcards pending or active
@@ -71,5 +72,6 @@ class Expire
             $this->giftcardResource->save($giftcard);
         }
 
-        $this->logger->info('End');    }
+        $this->logger->info('End');
+    }
 }
