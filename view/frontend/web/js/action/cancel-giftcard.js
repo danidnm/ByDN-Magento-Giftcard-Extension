@@ -29,43 +29,64 @@ define([
     };
 
     /**
-     * Cancel applied coupon.
+     * Cancel applied giftcard.
      *
      * @param {Boolean} isApplied
      * @returns {Deferred}
      */
     action =  function (isApplied) {
-        var quoteId = quote.getQuoteId(),
-            url = urlManager.getCancelCouponUrl(quoteId),
-            message = $t('Your giftcard was successfully removed.');
+        var url = window.BASE_URL + 'checkout/checkout/giftcardPost',
+            message = $t('Your giftcard was successfully removed.'),
+            postData = {
+                'giftcard_code' : '',
+            }
 
         messageContainer.clear();
         fullScreenLoader.startLoader();
 
-        return storage.delete(
-            url,
-            false
-        ).done(function () {
-            var deferred = $.Deferred();
+        console.log(url);
+        console.log(postData);
 
-            totals.isLoading(true);
-            recollectShippingRates();
-            getPaymentInformationAction(deferred);
-            $.when(deferred).done(function () {
-                isApplied(false);
-                totals.isLoading(false);
-                fullScreenLoader.stopLoader();
-                //Allowing to tap into coupon-cancel process.
-                callSuccessCallbacks();
-            });
-            messageContainer.addSuccessMessage({
-                'message': message
-            });
-        }).fail(function (response) {
-            totals.isLoading(false);
-            fullScreenLoader.stopLoader();
-            errorProcessor.process(response, messageContainer);
-        });
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            type: 'POST',
+            data : postData,
+            success : function (response) {
+                var deferred;
+                if(
+                    response.result === 'added' ||
+                    response.result === 'removed'
+                ) {
+                    deferred = $.Deferred();
+
+                    isApplied(false);
+                    totals.isLoading(true);
+                    recollectShippingRates();
+                    getPaymentInformationAction(deferred);
+                    $.when(deferred).done(function () {
+                        fullScreenLoader.stopLoader();
+                        totals.isLoading(false);
+                    });
+                    messageContainer.addSuccessMessage({
+                        'message': response.message
+                    });
+                }
+                else {
+                    fullScreenLoader.stopLoader();
+                    totals.isLoading(false);
+                    messageContainer.addErrorMessage({
+                        'message': response.message
+                    });
+                }
+            },
+            error : function () {
+                alert({
+                    title : 'Error',
+                    content :'There has been an error. Please try again later.'
+                });
+            }
+        })
     };
 
     /**
