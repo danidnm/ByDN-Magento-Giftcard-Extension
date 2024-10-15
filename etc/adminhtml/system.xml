@@ -12,7 +12,7 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If disable, customer won't be able to purchase giftcards nor redeem giftcards in cart or checkout.</comment>
                 </field>
-                <field id="default_amounts" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="default_amounts" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Card default amounts</label>
                     <comment>When you create a new giftcard product, this will be the amounts configured. You can change it later during the product creation.</comment>
                 </field>
@@ -62,12 +62,12 @@
             <group id="discounts" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
                 <label>Discounts</label>
                 <field id="avoid_giftcard_with_giftcard" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Avoid purchase giftcard with another giftcard</label>
+                    <label>Prevent purchasing giftcards with another giftcard</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If you make discounts on giftcards, set this to true.</comment>
                 </field>
                 <field id="avoid_discounts_on_giftcards" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Avoid to apply any discount on giftcard products</label>
+                    <label>Prevent applying discounts on giftcard products</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Enabling this ensures no one can apply a discount on a giftcard purchase.</comment>
                 </field>

@@ -81,26 +81,43 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
 
         $validationErrors = [];
 
-        // Check discounts in giftcards
-        if ($this->giftcardConfig->avoidAnyDiscount()) {
+        // Check module enabled
+        if (!$this->giftcardConfig->isEnabled()) {
+
+            // Check giftcard in the cart
             foreach ($quote->getAllItems() as $item) {
                 if ($item->getProduct()->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
-                    if ($item->getDiscountAmount() > 0) {
-                        $validationErrors[] = __('Sorry. Discounts cannot be applied to a giftcard.');
+                    $validationErrors[] = __('Sorry. Giftcard purchases are disabled at this time.');
+                }
+            }
+
+            // Check giftcard redemption in the cart
+            if ($this->getGiftcardAppliedAmount($quote) > 0) {
+                $validationErrors[] = __('Sorry. Giftcard redemption is disabled at this time.');
+            }
+        }
+        else {
+
+            // Check discounts in giftcards
+            if ($this->giftcardConfig->avoidAnyDiscount()) {
+                foreach ($quote->getAllItems() as $item) {
+                    if ($item->getProduct()->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
+                        if ($item->getDiscountAmount() > 0) {
+                            $validationErrors[] = __('Sorry. Discounts cannot be applied to a giftcard.');
+                        }
                     }
                 }
             }
-        }
 
-        // Get giftcard amount
-        $appliedAmount = $this->getGiftcardAppliedAmount($quote);
-        if ($appliedAmount > 0) {
+            // Check giftcard with giftcard
+            if ($this->getGiftcardAppliedAmount($quote) > 0) {
 
-            // Check items for giftcards
-            if ($this->giftcardConfig->avoidGiftcardWithGiftcard()) {
-                foreach ($quote->getAllItems() as $item) {
-                    if ($item->getProduct()->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
-                        $validationErrors[] = __('A giftcard cannot be purchased with another giftcard.');
+                // Check items for giftcards
+                if ($this->giftcardConfig->avoidGiftcardWithGiftcard()) {
+                    foreach ($quote->getAllItems() as $item) {
+                        if ($item->getProduct()->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
+                            $validationErrors[] = __('A giftcard cannot be purchased with another giftcard.');
+                        }
                     }
                 }
             }

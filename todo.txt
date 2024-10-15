@@ -18,6 +18,12 @@ o Envío de email al receptor
 + Crear tarjetas desde backoffice
 + Cancelar tarjeta regalo si hay devolución
 
+- Probar desactivación completa (no se puede comprar, no se puede canjear, etc.)
+- Probar pagos con PayPal
+- Probar pagos con Klarna si es posible
+- Integración con OneStepCheckout?
+
+
 - Aplicar varias tarjetas en un pedido
 - Asociar tarjeta regalo a email del amigo
 - Varias facturas de abono en un pedido
