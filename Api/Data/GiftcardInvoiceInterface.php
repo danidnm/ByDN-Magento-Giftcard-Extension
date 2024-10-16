@@ -21,7 +21,6 @@ interface GiftcardInvoiceInterface
     public function getId();
 
     /**
-     *
      * Get invoice ID
      *
      * @return int|null

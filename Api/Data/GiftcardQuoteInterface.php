@@ -21,7 +21,6 @@ interface GiftcardQuoteInterface
     public function getId();
 
     /**
-     *
      * Get quote ID
      *
      * @return int|null

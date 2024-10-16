@@ -32,5 +32,6 @@ interface GiftcardInvoiceRepositoryInterface
      * @return \Bydn\Giftcard\Api\Data\GiftcardInvoiceInterface|null
      * @throws LocalizedException
      */
-    public function save(?\Bydn\Giftcard\Api\Data\GiftcardInvoiceInterface $invoice): ?\Bydn\Giftcard\Api\Data\GiftcardInvoiceInterface;
+    public function save(?\Bydn\Giftcard\Api\Data\GiftcardInvoiceInterface $invoice)
+        : ?\Bydn\Giftcard\Api\Data\GiftcardInvoiceInterface;
 }

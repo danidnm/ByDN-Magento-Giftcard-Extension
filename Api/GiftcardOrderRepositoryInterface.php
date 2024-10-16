@@ -32,5 +32,6 @@ interface GiftcardOrderRepositoryInterface
      * @return \Bydn\Giftcard\Api\Data\GiftcardOrderInterface|null
      * @throws LocalizedException
      */
-    public function save(?\Bydn\Giftcard\Api\Data\GiftcardOrderInterface $order): ?\Bydn\Giftcard\Api\Data\GiftcardOrderInterface;
+    public function save(?\Bydn\Giftcard\Api\Data\GiftcardOrderInterface $order)
+        : ?\Bydn\Giftcard\Api\Data\GiftcardOrderInterface;
 }

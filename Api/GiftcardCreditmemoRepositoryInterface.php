@@ -32,5 +32,6 @@ interface GiftcardCreditmemoRepositoryInterface
      * @return \Bydn\Giftcard\Api\Data\GiftcardCreditmemoInterface|null
      * @throws LocalizedException
      */
-    public function save(?\Bydn\Giftcard\Api\Data\GiftcardCreditmemoInterface $creditmemo): ?\Bydn\Giftcard\Api\Data\GiftcardCreditmemoInterface;
+    public function save(?\Bydn\Giftcard\Api\Data\GiftcardCreditmemoInterface $creditmemo)
+        : ?\Bydn\Giftcard\Api\Data\GiftcardCreditmemoInterface;
 }

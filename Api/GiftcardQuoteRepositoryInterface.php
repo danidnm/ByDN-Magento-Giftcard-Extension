@@ -32,5 +32,6 @@ interface GiftcardQuoteRepositoryInterface
      * @return \Bydn\Giftcard\Api\Data\GiftcardQuoteInterface|null
      * @throws LocalizedException
      */
-    public function save(?\Bydn\Giftcard\Api\Data\GiftcardQuoteInterface $quote): ?\Bydn\Giftcard\Api\Data\GiftcardQuoteInterface;
+    public function save(?\Bydn\Giftcard\Api\Data\GiftcardQuoteInterface $quote)
+        : ?\Bydn\Giftcard\Api\Data\GiftcardQuoteInterface;
 }

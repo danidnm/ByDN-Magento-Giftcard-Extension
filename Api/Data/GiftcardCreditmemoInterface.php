@@ -21,7 +21,6 @@ interface GiftcardCreditmemoInterface
     public function getId();
 
     /**
-     *
      * Get creditmemo ID
      *
      * @return int|null

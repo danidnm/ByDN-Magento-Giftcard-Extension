@@ -21,7 +21,6 @@ interface GiftcardOrderInterface
     public function getId();
 
     /**
-     *
      * Get order ID
      *
      * @return int|null

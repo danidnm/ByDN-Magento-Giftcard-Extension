@@ -33,5 +33,6 @@ interface GiftcardMovementRepositoryInterface
      * @return \Bydn\Giftcard\Api\Data\GiftcardMovementInterface
      * @throws LocalizedException
      */
-    public function save(\Bydn\Giftcard\Api\Data\GiftcardMovementInterface $movement): \Bydn\Giftcard\Api\Data\GiftcardMovementInterface;
+    public function save(\Bydn\Giftcard\Api\Data\GiftcardMovementInterface $movement)
+        : \Bydn\Giftcard\Api\Data\GiftcardMovementInterface;
 }
