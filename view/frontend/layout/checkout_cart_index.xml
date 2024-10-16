@@ -5,7 +5,7 @@
             <container name="cart.giftcard" label="Cart Giftcard Container" htmlTag="div" htmlClass="cart-discount" after="cart.discount" />
         </referenceContainer>
         <referenceContainer name="cart.giftcard">
-            <block class="Bydn\Giftcard\Block\Cart\Giftcard" name="checkout.cart.giftcard" as="giftcard" after="-" template="Bydn_Giftcard::cart/giftcard.phtml">
+            <block class="Bydn\Giftcard\Block\Cart\Giftcard" name="checkout.cart.giftcard" as="giftcard" after="-" template="Bydn_Giftcard::cart/giftcard.phtml" ifconfig="bydn_giftcard/general/enable">
                 <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
                        name="giftcard_recaptcha" as="giftcard_recaptcha"
                        after="-"
