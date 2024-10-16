@@ -7,17 +7,22 @@ use Magento\Framework\View\Element\Template;
 class Create extends \Magento\Framework\View\Element\Template
 {
     /**
+     * Returns creditmemo instance
+     *
      * @return mixed
      */
-    private function getCreditmemo() {
+    private function getCreditmemo()
+    {
         return $this->getParentBlock()->getCreditmemo();
     }
 
     /**
      * Get the maximum allowed amount to refund to the giftcard
+     *
      * @return int
      */
-    public function getGiftcardAmount() {
+    public function getGiftcardAmount()
+    {
 
         // Always from the creditmemo (it is set in the totals calculation)
         $creditmemo = $this->getCreditmemo();
@@ -35,6 +40,8 @@ class Create extends \Magento\Framework\View\Element\Template
     }
 
     /**
+     * Init totals handle to add giftcard total info
+     *
      * @return $this
      */
     public function initTotals()

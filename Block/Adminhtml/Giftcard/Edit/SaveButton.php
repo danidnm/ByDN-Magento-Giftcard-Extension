@@ -8,6 +8,8 @@ use Magento\Customer\Block\Adminhtml\Edit\GenericButton;
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {
     /**
+     * Adds save button data
+     *
      * @return array
      */
     public function getButtonData(): array

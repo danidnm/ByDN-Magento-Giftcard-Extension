@@ -5,6 +5,8 @@ namespace Bydn\Giftcard\Block\Adminhtml\Sales\Total\Order;
 class Giftcard extends \Magento\Sales\Block\Adminhtml\Order\Totals
 {
     /**
+     * Init totals handle to add giftcard total info
+     *
      * @return $this
      */
     public function initTotals()

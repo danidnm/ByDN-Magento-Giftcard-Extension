@@ -10,10 +10,14 @@ use Magento\Framework\App\RequestInterface;
 
 class DeleteButton extends GenericButton implements ButtonProviderInterface
 {
+    /**
+     * @var RequestInterface
+     */
     private RequestInterface $request;
 
     /**
      * DeleteButton constructor.
+     *
      * @param Context $context
      * @param Registry $registry
      * @param RequestInterface $request
@@ -28,6 +32,8 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
     }
 
     /**
+     * Returns delete button config if needed
+     *
      * @return array
      */
     public function getButtonData(): array
@@ -49,6 +55,8 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
     }
 
     /**
+     * Returns URL for giftcard deletion
+     *
      * @param int $giftcardId
      * @return string
      */

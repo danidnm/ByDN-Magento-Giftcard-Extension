@@ -21,12 +21,21 @@ class GiftcardSwitcher implements LayoutProcessorInterface
     }
 
     /**
-     * @param $jsLayout
+     * Removes giftcard component from jsLayout if giftcards are disabled
+     *
+     * @param array $jsLayout
      * @return array
      */
-    public function process($jsLayout) {
+    public function process($jsLayout)
+    {
         if (!$this->giftcardConfig->isEnabled()) {
-            $jsLayout['components']['checkout']['children']['steps']['children']['billing-step']['children']['payment']['children']['afterMethods']['children']['giftcard']['config']['componentDisabled'] = true;
+            $jsLayout['components']
+                ['checkout']['children']
+                ['steps']['children']
+                ['billing-step']['children']
+                ['payment']['children']
+                ['afterMethods']['children']
+                ['giftcard']['config']['componentDisabled'] = true;
         }
         return $jsLayout;
     }

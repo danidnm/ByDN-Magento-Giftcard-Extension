@@ -21,6 +21,8 @@ class Giftcard extends \Magento\Sales\Block\Adminhtml\Order\Creditmemo\Totals
     }
 
     /**
+     * Init totals handle to add giftcard total info
+     *
      * @return $this
      */
     public function initTotals()
