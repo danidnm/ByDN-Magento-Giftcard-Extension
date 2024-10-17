@@ -9,6 +9,9 @@ use Magento\Framework\UrlInterface;
 
 class Actions extends Column
 {
+    /**
+     * @var UrlInterface
+     */
     private UrlInterface $urlBuilder;
 
     /**

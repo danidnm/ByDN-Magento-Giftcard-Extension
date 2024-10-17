@@ -19,6 +19,7 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
      * @param string $primaryFieldName
      * @param string $requestFieldName
      * @param \Magento\Eav\Api\AttributeRepositoryInterface $attributeRepository
+     * @param \Magento\Framework\App\ResourceConnection $resourceConnection
      * @param \Magento\Framework\Api\Search\ReportingInterface $reporting
      * @param \Magento\Framework\Api\Search\SearchCriteriaBuilder $searchCriteriaBuilder
      * @param \Magento\Framework\App\RequestInterface $request
@@ -54,18 +55,6 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
             $meta,
             $data
         );
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function addFilter(\Magento\Framework\Api\Filter $filter)
-    {
-//        if ($filter->getField() == 'created_at') {
-//            $filter->setField('main_table.created_at');
-//        }
-
-        parent::addFilter($filter);
     }
 
     /**

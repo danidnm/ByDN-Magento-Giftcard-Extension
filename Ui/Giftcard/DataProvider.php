@@ -52,6 +52,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     }
 
     /**
+     * Returns data for the current gift card
+     *
      * @return array
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
@@ -74,8 +76,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 
             // Put the data back
             $this->loadedData[$giftcard->getData('id')] = $giftcardData;
-        }
-        else {
+        } else {
             $this->loadedData = [];
         }
 
@@ -83,6 +84,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     }
 
     /**
+     * Returns current gift card
+     *
      * @return \Magento\Framework\DataObject|null
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
@@ -110,6 +113,8 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     }
 
     /**
+     * Retuns store_id array from serialized data
+     *
      * @param array $giftcardData
      * @return array
      */
