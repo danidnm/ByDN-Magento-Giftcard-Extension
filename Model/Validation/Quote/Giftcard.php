@@ -51,7 +51,9 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
     }
 
     /**
-     * @param $quote
+     * Returns applied giftcard amount
+     *
+     * @param int $quote
      * @return int
      */
     private function getGiftcardAppliedAmount($quote)
@@ -115,7 +117,8 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
                 // Check items for giftcards
                 if ($this->giftcardConfig->avoidGiftcardWithGiftcard()) {
                     foreach ($quote->getAllItems() as $item) {
-                        if ($item->getProduct()->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
+                        if ($item->getProduct()->getTypeId() ==
+                            \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
                             $validationErrors[] = __('A giftcard cannot be purchased with another giftcard.');
                         }
                     }

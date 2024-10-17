@@ -85,6 +85,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
 
     /**
      * @param \Magento\Framework\App\RequestInterface $request
+     * @param \Magento\Framework\Pricing\PriceCurrencyInterface $currency
      * @param \Magento\Sales\Model\OrderFactory $orderFactory
      * @param \Magento\Sales\Model\ResourceModel\Order $orderResourceModel
      * @param \Magento\Sales\Model\Order\InvoiceFactory $invoiceFactory
@@ -129,7 +130,9 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
     }
 
     /**
-     * @param $creditmemo
+     * Loads current order from creditmemo
+     *
+     * @param \Magento\Sales\Model\Order\Creditmemo $creditmemo
      * @return void
      */
     private function prepareOrder($creditmemo)
@@ -143,7 +146,9 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
     }
 
     /**
-     * @param $creditmemo
+     * Loads current invoice from creditmemo
+     *
+     * @param \Magento\Sales\Model\Order\Creditmemo $creditmemo
      * @return void
      */
     private function prepareInvoice($creditmemo)
@@ -157,6 +162,8 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
     }
 
     /**
+     * Returns max amounts to be refunded (store and base)
+     *
      * @return array
      */
     private function getMaxTotals()
@@ -174,6 +181,7 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
      * If we are creating the credit memo from an invoice, it will return the giftcard amount associated to the invoice
      * If we are creating the credit memo from an order, it will return the total giftcard amount in the order
      *
+     * @param \Magento\Sales\Model\Order\Creditmemo $creditmemo
      * @return void
      */
     public function prepareOrderGiftcardData(\Magento\Sales\Model\Order\Creditmemo $creditmemo)
@@ -209,6 +217,8 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
     }
 
     /**
+     * Collect giftcard total for the creditmemo
+     *
      * @param \Magento\Sales\Model\Order\Invoice $creditmemo
      * @return $this
      */

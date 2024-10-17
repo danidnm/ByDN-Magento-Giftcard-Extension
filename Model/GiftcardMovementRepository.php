@@ -58,6 +58,15 @@ class GiftcardMovementRepository implements GiftcardMovementRepositoryInterface
      */
     private $logger;
 
+    /**
+     * @param GiftcardMovementResource $resource
+     * @param \Bydn\Giftcard\Model\GiftcardMovementFactory $giftcardMovementFactory
+     * @param GiftcardMovementInterfaceFactory $giftcardMovementInterfaceFactory
+     * @param GiftcardMovementCollectionFactory $collectionFactory
+     * @param GiftcardMovementSearchResultsInterfaceFactory $searchResultsFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param Logger $logger
+     */
     public function __construct(
         GiftcardMovementResource                      $resource,
         GiftcardMovementFactory                       $giftcardMovementFactory,

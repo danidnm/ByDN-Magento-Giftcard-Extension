@@ -7,6 +7,8 @@ use Magento\Framework\Model\AbstractModel;
 class GiftcardOrder extends AbstractModel implements \Bydn\Giftcard\Api\Data\GiftcardOrderInterface
 {
     /**
+     * Internal constructor to initialize database table and field
+
      * @return void
      */
     protected function _construct()

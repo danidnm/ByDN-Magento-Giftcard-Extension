@@ -58,6 +58,15 @@ class GiftcardOrderRepository implements GiftcardOrderRepositoryInterface
      */
     private $logger;
 
+    /**
+     * @param GiftcardOrderResource $resource
+     * @param \Bydn\Giftcard\Model\GiftcardOrderFactory $giftcardOrderFactory
+     * @param GiftcardOrderInterfaceFactory $giftcardOrderInterfaceFactory
+     * @param GiftcardOrderCollectionFactory $collectionFactory
+     * @param GiftcardOrderSearchResultsInterfaceFactory $searchResultsFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param Logger $logger
+     */
     public function __construct(
         GiftcardOrderResource                      $resource,
         GiftcardOrderFactory                       $giftcardOrderFactory,

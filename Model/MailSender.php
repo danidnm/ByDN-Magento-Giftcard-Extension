@@ -4,7 +4,7 @@ namespace Bydn\Giftcard\Model;
 
 class MailSender
 {
-    const XML_PATH_EMAIL_IDENTITY = 'contact/email/sender_email_identity';
+    private const XML_PATH_EMAIL_IDENTITY = 'contact/email/sender_email_identity';
 
     /**
      * @var \Magento\Framework\Translate\Inline\StateInterface
@@ -41,6 +41,15 @@ class MailSender
      */
     private $logger;
 
+    /**
+     * @param \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation
+     * @param \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency
+     * @param \Magento\Framework\Escaper $escaper
+     * @param \Bydn\Giftcard\Helper\Config $giftcardConfig
+     * @param \Psr\Log\LoggerInterface $logger
+     */
     public function __construct(
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
@@ -60,6 +69,8 @@ class MailSender
     }
 
     /**
+     * Sends email for the giftcard
+     *
      * @param \Bydn\Giftcard\Model\Giftcard $giftcard
      * @return int
      */

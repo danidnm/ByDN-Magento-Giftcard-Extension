@@ -13,6 +13,8 @@ class Giftcard extends AbstractModel implements \Bydn\Giftcard\Api\Data\Giftcard
     public const GIFTCARD_CANCELED = 4;
 
     /**
+     * Internal constructor to initialize database table and field
+     *
      * @return void
      */
     protected function _construct()

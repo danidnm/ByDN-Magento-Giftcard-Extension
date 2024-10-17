@@ -7,6 +7,8 @@ use Magento\Framework\Model\AbstractModel;
 class GiftcardQuote extends AbstractModel implements \Bydn\Giftcard\Api\Data\GiftcardQuoteInterface
 {
     /**
+     * Internal constructor to initialize database table and key field
+
      * @return void
      */
     protected function _construct()

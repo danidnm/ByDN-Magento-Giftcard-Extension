@@ -14,15 +14,34 @@ use Magento\Sales\Api\Data\OrderInterface;
  */
 class OrderLine implements \Klarna\Orderlines\Api\OrderLineInterface
 {
-    const TOTAL_KEY = 'giftcard_discount';
+    private const TOTAL_KEY = 'giftcard_discount';
 
+    /**
+     * @var int
+     */
     private $giftcardAmount = 0;
 
+    /**
+     * Collect giftcard total before a purchase is placed
+     *
+     * @param Parameter $parameter
+     * @param DataHolder $dataHolder
+     * @param CartInterface $quote
+     * @return $this
+     */
     public function collectPrePurchase(Parameter $parameter, DataHolder $dataHolder, CartInterface $quote)
     {
         return $this->collect($parameter, $dataHolder);
     }
 
+    /**
+     * Collect giftcard total after a purchase is placed
+     *
+     * @param Parameter $parameter
+     * @param DataHolder $dataHolder
+     * @param OrderInterface $order
+     * @return $this
+     */
     public function collectPostPurchase(Parameter $parameter, DataHolder $dataHolder, OrderInterface $order)
     {
         return $this->collect($parameter, $dataHolder);
@@ -53,6 +72,12 @@ class OrderLine implements \Klarna\Orderlines\Api\OrderLineInterface
         return $this;
     }
 
+    /**
+     * Fetch gift card total for Klarna
+     *
+     * @param Parameter $parameter
+     * @return $this
+     */
     public function fetch(Parameter $parameter)
     {
         // If not used, do not add a new line total

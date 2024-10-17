@@ -5,6 +5,8 @@ namespace Bydn\Giftcard\Model\Source\Giftcard;
 class Status implements \Magento\Framework\Option\ArrayInterface
 {
     /**
+     * Returns possible values for giftcard status field
+     *
      * @return array
      */
     public function toOptionArray()

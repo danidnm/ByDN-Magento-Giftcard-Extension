@@ -53,6 +53,15 @@ class GiftcardRepository implements GiftcardRepositoryInterface
      */
     private $logger;
 
+    /**
+     * @param GiftcardResource $resource
+     * @param \Bydn\Giftcard\Model\GiftcardFactory $giftcardFactory
+     * @param GiftcardInterfaceFactory $giftcardInterfaceFactory
+     * @param GiftcardCollectionFactory $collectionFactory
+     * @param GiftcardSearchResultsInterfaceFactory $searchResultsFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param Logger $logger
+     */
     public function __construct(
         GiftcardResource                      $resource,
         GiftcardFactory                       $giftcardFactory,
@@ -100,7 +109,9 @@ class GiftcardRepository implements GiftcardRepositoryInterface
         $entity = $this->giftcardFactory->create();
         $entity->load($code, 'code');
         if (!$entity->getId()) {
-            throw new \Magento\Framework\Exception\NoSuchEntityException(__('Could not find entity with code "%1"', $code));
+            throw new \Magento\Framework\Exception\NoSuchEntityException(
+                __('Could not find entity with code "%1"', $code)
+            );
         }
         return $entity;
     }

@@ -31,6 +31,10 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
      * @var double
      */
     private $amount = 0;
+
+    /**
+     * @var int
+     */
     private $baseAmount = 0;
 
     /**
@@ -54,6 +58,9 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     }
 
     /**
+     * Returns quote grand total based on items row total
+     *
+     * @param \Magento\Quote\Model\Quote $quote
      * @return array
      */
     private function getQuoteGrandTotal($quote)
@@ -88,6 +95,8 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     }
 
     /**
+     * Collect giftcard totals
+     *
      * @param \Magento\Quote\Model\Quote $quote
      * @param \Magento\Quote\Api\Data\ShippingAssignmentInterface $shippingAssignment
      * @param \Magento\Quote\Model\Quote\Address\Total $total
@@ -177,6 +186,8 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     }
 
     /**
+     * Fetch giftcard total
+     *
      * @param \Magento\Quote\Model\Quote $quote
      * @param \Magento\Quote\Model\Quote\Address\Total $total
      * @return array
@@ -199,6 +210,8 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
     }
 
     /**
+     * Returns label for the giftcard total
+     *
      * @return \Magento\Framework\Phrase
      */
     public function getLabel()

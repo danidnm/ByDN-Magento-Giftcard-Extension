@@ -58,6 +58,15 @@ class GiftcardInvoiceRepository implements GiftcardInvoiceRepositoryInterface
      */
     private $logger;
 
+    /**
+     * @param GiftcardInvoiceResource $resource
+     * @param \Bydn\Giftcard\Model\GiftcardInvoiceFactory $giftcardInvoiceFactory
+     * @param GiftcardInvoiceInterfaceFactory $giftcardInvoiceInterfaceFactory
+     * @param GiftcardInvoiceCollectionFactory $collectionFactory
+     * @param GiftcardInvoiceSearchResultsInterfaceFactory $searchResultsFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param Logger $logger
+     */
     public function __construct(
         GiftcardInvoiceResource                      $resource,
         GiftcardInvoiceFactory                       $giftcardInvoiceFactory,

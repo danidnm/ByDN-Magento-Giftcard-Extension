@@ -58,6 +58,15 @@ class GiftcardCreditmemoRepository implements GiftcardCreditmemoRepositoryInterf
      */
     private $logger;
 
+    /**
+     * @param GiftcardCreditmemoResource $resource
+     * @param \Bydn\Giftcard\Model\GiftcardCreditmemoFactory $giftcardCreditmemoFactory
+     * @param GiftcardCreditmemoInterfaceFactory $giftcardCreditmemoInterfaceFactory
+     * @param GiftcardCreditmemoCollectionFactory $collectionFactory
+     * @param GiftcardCreditmemoSearchResultsInterfaceFactory $searchResultsFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param Logger $logger
+     */
     public function __construct(
         GiftcardCreditmemoResource                      $resource,
         GiftcardCreditmemoFactory                       $giftcardCreditmemoFactory,

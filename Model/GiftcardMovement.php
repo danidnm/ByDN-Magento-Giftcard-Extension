@@ -7,6 +7,8 @@ use Magento\Framework\Model\AbstractModel;
 class GiftcardMovement extends AbstractModel implements \Bydn\Giftcard\Api\Data\GiftcardMovementInterface
 {
     /**
+     * Internal constructor to initialize database table and key field
+     *
      * @return void
      */
     protected function _construct()

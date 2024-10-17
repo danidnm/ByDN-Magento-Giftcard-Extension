@@ -58,6 +58,15 @@ class GiftcardQuoteRepository implements GiftcardQuoteRepositoryInterface
      */
     private $logger;
 
+    /**
+     * @param GiftcardQuoteResource $resource
+     * @param \Bydn\Giftcard\Model\GiftcardQuoteFactory $giftcardQuoteFactory
+     * @param GiftcardQuoteInterfaceFactory $giftcardQuoteInterfaceFactory
+     * @param GiftcardQuoteCollectionFactory $collectionFactory
+     * @param GiftcardQuoteSearchResultsInterfaceFactory $searchResultsFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param Logger $logger
+     */
     public function __construct(
         GiftcardQuoteResource                      $resource,
         GiftcardQuoteFactory                       $giftcardQuoteFactory,

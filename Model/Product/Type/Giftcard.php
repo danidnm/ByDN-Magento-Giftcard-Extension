@@ -19,11 +19,14 @@ class Giftcard extends \Magento\Catalog\Model\Product\Type\AbstractType
     }
 
     /**
+     * Deletes type info for the given product instance
+     *
      * @param \Magento\Catalog\Model\Product $product
      * @return void
      */
     public function deleteTypeSpecificData(\Magento\Catalog\Model\Product $product)
     {
         // Nothing to do
+        ;
     }
 }

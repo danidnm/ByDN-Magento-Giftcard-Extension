@@ -7,6 +7,8 @@ use Magento\Framework\Model\AbstractModel;
 class GiftcardInvoice extends AbstractModel implements \Bydn\Giftcard\Api\Data\GiftcardInvoiceInterface
 {
     /**
+     * Internal constructor to initialize database table and key field
+     *
      * @return void
      */
     protected function _construct()
