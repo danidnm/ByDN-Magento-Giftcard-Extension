@@ -4,10 +4,10 @@ namespace Bydn\Giftcard\Controller\Checkout;
 
 class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterface
 {
-    const RESULT_APPLIED = 'added';
-    const RESULT_REMOVED = 'removed';
-    const RESULT_NOT_VALID = 'not_valid';
-    const RESULT_GIFTCARD_WITH_GIFTCARD = 'giftcard_with_giftcard';
+    public const RESULT_APPLIED = 'added';
+    public const RESULT_REMOVED = 'removed';
+    public const RESULT_NOT_VALID = 'not_valid';
+    public const RESULT_GIFTCARD_WITH_GIFTCARD = 'giftcard_with_giftcard';
 
     /**
      * @var \Magento\Framework\App\RequestInterface
@@ -92,10 +92,11 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
     /**
      * Checks if a new giftcard code is applicable to the cart
      *
+     * @param string $code Giftcard code
      * @return bool
      */
-    private function isGiftcardCodeValid($code) {
-
+    private function isGiftcardCodeValid($code)
+    {
         try {
             // Try to load the card
             $code = trim($code);
@@ -109,14 +110,19 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
             if ($card->getAvailableAmount() <= 0) {
                 return false;
             }
-        }
-        catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             return false;
         }
 
         return true;
     }
 
+    /**
+     * Executes controller
+     *
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Json|\Magento\Framework\Controller\ResultInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     public function execute()
     {
         $this->logger->info('Ini');
@@ -173,12 +179,18 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
         // Give the message to the user
         if (!strlen($newGiftcardCode)) {
             return $this->returnResult(self::RESULT_REMOVED, $newGiftcardCode);
-        }
-        else {
+        } else {
             return $this->returnResult(self::RESULT_APPLIED, $newGiftcardCode);
         }
     }
 
+    /**
+     * Prepares the json result to be returned
+     *
+     * @param int $result
+     * @param string $code
+     * @return \Magento\Framework\Controller\Result\Json
+     */
     public function returnResult($result, $code)
     {
         if ($result == self::RESULT_APPLIED) {
@@ -186,14 +198,12 @@ class GiftcardPost implements \Magento\Framework\App\Action\HttpPostActionInterf
                 'You applied the giftcard: %1.',
                 $this->escaper->escapeHtml($code)
             );
-        }
-        else if ($result == self::RESULT_REMOVED) {
+        } elseif ($result == self::RESULT_REMOVED) {
             $message =  __(
                 'You removed the giftcard: %1.',
                 $this->escaper->escapeHtml($code)
             );
-        }
-        else {
+        } else {
             $message =  __(
                 'The giftcard code "%1" is not valid.',
                 $this->escaper->escapeHtml($code)

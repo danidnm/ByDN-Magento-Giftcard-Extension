@@ -2,7 +2,8 @@
 
 namespace Bydn\Giftcard\Controller\Cart;
 
-class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento\Framework\App\Action\HttpPostActionInterface
+class GiftcardPost extends \Magento\Checkout\Controller\Cart implements
+    \Magento\Framework\App\Action\HttpPostActionInterface
 {
     /**
      * Sales quote repository
@@ -40,6 +41,7 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
      * @param \Magento\Checkout\Model\Cart $cart
      * @param \Magento\Quote\Api\CartRepositoryInterface $quoteRepository
      * @param \Magento\Framework\Escaper $escaper
+     * @param \Bydn\Giftcard\Api\GiftcardRepositoryInterface $giftcardRepository
      * @param \Bydn\Giftcard\Api\GiftcardQuoteRepositoryInterface $giftcardQuoteRepository
      * @param \Psr\Log\LoggerInterface $logger
      */
@@ -74,9 +76,11 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
     /**
      * Checks if a new giftcard code is applicable to the cart
      *
+     * @param string $code
      * @return bool
      */
-    private function isGiftcardCodeValid($code) {
+    private function isGiftcardCodeValid($code)
+    {
 
         try {
             // Try to load the card
@@ -91,8 +95,7 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
             if ($card->getAvailableAmount() <= 0) {
                 return false;
             }
-        }
-        catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             return false;
         }
 
@@ -182,8 +185,7 @@ class GiftcardPost extends \Magento\Checkout\Controller\Cart implements \Magento
                     $this->escaper->escapeHtml($oldGiftcardCode)
                 )
             );
-        }
-        else {
+        } else {
             $this->messageManager->addSuccessMessage(
                 __(
                     'You applied the giftcard: %1.',

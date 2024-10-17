@@ -14,12 +14,24 @@ use Bydn\Giftcard\Model\Giftcard;
 
 class Save extends Action implements HttpPostActionInterface
 {
+    /**
+     * @var GiftcardResource
+     */
     private GiftcardResource $giftcardResource;
+
+    /**
+     * @var GiftcardFactory
+     */
     private GiftcardFactory $giftcardFactory;
+
+    /**
+     * @var SerializerInterface
+     */
     private SerializerInterface $serializer;
 
     /**
      * Save constructor.
+     *
      * @param Context $context
      * @param GiftcardResource $giftcardResource
      * @param GiftcardFactory $giftcardFactory
@@ -30,8 +42,7 @@ class Save extends Action implements HttpPostActionInterface
         GiftcardResource      $giftcardResource,
         GiftcardFactory       $giftcardFactory,
         SerializerInterface $serializer
-    )
-    {
+    ) {
         parent::__construct($context);
 
         $this->giftcardResource = $giftcardResource;
@@ -40,6 +51,8 @@ class Save extends Action implements HttpPostActionInterface
     }
 
     /**
+     * Executes the controller
+     *
      * @return Redirect|ResponseInterface|\Magento\Framework\Controller\ResultInterface
      */
     public function execute()
@@ -69,6 +82,8 @@ class Save extends Action implements HttpPostActionInterface
     }
 
     /**
+     * Initializes giftcard instance from parameter "id"
+     *
      * @return Giftcard
      */
     private function initGiftcard(): Giftcard
@@ -85,13 +100,17 @@ class Save extends Action implements HttpPostActionInterface
     }
 
     /**
+     * Serializes store_ids for the database
+     *
      * @param array $giftcardPostData
      * @return array
      */
     private function saveStoreIds(array $giftcardPostData): array
     {
         $ids = $giftcardPostData['store_ids'] ?? [];
-        if (\count($ids) > 0) $giftcardPostData['store_ids'] = $this->serializer->serialize($ids);
+        if (\count($ids) > 0) {
+            $giftcardPostData['store_ids'] = $this->serializer->serialize($ids);
+        }
 
         return $giftcardPostData;
     }

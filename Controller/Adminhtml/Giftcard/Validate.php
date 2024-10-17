@@ -11,10 +11,12 @@ use Magento\Framework\Controller\Result\JsonFactory;
 
 class Validate extends Action implements HttpPostActionInterface, HttpGetActionInterface
 {
+    /**
+     * @var JsonFactory
+     */
     private JsonFactory $jsonFactory;
 
     /**
-     * Validate constructor.
      * @param Context $context
      * @param JsonFactory $jsonFactory
      */
@@ -27,6 +29,8 @@ class Validate extends Action implements HttpPostActionInterface, HttpGetActionI
     }
 
     /**
+     * Controller logic
+     *
      * @return ResponseInterface|\Magento\Framework\Controller\Result\Json|\Magento\Framework\Controller\ResultInterface
      */
     public function execute()

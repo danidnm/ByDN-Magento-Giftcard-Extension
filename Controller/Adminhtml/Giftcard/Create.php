@@ -10,10 +10,12 @@ use Magento\Framework\App\ResponseInterface;
 
 class Create extends Action implements HttpGetActionInterface
 {
+    /**
+     * @var PageFactory
+     */
     private PageFactory $resultPageFactory;
 
     /**
-     * Edit constructor.
      * @param Context $context
      * @param PageFactory $resultPageFactory
      */
@@ -26,6 +28,8 @@ class Create extends Action implements HttpGetActionInterface
     }
 
     /**
+     * Controller logic
+     *
      * @return ResponseInterface|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
      */
     public function execute()

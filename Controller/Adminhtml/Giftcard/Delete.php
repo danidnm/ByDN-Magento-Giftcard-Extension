@@ -12,11 +12,17 @@ use Bydn\Giftcard\Model\ResourceModel\Giftcard as GiftcardResource;
 
 class Delete extends Action implements HttpPostActionInterface
 {
+    /**
+     * @var GiftcardResource
+     */
     private GiftcardResource $giftcardResource;
+
+    /**
+     * @var GiftcardFactory
+     */
     private GiftcardFactory $giftcardFactory;
 
     /**
-     * Save constructor.
      * @param Context $context
      * @param GiftcardResource $giftcardResource
      * @param GiftcardFactory $giftcardFactory
@@ -33,6 +39,8 @@ class Delete extends Action implements HttpPostActionInterface
     }
 
     /**
+     * Controller logic
+     *
      * @return Redirect|ResponseInterface|\Magento\Framework\Controller\ResultInterface
      */
     public function execute()
