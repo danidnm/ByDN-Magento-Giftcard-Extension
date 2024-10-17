@@ -52,7 +52,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
     private $logger;
 
     /**
-     * @param \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency
+     * @param \Magento\Directory\Model\CurrencyFactory $currencyFactory
      * @param \Bydn\Giftcard\Helper\Config $giftcardConfig
      * @param \Bydn\Giftcard\Model\ResourceModel\GiftcardMovement\CollectionFactory $giftcardMovementCollectionFactory
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
@@ -163,7 +163,9 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
         // Convert currency if needed
         $giftcardAmountAdjustedWithCurrency = $giftcardAmout;
         if ($order->getOrderCurrencyCode() != $giftcard->getCurrencyCode()) {
-            $rate = $this->currencyFactory->create()->load($order->getOrderCurrencyCode())->getAnyRate($giftcard->getCurrencyCode());
+            $rate = $this->currencyFactory->create()
+                ->load($order->getOrderCurrencyCode())
+                ->getAnyRate($giftcard->getCurrencyCode());
             $giftcardAmountAdjustedWithCurrency = $giftcardAmout * $rate;
         }
 

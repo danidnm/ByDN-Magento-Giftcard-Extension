@@ -163,7 +163,9 @@ class RefundGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
         // Convert currency if needed
         $giftcardAmountAdjustedWithCurrency = $giftcardAmout;
         if ($order->getOrderCurrencyCode() != $giftcard->getCurrencyCode()) {
-            $rate = $this->currencyFactory->create()->load($order->getOrderCurrencyCode())->getAnyRate($giftcard->getCurrencyCode());
+            $rate = $this->currencyFactory->create()
+                ->load($order->getOrderCurrencyCode())
+                ->getAnyRate($giftcard->getCurrencyCode());
             $giftcardAmountAdjustedWithCurrency = $giftcardAmout * $rate;
         }
 
