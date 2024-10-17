@@ -66,13 +66,13 @@ class OrderRepositoryInterface
      * Saves extension attribute data for an order
      *
      * @param \Magento\Sales\Api\OrderRepositoryInterface $subject
-     * @param \Magento\Sales\Api\Data\OrderInterface $result
+     * @param \Magento\Sales\Api\Data\OrderInterface|null $result
      * @param \Magento\Sales\Api\Data\OrderInterface $entity
      * @return \Magento\Sales\Api\Data\OrderInterface
      */
     public function afterSave(
         \Magento\Sales\Api\OrderRepositoryInterface $subject,
-        \Magento\Sales\Api\Data\OrderInterface $result,
+        \Magento\Sales\Api\Data\OrderInterface|null $result,
         \Magento\Sales\Api\Data\OrderInterface $entity
     ) {
         $extensionAttributes = $entity->getExtensionAttributes();

@@ -67,13 +67,13 @@ class InvoiceRepositoryInterface
      * Save extension attribute data for an invoice
      *
      * @param \Magento\Sales\Api\InvoiceRepositoryInterface $subject
-     * @param \Magento\Sales\Api\Data\InvoiceInterface $result
+     * @param \Magento\Sales\Api\Data\InvoiceInterface|null $result
      * @param \Magento\Sales\Api\Data\InvoiceInterface $entity
      * @return \Magento\Sales\Api\Data\InvoiceInterface
      */
     public function afterSave(
         \Magento\Sales\Api\InvoiceRepositoryInterface $subject,
-        \Magento\Sales\Api\Data\InvoiceInterface $result,
+        \Magento\Sales\Api\Data\InvoiceInterface|null $result,
         \Magento\Sales\Api\Data\InvoiceInterface $entity
     ) {
         // IMPORTANT: Magento does not always use Invoice Repository to save the invoices, so sometimes saving

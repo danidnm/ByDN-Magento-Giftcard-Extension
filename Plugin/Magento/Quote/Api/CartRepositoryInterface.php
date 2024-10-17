@@ -67,13 +67,13 @@ class CartRepositoryInterface
      * Saves extension attributes data to cart
 
      * @param \Magento\Quote\Api\CartRepositoryInterface $subject
-     * @param \Magento\Quote\Api\Data\CartInterface $result
+     * @param \Magento\Quote\Api\Data\CartInterface|null $result
      * @param \Magento\Quote\Api\Data\CartInterface $entity
      * @return \Magento\Quote\Api\Data\CartInterface
      */
     public function afterSave(
         \Magento\Quote\Api\CartRepositoryInterface $subject,
-        \Magento\Quote\Api\Data\CartInterface $result,
+        \Magento\Quote\Api\Data\CartInterface|null $result,
         \Magento\Quote\Api\Data\CartInterface $entity
     ) {
         $extensionAttributes = $entity->getExtensionAttributes();

@@ -67,13 +67,13 @@ class CreditmemoRepositoryInterface
      * Saves credit memo extension attribute data for the creditmemo
      *
      * @param \Magento\Sales\Api\CreditmemoRepositoryInterface $subject
-     * @param \Magento\Sales\Api\Data\CreditmemoInterface $result
+     * @param \Magento\Sales\Api\Data\CreditmemoInterface|null $result
      * @param \Magento\Sales\Api\Data\CreditmemoInterface $entity
      * @return \Magento\Sales\Api\Data\CreditmemoInterface
      */
     public function afterSave(
         \Magento\Sales\Api\CreditmemoRepositoryInterface $subject,
-        \Magento\Sales\Api\Data\CreditmemoInterface $result,
+        \Magento\Sales\Api\Data\CreditmemoInterface|null $result,
         \Magento\Sales\Api\Data\CreditmemoInterface $entity
     ) {
         // IMPORTANT: Magento does not always use Creditmemo Repository to save the invoices, so sometimes saving
