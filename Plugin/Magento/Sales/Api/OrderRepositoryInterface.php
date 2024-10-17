@@ -17,16 +17,17 @@ class OrderRepositoryInterface
     public function __construct(
         \Bydn\Giftcard\Model\GiftcardOrderRepository $giftcardOrderRepository
     ) {
-       $this->giftcardOrderRepository = $giftcardOrderRepository;
+        $this->giftcardOrderRepository = $giftcardOrderRepository;
     }
 
     /**
+     * Adds extension attribute data to the order
+     *
      * @param \Magento\Sales\Api\OrderRepositoryInterface $subject
      * @param \Magento\Sales\Api\Data\OrderInterface $entity
      * @return \Magento\Sales\Api\Data\OrderInterface
      */
-    public function afterGet
-    (
+    public function afterGet(
         \Magento\Sales\Api\OrderRepositoryInterface $subject,
         \Magento\Sales\Api\Data\OrderInterface $entity
     ) {
@@ -39,6 +40,8 @@ class OrderRepositoryInterface
     }
 
     /**
+     * Adds extension attribute data to an order list
+     *
      * @param \Magento\Sales\Api\OrderRepositoryInterface $subject
      * @param \Magento\Sales\Api\Data\OrderSearchResultInterface $searchResults
      * @return \Magento\Sales\Api\Data\OrderSearchResultInterface
@@ -60,15 +63,16 @@ class OrderRepositoryInterface
     }
 
     /**
+     * Saves extension attribute data for an order
+     *
      * @param \Magento\Sales\Api\OrderRepositoryInterface $subject
-     * @param $result
+     * @param \Magento\Sales\Api\Data\OrderInterface $result
      * @param \Magento\Sales\Api\Data\OrderInterface $entity
      * @return \Magento\Sales\Api\Data\OrderInterface
      */
-    public function afterSave
-    (
+    public function afterSave(
         \Magento\Sales\Api\OrderRepositoryInterface $subject,
-        $result,
+        \Magento\Sales\Api\Data\OrderInterface $result,
         \Magento\Sales\Api\Data\OrderInterface $entity
     ) {
         $extensionAttributes = $entity->getExtensionAttributes();

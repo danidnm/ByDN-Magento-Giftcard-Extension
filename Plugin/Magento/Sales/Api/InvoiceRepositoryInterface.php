@@ -17,16 +17,17 @@ class InvoiceRepositoryInterface
     public function __construct(
         \Bydn\Giftcard\Model\GiftcardInvoiceRepository $giftcardInvoiceRepository
     ) {
-       $this->giftcardInvoiceRepository = $giftcardInvoiceRepository;
+        $this->giftcardInvoiceRepository = $giftcardInvoiceRepository;
     }
 
     /**
+     * Adds extension attribute data to the invoice
+     *
      * @param \Magento\Sales\Api\InvoiceRepositoryInterface $subject
      * @param \Magento\Sales\Api\Data\InvoiceInterface $entity
      * @return \Magento\Sales\Api\Data\InvoiceInterface
      */
-    public function afterGet
-    (
+    public function afterGet(
         \Magento\Sales\Api\InvoiceRepositoryInterface $subject,
         \Magento\Sales\Api\Data\InvoiceInterface $entity
     ) {
@@ -39,6 +40,8 @@ class InvoiceRepositoryInterface
     }
 
     /**
+     * Adds extension attribute data to an invoice list
+     *
      * @param \Magento\Sales\Api\InvoiceRepositoryInterface $subject
      * @param \Magento\Sales\Api\Data\InvoiceSearchResultInterface $searchResults
      * @return \Magento\Sales\Api\Data\InvoiceSearchResultInterface
@@ -61,19 +64,20 @@ class InvoiceRepositoryInterface
     }
 
     /**
+     * Save extension attribute data for an invoice
+     *
      * @param \Magento\Sales\Api\InvoiceRepositoryInterface $subject
-     * @param $result
+     * @param \Magento\Sales\Api\Data\InvoiceInterface $result
      * @param \Magento\Sales\Api\Data\InvoiceInterface $entity
      * @return \Magento\Sales\Api\Data\InvoiceInterface
      */
-    public function afterSave
-    (
+    public function afterSave(
         \Magento\Sales\Api\InvoiceRepositoryInterface $subject,
-        $result,
+        \Magento\Sales\Api\Data\InvoiceInterface $result,
         \Magento\Sales\Api\Data\InvoiceInterface $entity
     ) {
-        // IMPORTANT: Magento does not always use Invoice Repository to save the invoices, so sometimes saving the invoice
-        // does not reach here. See InvoiceSaveExtensionAttribute observer for the rest of the cases.
+        // IMPORTANT: Magento does not always use Invoice Repository to save the invoices, so sometimes saving
+        // the invoice does not reach here. See InvoiceSaveExtensionAttribute observer for the rest of the cases.
         $extensionAttributes = $entity->getExtensionAttributes();
         $giftcardData = $extensionAttributes->getGiftcardData();
         if ($giftcardData) {

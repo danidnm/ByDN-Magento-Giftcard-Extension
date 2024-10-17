@@ -35,6 +35,8 @@ class CartTotalRepository
     }
 
     /**
+     * Adds giftcard extension attribute data to a cart totals instance
+     *
      * @param \Magento\Quote\Model\Cart\CartTotalRepository $subject
      * @param \Magento\Quote\Api\Data\TotalsInterface $result
      * @return \Magento\Quote\Api\Data\TotalsInterface

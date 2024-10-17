@@ -17,16 +17,17 @@ class CreditmemoRepositoryInterface
     public function __construct(
         \Bydn\Giftcard\Model\GiftcardCreditmemoRepository $giftcardCreditmemoRepository
     ) {
-       $this->giftcardCreditmemoRepository = $giftcardCreditmemoRepository;
+        $this->giftcardCreditmemoRepository = $giftcardCreditmemoRepository;
     }
 
     /**
+     * Adds credit memo extension attribute data to the creditmemo
+     *
      * @param \Magento\Sales\Api\CreditmemoRepositoryInterface $subject
      * @param \Magento\Sales\Api\Data\CreditmemoInterface $entity
      * @return \Magento\Sales\Api\Data\CreditmemoInterface
      */
-    public function afterGet
-    (
+    public function afterGet(
         \Magento\Sales\Api\CreditmemoRepositoryInterface $subject,
         \Magento\Sales\Api\Data\CreditmemoInterface $entity
     ) {
@@ -39,6 +40,8 @@ class CreditmemoRepositoryInterface
     }
 
     /**
+     * Adds credit memo extension attribute data to a creditmemo list
+     *
      * @param \Magento\Sales\Api\CreditmemoRepositoryInterface $subject
      * @param \Magento\Sales\Api\Data\CreditmemoSearchResultInterface $searchResults
      * @return \Magento\Sales\Api\Data\CreditmemoSearchResultInterface
@@ -61,19 +64,20 @@ class CreditmemoRepositoryInterface
     }
 
     /**
+     * Saves credit memo extension attribute data for the creditmemo
+     *
      * @param \Magento\Sales\Api\CreditmemoRepositoryInterface $subject
-     * @param $result
+     * @param \Magento\Sales\Api\Data\CreditmemoInterface $result
      * @param \Magento\Sales\Api\Data\CreditmemoInterface $entity
      * @return \Magento\Sales\Api\Data\CreditmemoInterface
      */
-    public function afterSave
-    (
+    public function afterSave(
         \Magento\Sales\Api\CreditmemoRepositoryInterface $subject,
-        $result,
+        \Magento\Sales\Api\Data\CreditmemoInterface $result,
         \Magento\Sales\Api\Data\CreditmemoInterface $entity
     ) {
-        // IMPORTANT: Magento does not always use Creditmemo Repository to save the invoices, so sometimes saving the creditmemo
-        // does not reach here. See CreditmemoSaveExtensionAttribute observer for the rest of the cases.
+        // IMPORTANT: Magento does not always use Creditmemo Repository to save the invoices, so sometimes saving
+        // the creditmemo does not reach here. See CreditmemoSaveExtensionAttribute observer for the rest of the cases.
         $extensionAttributes = $entity->getExtensionAttributes();
         $giftcardData = $extensionAttributes->getGiftcardData();
         if ($giftcardData) {

@@ -9,7 +9,7 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 /**
  * Class InstallDownloadableAttributes
- * @package Magento\Downloadable\Setup\Patch
+
  */
 class InstallAttributes implements DataPatchInterface
 {
@@ -37,9 +37,7 @@ class InstallAttributes implements DataPatchInterface
     }
 
     /**
-     * Make price attributes available to this new product
-     * {@inheritdoc}
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     * @inheritdoc
      */
     public function apply()
     {
@@ -77,7 +75,7 @@ class InstallAttributes implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public static function getDependencies()
     {
@@ -85,7 +83,7 @@ class InstallAttributes implements DataPatchInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function getAliases()
     {

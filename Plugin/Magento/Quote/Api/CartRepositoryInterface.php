@@ -17,16 +17,17 @@ class CartRepositoryInterface
     public function __construct(
         \Bydn\Giftcard\Model\GiftcardQuoteRepository $giftcardQuoteRepository
     ) {
-       $this->giftcardQuoteRepository = $giftcardQuoteRepository;
+        $this->giftcardQuoteRepository = $giftcardQuoteRepository;
     }
 
     /**
+     * Adds extension attributes data to cart
+     *
      * @param \Magento\Quote\Api\CartRepositoryInterface $subject
      * @param \Magento\Quote\Api\Data\CartInterface $entity
      * @return \Magento\Quote\Api\Data\CartInterface
      */
-    public function afterGet
-    (
+    public function afterGet(
         \Magento\Quote\Api\CartRepositoryInterface $subject,
         \Magento\Quote\Api\Data\CartInterface $entity
     ) {
@@ -39,6 +40,8 @@ class CartRepositoryInterface
     }
 
     /**
+     * Adds extension attributes data to cart list
+     *
      * @param \Magento\Quote\Api\CartRepositoryInterface $subject
      * @param \Magento\Quote\Api\Data\CartSearchResultsInterface $searchResults
      * @return \Magento\Quote\Api\Data\CartSearchResultsInterface
@@ -61,15 +64,16 @@ class CartRepositoryInterface
     }
 
     /**
+     * Saves extension attributes data to cart
+
      * @param \Magento\Quote\Api\CartRepositoryInterface $subject
-     * @param $result
+     * @param \Magento\Quote\Api\Data\CartInterface $result
      * @param \Magento\Quote\Api\Data\CartInterface $entity
      * @return \Magento\Quote\Api\Data\CartInterface
      */
-    public function afterSave
-    (
+    public function afterSave(
         \Magento\Quote\Api\CartRepositoryInterface $subject,
-        $result,
+        \Magento\Quote\Api\Data\CartInterface $result,
         \Magento\Quote\Api\Data\CartInterface $entity
     ) {
         $extensionAttributes = $entity->getExtensionAttributes();
