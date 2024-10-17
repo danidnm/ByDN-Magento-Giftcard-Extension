@@ -19,24 +19,20 @@
             </group>
             <group id="emails" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Email configuration</label>
+                <!--
                 <field id="send_by_email" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Send the giftcard by email</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>If enabled, purchased giftcards will be sent by email. If disabled, the store manager will be responsible to send it by its own.</comment>
                 </field>
+                -->
                 <field id="sender_email_identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Email Sender</label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
-                    <depends>
-                        <field id="send_by_email">1</field>
-                    </depends>
                 </field>
                 <field id="email_template" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Giftcard email template</label>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
-                    <depends>
-                        <field id="send_by_email">1</field>
-                    </depends>
                 </field>
             </group>
             <group id="expiration" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">

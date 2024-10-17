@@ -99,6 +99,11 @@
                     <item name="sortOrder" xsi:type="number">50</item>
                 </item>
             </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
         </field>
         <field name="friend_name">
             <argument name="data" xsi:type="array">
@@ -110,6 +115,11 @@
                     <item name="sortOrder" xsi:type="number">60</item>
                 </item>
             </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
         </field>
         <field name="friend_email">
             <argument name="data" xsi:type="array">
@@ -121,6 +131,11 @@
                     <item name="sortOrder" xsi:type="number">70</item>
                 </item>
             </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
         </field>
         <field name="friend_message">
             <argument name="data" xsi:type="array">
@@ -143,6 +158,11 @@
                     <item name="sortOrder" xsi:type="number">90</item>
                 </item>
             </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
         </field>
         <field name="email_sent">
             <argument name="data" xsi:type="array">
@@ -168,6 +188,11 @@
                 </item>
                 <item name="options" xsi:type="object">Bydn\Giftcard\Model\Source\Giftcard\Status</item>
             </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
         </field>
         <field name="created_at">
             <argument name="data" xsi:type="array">

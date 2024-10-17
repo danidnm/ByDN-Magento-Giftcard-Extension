@@ -20,7 +20,7 @@
         <column xsi:type="timestamp" name="email_date" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Date of the email"/>
         <column xsi:type="timestamp" name="created_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated date"/>
         <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Create date"/>
-        <column xsi:type="timestamp" name="expire_at" on_update="false" nullable="false" comment="Expiration date"/>
+        <column xsi:type="timestamp" name="expire_at" on_update="false" nullable="true" comment="Expiration date"/>
 
         <constraint xsi:type="unique" referenceId="BYDN_GIFTCARD_UNIQUE_CODE">
             <column name="code"/>

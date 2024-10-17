@@ -19,6 +19,9 @@ o Envío de email al receptor
 + Cancelar tarjeta regalo si hay devolución
 + Probar desactivación completa (no se puede comprar, no se puede canjear, etc.)
 
+- Diferentes monedas
+- Añadir movimientos manuales desde el backoffice
+
 - Probar pagos con PayPal
 - Probar pagos con Klarna si es posible
 - Integración con OneStepCheckout?
@@ -30,6 +33,11 @@ o Envío de email al receptor
 - Comprobar giftcard with giftcard en carrito
 - Comprobar descuento de giftcard en carrito
 
+
+
+TEST
+
+Crear giftcard from admin
 
 
 

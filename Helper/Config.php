@@ -53,11 +53,12 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isEmailEnabled($store_id = null)
     {
-        return $this->scopeConfig->getValue(
-            self::PATH_GIFTCARD_EMAIL_ENABLED,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
-            $store_id
-        );
+        return true;
+//        return $this->scopeConfig->getValue(
+//            self::PATH_GIFTCARD_EMAIL_ENABLED,
+//            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+//            $store_id
+//        );
     }
 
     /**
