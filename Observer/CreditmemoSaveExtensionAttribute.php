@@ -18,7 +18,6 @@ class CreditmemoSaveExtensionAttribute implements \Magento\Framework\Event\Obser
      */
     private $logger;
 
-
     /**
      * @param \Bydn\Giftcard\Api\GiftcardCreditmemoRepositoryInterface $giftcardCreditmemoRepository
      * @param \Psr\Log\LoggerInterface $logger

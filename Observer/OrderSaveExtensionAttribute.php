@@ -18,7 +18,6 @@ class OrderSaveExtensionAttribute implements \Magento\Framework\Event\ObserverIn
      */
     private $logger;
 
-
     /**
      * @param \Bydn\Giftcard\Api\GiftcardOrderRepositoryInterface $giftcardOrderRepository
      * @param \Psr\Log\LoggerInterface $logger

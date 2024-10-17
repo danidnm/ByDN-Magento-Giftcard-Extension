@@ -4,20 +4,23 @@ namespace Bydn\Giftcard\Observer\Order;
 
 class CancelGiftcardPayment implements \Magento\Framework\Event\ObserverInterface
 {
-    const CONCEPT_KEY = 'Cancel';
+    public const CONCEPT_KEY = 'Cancel';
 
     /**
      * @var \Bydn\Giftcard\Helper\Config
      */
     private $giftcardConfig;
+
     /**
      * @var \Bydn\Giftcard\Model\ResourceModel\GiftcardMovement\CollectionFactory
      */
     private $giftcardMovementCollectionFactory;
+
     /**
      * @var \Bydn\Giftcard\Model\ResourceModel\Giftcard
      */
     private $giftcardResource;
+
     /**
      * @var \Bydn\Giftcard\Model\GiftcardFactory
      */
@@ -49,6 +52,8 @@ class CancelGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
      * @param \Bydn\Giftcard\Model\GiftcardFactory $giftcardFactory
      * @param \Bydn\Giftcard\Model\GiftcardRepository $giftcardRepository
+     * @param \Bydn\Giftcard\Model\ResourceModel\GiftcardMovement $giftcardMovementResource
+     * @param \Bydn\Giftcard\Model\GiftcardMovementFactory $giftcardMovementFactory
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
@@ -114,7 +119,7 @@ class CancelGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
     /**
      * Checks if a movement is already annotated in the database
      *
-     * @param $order
+     * @param int $orderId
      * @return false
      */
     private function movementExists($orderId)
@@ -127,7 +132,13 @@ class CancelGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
 
     /**
      * Creates a movement for the giftcard and adjust its balance
+     *
+     * @param \Magento\Sales\Model|Order $order
+     * @param string $giftcardCode
+     * @param mixed $giftcardAmout
      * @return void
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function createMovement($order, $giftcardCode, $giftcardAmout)
     {
@@ -137,8 +148,7 @@ class CancelGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
         /** @var \Bydn\Giftcard\Model\Giftcard $giftcard */
         $giftcard = $this->giftcardRepository->getByCode($giftcardCode);
         if (!$giftcard) {
-            $this->logger->info(': GIFTCARD ALERT: Applied giftcard that does not exists in order ' . $order->getIncrementId());
-            $this->logger->sendAlertTelegram('GIFTCARD ALERT: Applied giftcard that does not exists in order ' . $order->getIncrementId(), 'it');
+            $this->logger->info(': GIFTCARD ALERT: Applied giftcard dont exists in order ' . $order->getIncrementId());
             return;
         }
 
@@ -161,8 +171,7 @@ class CancelGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
 
         // Do some security checks
         if (($giftcard->getStatus() != \Bydn\Giftcard\Model\Giftcard::GIFTCARD_ACTIVE) || ($availableAmount < 0)) {
-            $this->logger->info(': GIFTCARD ALERT: Fraudulent use of giftcard detected in order ' . $order->getIncrementId());
-            $this->logger->sendAlertTelegram('GIFTCARD ALERT: Fraudulent use of giftcard detected in order ' . $order->getIncrementId(), 'it');
+            $this->logger->info(': GIFTCARD ALERT: Fraudulent use of giftcard in order ' . $order->getIncrementId());
         }
 
         $this->logger->info('end');

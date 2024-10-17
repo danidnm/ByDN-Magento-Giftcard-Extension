@@ -4,20 +4,23 @@ namespace Bydn\Giftcard\Observer\Order;
 
 class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterface
 {
-    const CONCEPT_KEY = 'Spent';
+    public const CONCEPT_KEY = 'Spent';
 
     /**
      * @var \Bydn\Giftcard\Helper\Config
      */
     private $giftcardConfig;
+
     /**
      * @var \Bydn\Giftcard\Model\ResourceModel\GiftcardMovement\CollectionFactory
      */
     private $giftcardMovementCollectionFactory;
+
     /**
      * @var \Bydn\Giftcard\Model\ResourceModel\Giftcard
      */
     private $giftcardResource;
+
     /**
      * @var \Bydn\Giftcard\Model\GiftcardFactory
      */
@@ -49,6 +52,8 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
      * @param \Bydn\Giftcard\Model\GiftcardFactory $giftcardFactory
      * @param \Bydn\Giftcard\Model\GiftcardRepository $giftcardRepository
+     * @param \Bydn\Giftcard\Model\ResourceModel\GiftcardMovement $giftcardMovementResource
+     * @param \Bydn\Giftcard\Model\GiftcardMovementFactory $giftcardMovementFactory
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
@@ -114,7 +119,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
     /**
      * Checks if a movement is already annotated in the database
      *
-     * @param $order
+     * @param int $orderId
      * @return false
      */
     private function movementExists($orderId)
@@ -127,7 +132,13 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
 
     /**
      * Creates a movement for the giftcard and adjust its balance
+     *
+     * @param \Magento\Sales\Model\Order $order
+     * @param string $giftcardCode
+     * @param mixed $giftcardAmout
      * @return void
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function createMovement($order, $giftcardCode, $giftcardAmout)
     {
@@ -137,8 +148,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
         /** @var \Bydn\Giftcard\Model\Giftcard $giftcard */
         $giftcard = $this->giftcardRepository->getByCode($giftcardCode);
         if (!$giftcard) {
-            $this->logger->info(': GIFTCARD ALERT: Applied giftcard that does not exists in order ' . $order->getIncrementId());
-            $this->logger->sendAlertTelegram('GIFTCARD ALERT: Applied giftcard that does not exists in order ' . $order->getIncrementId(), 'it');
+            $this->logger->info(': GIFTCARD ALERT: Applied giftcard dont exists in order ' . $order->getIncrementId());
             return;
         }
 
@@ -148,8 +158,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
         $giftcard->setAvailableAmount($availableAmount);
 
         // Mark as used if needed
-        if (
-            ($this->giftcardConfig->isSingleUseEnabled()) ||
+        if (($this->giftcardConfig->isSingleUseEnabled()) ||
             ($availableAmount <= 0.01)
         ) {
             $giftcard->setStatus(\Bydn\Giftcard\Model\Giftcard::GIFTCARD_USED);
@@ -168,8 +177,7 @@ class ProcessGiftcardPayment implements \Magento\Framework\Event\ObserverInterfa
 
         // Do some security checks
         if (($giftcard->getStatus() != \Bydn\Giftcard\Model\Giftcard::GIFTCARD_ACTIVE) || ($availableAmount < 0)) {
-            $this->logger->info(': GIFTCARD ALERT: Fraudulent use of giftcard detected in order ' . $order->getIncrementId());
-            $this->logger->sendAlertTelegram('GIFTCARD ALERT: Fraudulent use of giftcard detected in order ' . $order->getIncrementId(), 'it');
+            $this->logger->info(': GIFTCARD ALERT: Fraudulent use of giftcard in order ' . $order->getIncrementId());
         }
 
         $this->logger->info('end');

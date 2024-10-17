@@ -112,7 +112,6 @@ class MailSender
             $this->logger->info('Sent');
         } catch (\Exception $e) {
             $this->logger->info('ERROR Sending giftcard: ' . $e->getMessage());
-            $this->logger->sendAlertTelegram('ERROR Sending giftcard: ' . $e->getMessage(), 'it');
             return -1;
         }
 

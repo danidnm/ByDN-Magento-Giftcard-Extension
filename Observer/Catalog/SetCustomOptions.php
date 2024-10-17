@@ -15,6 +15,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
     private \Psr\Log\LoggerInterface $logger;
 
     /**
+     * @param \Magento\Catalog\Model\Product\OptionFactory $optionFactory
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
@@ -46,9 +47,16 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
         }
     }
 
+    /**
+     * Adds custom option to the product being created
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Sales\Model\Order $order
+     * @return void
+     */
     private function addCustomOptionSenderName($product, $order)
     {
-        $optionData = array(
+        $optionData = [
             'is_delete' => 0,
             'is_require' => true,
             'price_type' => 'fixed',
@@ -58,7 +66,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
             'title' => 'Sender name',
             'type' => 'field',
             'sort_order' => $order,
-        );
+        ];
 
         $optionInstance = $this->getOptionInstance($product);
         $optionInstance->unsetOptions();
@@ -69,9 +77,16 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
         $product->addOption($optionInstance);
     }
 
+    /**
+     * Adds custom option to the product being created
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Sales\Model\Order $order
+     * @return void
+     */
     private function addCustomOptionFriendName($product, $order)
     {
-        $optionData = array(
+        $optionData = [
             'is_delete' => 0,
             'is_require' => true,
             'price_type' => 'fixed',
@@ -81,7 +96,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
             'title' => 'Friend name',
             'type' => 'field',
             'sort_order' => $order,
-        );
+        ];
 
         $optionInstance = $this->getOptionInstance($product);
         $optionInstance->unsetOptions();
@@ -92,9 +107,16 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
         $product->addOption($optionInstance);
     }
 
+    /**
+     * Adds custom option to the product being created
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Sales\Model\Order $order
+     * @return void
+     */
     private function addCustomOptionFriendEmail($product, $order)
     {
-        $optionData = array(
+        $optionData = [
             'is_delete' => 0,
             'is_require' => true,
             'price_type' => 'fixed',
@@ -104,7 +126,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
             'title' => 'Friend email',
             'type' => 'field',
             'sort_order' => $order,
-        );
+        ];
 
         $optionInstance = $this->getOptionInstance($product);
         $optionInstance->unsetOptions();
@@ -115,9 +137,16 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
         $product->addOption($optionInstance);
     }
 
+    /**
+     * Adds custom option to the product being created
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Sales\Model\Order $order
+     * @return void
+     */
     private function addCustomOptionFriendMessage($product, $order)
     {
-        $optionData = array(
+        $optionData = [
             'is_delete' => 0,
             'is_require' => true,
             'price_type' => 'fixed',
@@ -127,7 +156,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
             'title' => 'Friend message',
             'type' => 'area',
             'sort_order' => $order,
-        );
+        ];
 
         $optionInstance = $this->getOptionInstance($product);
         $optionInstance->unsetOptions();
@@ -138,9 +167,16 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
         $product->addOption($optionInstance);
     }
 
+    /**
+     * Adds custom option to the product being created
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Sales\Model\Order $order
+     * @return void
+     */
     private function addCustomOptionDateToSend($product, $order)
     {
-        $optionData = array(
+        $optionData = [
             'is_delete' => 0,
             'is_require' => true,
             'price_type' => 'fixed',
@@ -149,7 +185,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
             'title' => 'Date to send (set today to send immediately)',
             'type' => 'date',
             'sort_order' => $order,
-        );
+        ];
 
         $optionInstance = $this->getOptionInstance($product);
         $optionInstance->unsetOptions();
@@ -160,10 +196,17 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
         $product->addOption($optionInstance);
     }
 
+    /**
+     * Adds custom option to the product being created
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Sales\Model\Order $order
+     * @return void
+     */
     private function addCustomOptionAmount($product, $order)
     {
         // En esta opción son siempre valores fijos
-        $options = array();
+        $options = [];
 
         $amounts = [30, 50, 75, 100, 150, 200, 250];
 
@@ -178,7 +221,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
             $i++;
         }
 
-        $optionData = array (
+        $optionData =  [
             'is_delete'         => 0,
             'is_require'        => true,
             'previous_group'    => '',
@@ -186,7 +229,7 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
             'type'              => 'drop_down',
             'values'            => $options,
             'sort_order'        => $order,
-        );
+        ];
 
         $optionInstance = $this->getOptionInstance($product);
         $optionInstance->unsetOptions();
@@ -198,9 +241,12 @@ class SetCustomOptions implements \Magento\Framework\Event\ObserverInterface
     }
 
     /**
-     * Genera una instancia de una custom option. No podemos usar la del modelo product porque se genera una vez
-     * y se reutiliza. Aquí queremos crear una cada vez para poder crear varias opciones diferentes.
-     * @param $product
+     * Creates an instance of a custom option
+     *
+     * Creates an instance of a custom option. Cannot use the method from product instance because it is being
+     * reused between calls. We want to create actual new instances of custom option every time.
+     *
+     * @param \Magento\Catalog\Model\Product $product
      * @return \Magento\Catalog\Model\Product\Option
      */
     private function getOptionInstance($product)

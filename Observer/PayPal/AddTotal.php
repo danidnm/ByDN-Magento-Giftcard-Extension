@@ -14,7 +14,6 @@ class AddTotal implements \Magento\Framework\Event\ObserverInterface
      */
     private $logger;
 
-
     /**
      * @param \Magento\Checkout\Model\Session $session
      * @param \Psr\Log\LoggerInterface $logger

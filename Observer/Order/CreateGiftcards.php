@@ -39,7 +39,6 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
      */
     private $orderGiftcards;
 
-
     /**
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
      * @param \Bydn\Giftcard\Helper\Config $giftcardConfig
@@ -103,11 +102,12 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
 
     /**
      * Check if the orders is transitioning to status complete
-     * @param $order
+     *
+     * @param \Magento\Sales\Model\Order $order
      * @return bool
      */
-    private function orderTransitionsToComplete($order) {
-
+    private function orderTransitionsToComplete($order)
+    {
         // Get current and new status and check
         $currentStatus = $order->getOrigData('status');
         $newStatus = $order->getData('status');
@@ -117,16 +117,18 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
     /**
      * Extract product giftcards from an order
      *
+     * @param \Magento\Sales\Model\Order $order
      * @return array
      */
-    private function extractOrderGiftcards($order) {
-
+    private function extractOrderGiftcards($order)
+    {
         // Get all items and iterate
         $giftcards = [];
         $items = $order->getAllVisibleItems();
         foreach ($items as $item) {
-            if ($item->getProduct()->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD)
-            $giftcards[] = $item;
+            if ($item->getProduct()->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
+                $giftcards[] = $item;
+            }
         }
 
         return $giftcards;
@@ -135,11 +137,12 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
     /**
      * Check if the orders already has a reward
      *
-     * @param $item
+     * @param \Magento\Sales\Model\Order $order
+     * @param \Magento\Sales\Model\Order\Item $item
      * @return bool
      */
-    private function giftcardAlreadyCreated($order, $item) {
-
+    private function giftcardAlreadyCreated($order, $item)
+    {
         // Get all order giftcards if any
         if (!$this->orderGiftcards) {
 
@@ -158,11 +161,15 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
     /**
      * Create a giftcard for an order item
      *
-     * @param $item
+     * @param \Magento\Sales\Model\Order $order
+     * @param \Magento\Sales\Model\Order\Item $item
+     * @return void
      */
-    private function createGiftcardForItem($order, $item) {
-
-        $this->logger->info('Creating giftcard for order/item: ' . $order->getIncrementId() . ' / ' . $item->getItemId());
+    private function createGiftcardForItem($order, $item)
+    {
+        $this->logger->info(
+            'Creating giftcard for order/item: ' . $order->getIncrementId() . ' / ' . $item->getItemId()
+        );
 
         // Improbable case, but possible. Some purchases two or more identical giftcards
         $qty = $item->getQtyOrdered();
@@ -171,7 +178,7 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
         $data = $this->extractOptions($item);
 
         // Usually will be only one, but create as many as purchased
-        for($i=0; $i<$qty; $i++) {
+        for ($i=0; $i<$qty; $i++) {
 
             // Creates a new giftcard and set the data
             $giftcard = $this->giftcardFactory->create();
@@ -206,8 +213,8 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
      *
      * @return string
      */
-    private function generateCode() {
-
+    private function generateCode()
+    {
         do {
 
             // Generate random code
@@ -219,19 +226,19 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
             $collection = $this->giftcardCollectionFactory->create();
             $collection->addFieldToFilter('code', $newCode);
             $exists = (count($collection) > 0);
-        }
-        while($exists);
+        } while ($exists);
 
         return $newCode;
     }
 
     /**
      * Prepares data array with giftcard data
-     * @param $item
+     *
+     * @param \Magento\Sales\Model\Order\Item $item
      * @return array
      */
-    private function extractOptions($item) {
-
+    private function extractOptions($item)
+    {
         // Extract product and giftcard options
         $product = $item->getProduct();
         $options = $product->getOptions();
@@ -260,11 +267,13 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
     }
 
     /**
-     * @param $sku
+     * Translate custom options SKU to giftcard data key
+     *
+     * @param string $sku
      * @return string|null
      */
-    private function translateOptionSkuToDataKey($sku) {
-
+    private function translateOptionSkuToDataKey($sku)
+    {
         switch ($sku) {
             case 'sender-name':
             case 'friend-name':

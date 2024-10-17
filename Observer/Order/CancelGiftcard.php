@@ -62,11 +62,13 @@ class CancelGiftcard implements \Magento\Framework\Event\ObserverInterface
     }
 
     /**
-     * @param $item
+     * Cancels giftcard usage from creditmemo item
+     *
+     * @param \Magento\Sales\Model\Order\Creditmemo\Item $item
      * @return void
      */
-    private function cancelGiftcardWithCreditmemoItem($item) {
-
+    private function cancelGiftcardWithCreditmemoItem($item)
+    {
         // Extract order
         $itemId = $item->getOrderItemId();
         $qty = $item->getQty();
@@ -93,16 +95,19 @@ class CancelGiftcard implements \Magento\Framework\Event\ObserverInterface
     /**
      * Extract product giftcards from an order
      *
+     * @param \Magento\Sales\Model\Order\Creditmemo $creditmemo
      * @return array
      */
-    private function extractCreditmemoGiftcards($creditmemo) {
-
+    private function extractCreditmemoGiftcards($creditmemo)
+    {
         // Get all items and iterate
         $giftcards = [];
         $items = $creditmemo->getItems();
         foreach ($items as $item) {
-            if ($item->getOrderItem()->getProduct()->getTypeId() == \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD)
+            if ($item->getOrderItem()->getProduct()->getTypeId() ==
+                \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD) {
                 $giftcards[] = $item;
+            }
         }
 
         return $giftcards;

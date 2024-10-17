@@ -18,7 +18,6 @@ class InvoiceSaveExtensionAttribute implements \Magento\Framework\Event\Observer
      */
     private $logger;
 
-
     /**
      * @param \Bydn\Giftcard\Api\GiftcardInvoiceRepositoryInterface $giftcardInvoiceRepository
      * @param \Psr\Log\LoggerInterface $logger
