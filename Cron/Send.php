@@ -37,7 +37,11 @@ class Send
     private $logger;
 
     /**
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
      * @param \Bydn\Giftcard\Helper\Config $giftcardConfig
+     * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard\CollectionFactory $giftcardCollectionFactory
+     * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
+     * @param \Bydn\Giftcard\Model\MailSender $mailSender
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
@@ -56,7 +60,14 @@ class Send
         $this->logger = $logger;
     }
 
-    public function sendCards() {
+    /**
+     * Finds unsent cart that must be sent and send them
+     *
+     * @return void
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     */
+    public function sendCards()
+    {
         $this->logger->info('Ini');
 
         // Get all giftcards pending

@@ -30,6 +30,10 @@ class Expire
     private $logger;
 
     /**
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $date
+     * @param \Bydn\Giftcard\Helper\Config $giftcardConfig
+     * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard\CollectionFactory $giftcardCollectionFactory
+     * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
@@ -43,9 +47,17 @@ class Expire
         $this->giftcardConfig = $giftcardConfig;
         $this->giftcardCollectionFactory = $giftcardCollectionFactory;
         $this->giftcardResource = $giftcardResource;
-        $this->logger = $logger;    }
+        $this->logger = $logger;
+    }
 
-    public function expireCards() {
+    /**
+     * Finds expired cards and expire them
+     *
+     * @return void
+     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     */
+    public function expireCards()
+    {
         $this->logger->info('Ini');
 
         // Check expiration enabled
