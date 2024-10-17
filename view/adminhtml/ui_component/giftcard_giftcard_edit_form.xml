@@ -17,6 +17,7 @@
         <buttons>
             <button name="save" class="Bydn\Giftcard\Block\Adminhtml\Giftcard\Edit\SaveButton"/>
             <button name="delete" class="Bydn\Giftcard\Block\Adminhtml\Giftcard\Edit\DeleteButton"/>
+            <button name="send" class="Bydn\Giftcard\Block\Adminhtml\Giftcard\Edit\SendButton"/>
             <button name="back">
                 <url path="*/grid/index"/>
                 <class>back</class>
