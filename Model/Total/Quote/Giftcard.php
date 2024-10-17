@@ -71,7 +71,7 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         // Get shipping amount
         // FIXME: Check with discounts applied to the shipping amount
         // FIXME: Check with change on shipping amount in checkout (change from guest to customer logged in)
-        $shippingAddress = $quote->getShippingAddress();;
+        $shippingAddress = $quote->getShippingAddress();
         $shippingAmount = $shippingAddress->getShippingAmount();
         $baseShippingAmount = $shippingAddress->getBaseShippingAmount();
 
@@ -130,8 +130,7 @@ class Giftcard extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
             try {
                 $giftcard = $this->giftcardRepository->getByCode($appliedGiftcardCode);
                 $availableAmountInGiftcard = $giftcard->getAvailableAmount();
-            }
-            catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+            } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
                 ;
             }
         }

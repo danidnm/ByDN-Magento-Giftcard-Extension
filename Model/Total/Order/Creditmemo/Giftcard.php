@@ -132,7 +132,8 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
      * @param $creditmemo
      * @return void
      */
-    private function prepareOrder($creditmemo) {
+    private function prepareOrder($creditmemo)
+    {
         $this->order = $creditmemo->getOrder();
         if (!$this->order && $creditmemo->getOrderId()) {
             $orderId = $creditmemo->getOrderId();
@@ -145,7 +146,8 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
      * @param $creditmemo
      * @return void
      */
-    private function prepareInvoice($creditmemo) {
+    private function prepareInvoice($creditmemo)
+    {
         $this->invoice = $creditmemo->getInvoice();
         if (!$this->invoice && $creditmemo->getInvoiceId()) {
             $invoiceId = $creditmemo->getInvoiceId();
@@ -157,7 +159,8 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
     /**
      * @return array
      */
-    private function getMaxTotals() {
+    private function getMaxTotals()
+    {
 
         if ($this->invoice) {
             return [$this->invoice->getGrandTotal(), $this->invoice->getBaseGrandTotal()];
@@ -190,7 +193,8 @@ class Giftcard extends \Magento\Sales\Model\Order\Total\AbstractTotal
      *
      * @return array
      */
-    private function getPostedGiftcardAmount() {
+    private function getPostedGiftcardAmount()
+    {
 
         // Get post data if any
         $postedAmount = null;

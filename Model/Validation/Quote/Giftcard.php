@@ -54,7 +54,8 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
      * @param $quote
      * @return int
      */
-    private function getGiftcardAppliedAmount($quote) {
+    private function getGiftcardAppliedAmount($quote)
+    {
 
         // Get giftcard data
         $quoteExtension = $quote->getExtensionAttributes();
@@ -95,8 +96,7 @@ class Giftcard implements \Magento\Quote\Model\ValidationRules\QuoteValidationRu
             if ($this->getGiftcardAppliedAmount($quote) > 0) {
                 $validationErrors[] = __('Sorry. Giftcard redemption is disabled at this time.');
             }
-        }
-        else {
+        } else {
 
             // Check discounts in giftcards
             if ($this->giftcardConfig->avoidAnyDiscount()) {

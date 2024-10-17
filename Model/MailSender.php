@@ -63,7 +63,8 @@ class MailSender
      * @param \Bydn\Giftcard\Model\Giftcard $giftcard
      * @return int
      */
-    public function sendGiftcardEmail($giftcard) {
+    public function sendGiftcardEmail($giftcard)
+    {
         $this->logger->info('Sending giftcard: ' . $giftcard->getCode());
 
         try {
@@ -98,8 +99,7 @@ class MailSender
             $this->inlineTranslation->resume();
 
             $this->logger->info('Sent');
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->info('ERROR Sending giftcard: ' . $e->getMessage());
             $this->logger->sendAlertTelegram('ERROR Sending giftcard: ' . $e->getMessage(), 'it');
             return -1;

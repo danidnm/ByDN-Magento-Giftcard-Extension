@@ -16,11 +16,6 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\LocalizedException;
 
-/**
- * Giftcard repository
- *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
- */
 class GiftcardRepository implements GiftcardRepositoryInterface
 {
     /**
@@ -100,7 +95,8 @@ class GiftcardRepository implements GiftcardRepositoryInterface
      * @return \Bydn\Giftcard\Api\Data\GiftcardInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function getByCode($code) {
+    public function getByCode($code)
+    {
         $entity = $this->giftcardFactory->create();
         $entity->load($code, 'code');
         if (!$entity->getId()) {

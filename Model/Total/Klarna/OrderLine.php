@@ -9,8 +9,8 @@ use Magento\Sales\Api\Data\OrderInterface;
 
 /**
  * Class CustomFee
- *
- * @package Klarna\Core\Model\Checkout\Orderline
+
+
  */
 class OrderLine implements \Klarna\Orderlines\Api\OrderLineInterface
 {

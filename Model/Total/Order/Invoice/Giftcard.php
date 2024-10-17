@@ -106,7 +106,8 @@ class Giftcard extends \Magento\Sales\Model\Order\Invoice\Total\AbstractTotal
      * @param \Magento\Sales\Model\Order\Invoice $invoice
      * @return array
      */
-    public function getInvoicedGiftcardAmount(\Magento\Sales\Model\Order\Invoice $invoice) {
+    public function getInvoicedGiftcardAmount(\Magento\Sales\Model\Order\Invoice $invoice)
+    {
 
         // If invoice is done at the same time as the order (payment method "does not need payment"), the order still
         // don't have an order ID, but the extension attributes are still set
