@@ -70,6 +70,23 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
     }
 
     /**
+     * Get data
+     *
+     * @return array
+     */
+    public function getData()
+    {
+        // Change amount sign on movements to clarify user
+        $data = parent::getData();
+        if (isset($data['items'])) {
+            foreach ($data['items'] as $key => $item) {
+                $data['items'][$key]['amount'] = (-1)*$data['items'][$key]['amount'];
+            }
+        }
+        return $data;
+    }
+
+    /**
      * Returns search criteria
      *
      * @return \Magento\Framework\Api\Search\SearchCriteria
