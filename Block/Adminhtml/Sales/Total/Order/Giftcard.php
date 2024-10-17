@@ -30,7 +30,7 @@ class Giftcard extends \Magento\Sales\Block\Adminhtml\Order\Totals
             'code' => 'giftcard_discount',
             'value' => (-1)*$giftcardAmount,
             'base_value' => (-1)*$giftcardBaseAmount,
-            'label' => __('Giftcard'), //$this->_dataHelper->getGiftcardDiscountLabel(),
+            'label' => __('Giftcard') . ' (' . $giftcardData->getGiftcardCode() . ')',
         ]);
         $this->getParentBlock()->addTotal($total, 'tax');
 
