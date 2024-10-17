@@ -186,8 +186,8 @@ class CreateGiftcards implements \Magento\Framework\Event\ObserverInterface
 
             // Order data
             $giftcard->setCode($this->generateCode());
-            $giftcard->setTotalAmount($item->getPriceInclTax());
-            $giftcard->setAvailableAmount($item->getPriceInclTax());
+            $giftcard->setTotalAmount($item->getPriceInclTax());            // Price taken from actual paid price
+            $giftcard->setAvailableAmount($item->getPriceInclTax());        // Price taken from actual paid price
             $giftcard->setCurrencyCode($order->getOrderCurrencyCode());
             $giftcard->setOrderId($order->getId());
             $giftcard->setItemId($item->getItemId());

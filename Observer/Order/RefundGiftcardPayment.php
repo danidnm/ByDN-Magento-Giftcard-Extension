@@ -7,6 +7,11 @@ class RefundGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
     public const CONCEPT_KEY = 'Refund';
 
     /**
+     * @var \Magento\Directory\Model\CurrencyFactory
+     */
+    private $currencyFactory;
+
+    /**
      * @var \Bydn\Giftcard\Helper\Config
      */
     private $giftcardConfig;
@@ -47,6 +52,7 @@ class RefundGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
     private $logger;
 
     /**
+     * @param \Magento\Directory\Model\CurrencyFactory $currencyFactory
      * @param \Bydn\Giftcard\Helper\Config $giftcardConfig
      * @param \Bydn\Giftcard\Model\ResourceModel\GiftcardMovement\CollectionFactory $giftcardMovementCollectionFactory
      * @param \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource
@@ -57,6 +63,7 @@ class RefundGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
+        \Magento\Directory\Model\CurrencyFactory $currencyFactory,
         \Bydn\Giftcard\Helper\Config $giftcardConfig,
         \Bydn\Giftcard\Model\ResourceModel\GiftcardMovement\CollectionFactory $giftcardMovementCollectionFactory,
         \Bydn\Giftcard\Model\ResourceModel\Giftcard $giftcardResource,
@@ -66,6 +73,7 @@ class RefundGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
         \Bydn\Giftcard\Model\GiftcardMovementFactory $giftcardMovementFactory,
         \Psr\Log\LoggerInterface $logger
     ) {
+        $this->currencyFactory = $currencyFactory;
         $this->giftcardConfig = $giftcardConfig;
         $this->giftcardMovementCollectionFactory = $giftcardMovementCollectionFactory;
         $this->giftcardResource = $giftcardResource;
@@ -152,9 +160,16 @@ class RefundGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
             return;
         }
 
+        // Convert currency if needed
+        $giftcardAmountAdjustedWithCurrency = $giftcardAmout;
+        if ($order->getOrderCurrencyCode() != $giftcard->getCurrencyCode()) {
+            $rate = $this->currencyFactory->create()->load($order->getOrderCurrencyCode())->getAnyRate($giftcard->getCurrencyCode());
+            $giftcardAmountAdjustedWithCurrency = $giftcardAmout * $rate;
+        }
+
         // Discount amount and save
         $availableAmount = $giftcard->getAvailableAmount();
-        $availableAmount = $availableAmount - $giftcardAmout;
+        $availableAmount = $availableAmount - $giftcardAmountAdjustedWithCurrency;
         $giftcard->setAvailableAmount($availableAmount);
         if ($availableAmount > 0.01) {
             $giftcard->setStatus(\Bydn\Giftcard\Model\Giftcard::GIFTCARD_ACTIVE);
@@ -165,7 +180,7 @@ class RefundGiftcardPayment implements \Magento\Framework\Event\ObserverInterfac
         $movement = $this->giftcardMovementFactory->create();
         $movement->setCardId($giftcard->getId());
         $movement->setOrderId($order->getId());
-        $movement->setAmount($giftcardAmout);
+        $movement->setAmount($giftcardAmountAdjustedWithCurrency);
         $movement->setConcept(self::CONCEPT_KEY . " in creditmemo " . $order->getIncrementId());
         $this->giftcardMovementResource->save($movement);
 

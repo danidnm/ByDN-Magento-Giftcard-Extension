@@ -79,6 +79,24 @@
                 </item>
             </argument>
         </field>
+        <field name="currency_code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Currency</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="string">35</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="disabled" xsi:type="boolean">false</item>
+                </item>
+                <item name="options" xsi:type="object">Bydn\Giftcard\Model\Source\Giftcard\Currency</item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
         <field name="order_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
