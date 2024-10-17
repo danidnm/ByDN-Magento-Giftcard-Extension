@@ -1,15 +1,16 @@
 <?php
 /** @var \Bydn\Giftcard\Block\Adminhtml\Sales\Total\Order\Creditmemo\Create $block */
+/** @var \Magento\Framework\Escaper $escaper */
 ?>
 <tr>
     <td class="label">
-        <?php echo $block->escapeHtml(__('Refund to giftcard')) ?>
+        <?= $escaper->escapeHtml(__('Refund to giftcard')) ?>
         <div id="giftcard_amount"></div>
     </td>
     <td>
         <input type="text"
                name="creditmemo[giftcard_amount]"
-               value="<?php echo $block->getGiftcardAmount() ?>"
+               value="<?= $escaper->escapeHtml($block->getGiftcardAmount()); ?>"
                class="input-text admin__control-text not-negative-amount"
                id="giftcard_amount" />
     </td>
