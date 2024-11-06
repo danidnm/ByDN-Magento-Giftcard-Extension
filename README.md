@@ -1,78 +1,45 @@
 # Magento 2 Giftcard Extension
 
-Welcome to the Magento 2 Giftcard Extension repository! This module adds robust gift card functionality to your Magento e-commerce platform, allowing customers to purchase, redeem, and manage gift cards seamlessly. It integrates deeply with Magento's existing structures, ensuring that gift cards are a first-class feature in the e-commerce experience.
+This Magento 2 extension provides comprehensive gift card functionality, allowing customers to easily purchase and redeem gift cards, whether for personal use or as a thoughtful gift for special occasions. Store owners can effortlessly create, manage, and track gift cards, ensuring a smooth process for both customers and administrators.
+
+With flexible configuration options, such as customizable card values and expiration times, the extension offers great versatility to meet diverse business needs. This user guide will walk you through the installation, setup, and usage of the extension, ensuring you get the most out of this feature for your online store.
 
 ## Features
 
-- Creation and management of gift cards via the admin panel.
+- Creation gift cards via the admin panel.
 - Integration of gift card functionality into the shopping cart.
-- Application of gift card discounts to cart totals.
+- Integration of gift card functionality into the checkout page.
 - Email notifications with customizable templates for sending gift card information to customers.
-- API interfaces for various gift card operations.
-- Custom event handling for gift card-related actions.
 
-## Installation
+# Configuration
 
-To install this module, follow these steps:
+Access the configuration going to:
 
-1. Clone the repository to your Magento 2 `app/code` directory:
-    ```bash
-    git clone https://github.com/your-repo/ByDN-Magento-Giftcard-Extension app/code/Bydn/Giftcard
-    ```
-2. Enable the module:
-    ```bash
-    php bin/magento module:enable Bydn_Giftcard
-    ```
-3. Run the setup upgrade command:
-    ```bash
-    php bin/magento setup:upgrade
-    ```
-4. Deploy static content:
-    ```bash
-    php bin/magento setup:static-content:deploy
-    ```
-5. Clear the cache:
-    ```bash
-    php bin/magento cache:clean
-    ```
+    Stores => Configuration => Sales => Gift cards (by DN).
 
-## Configuration
+Configuration has 4 sections.
 
-After installation, you can configure the module in the Magento Admin panel:
+## General configuration
 
-1. Go to the Magento Admin panel.
-2. Navigate to `Stores` > `Configuration` > `Giftcard (by DN)`.
-3. Enable the module and configure the settings according to your preferences.
-4. Save the configuration.
+**Enable**. This option allows you to completely enable or disable the extension.
+**Card default amounts**. Set the default amounts for gift cards. These values can be modified when creating a gift card. See the section "Creating a Gift Card" for more details.
 
-## Usage
+## Email configuration
 
-### Admin Panel
+**Send gift card by email**. Allows customers to send the gift card code to a friend via email. If this option is disabled, the gift card will be sent to the purchaser.
+**Email sender**. Defines the identity of the sender for the gift card email.
+**Gift card email template**. The email template used when sending the gift card code to the recipient.
 
-1. **Manage Gift Cards:**
-   - Navigate to `Marketing > Giftcard > Giftcard list` to create, view, and manage gift cards.
-   
-2. **Configure Email Templates:**
-   - Customize the email templates used for sending gift card information to customers.
+Please make sure to customize the email template according to your requirements in:
 
-### Frontend
+    Marketing => Email Templates
 
-1. **Apply Gift Cards:**
-   - Customers can apply gift cards in the cart by entering the gift card code in the provided field.
-   
-2. **Gift Card Balance:**
-   - The applied gift card balance will be deducted from the order total.
+## Expiration
 
-## Contributing
+**Single use**. If enabled, customers can only apply the gift card once, even if there is a remaining balance on the card.
+**Enable gift card expiration**. Allows you to enable expiration for gift cards.
+**Expiration time (in days)**. Set the number of days after which the gift card will expire.
 
-We welcome contributions to this project. If you have an idea for an improvement or find a bug, please open an issue or submit a pull request.
 
-## License
 
-This project is licensed under the MIT License.
 
-## Acknowledgments
-
-- The Magento community for their continuous support and contributions.
-
-Thank you for using the Magento 2 Giftcard Extension!
