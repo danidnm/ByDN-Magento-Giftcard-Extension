@@ -55,7 +55,7 @@ Just go to:
 
 And select “Gift card“ from the dropdown “Add Product”.
 
-<img alt="Adobe logo" height="50px" src="[https://www.adobe.com/content/dam/cc/icons/Adobe_Corporate_Horizontal_Red_HEX.svg](https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/add-product.png)"/>
+<img alt="Add gift card product" height="50px" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/add-product.png"/>
 
 Set the common data for the gift card as you would for any other product (name, attribute set, SKU, stock configuration, categories, descriptions, etc.). Set the price to 0.
 
