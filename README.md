@@ -1,4 +1,4 @@
-# Magento 2 Giftcard Extension
+![image](https://github.com/user-attachments/assets/db4bc3b6-3222-4187-ab22-1e9fafa6e480)# Magento 2 Giftcard Extension
 
 This Magento 2 extension provides comprehensive gift card functionality, allowing customers to easily purchase and redeem gift cards, whether for personal use or as a thoughtful gift for special occasions. Store owners can effortlessly create, manage, and track gift cards, ensuring a smooth process for both customers and administrators.
 
@@ -57,6 +57,7 @@ And select “Gift card“ from the dropdown “Add Product”.
 
 <img alt="Add gift card product" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/add-product.png"/>
 
+
 Set the common data for the gift card as you would for any other product (name, attribute set, SKU, stock configuration, categories, descriptions, etc.). Set the price to 0.
 
 In the "Customizable Options" section, you will see several custom fields. Pay special attention to the "Card Amount" field, where you can define the available gift card values.
@@ -69,15 +70,30 @@ See custom options configuration screenshot in the next page.
 
 Once you create and configure your gift card, you should see something like this in the frontend.
 
+<img alt="View of a gift card in the frontend" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/giftcard-in-frontend.png"/>
+
+<img alt="Editing custom options of a gift card" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/custom-options.png"/>
+
+
 ## Applying a gift card
 
 The extension provides two fields for customers to apply and redeem their gift card amount: one on the cart page and another on the checkout payment page.
+
+<img alt="Applying a gift card in the cart" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/applying-in-cart.png"/>
+
+
+Applying in the checkout
+
+<img alt="Applying a gift card in the checkout" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/applying-in-checkout.png"/>
+
 
 ## Tracking gift cards in the backoffice
 
 If you want to see a list of gift cards purchased and their current status, balance and movements, in the backoffice, go to:
 
     Marketing => Gift card list.
+
+<img alt="Gift card list" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/giftcard-list.png"/>
 
 You will see the most important information directly in the listing, but for more details, you can click the “Edit” link (refer to the screenshot on the next page).
 
@@ -89,6 +105,9 @@ On this screen, you can:
 - **Adjust the email send date**. You can modify when the gift card will be sent by email.
 - **Change the expiration date**. This is particularly useful if you need to extend it for a specific customer.
 - **See detailed balance movements**.
+
+<img alt="Edit a gift card in the backoffice" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/edit-giftcard.png"/>
+
 
 ## Creating a gift card code manually
 
