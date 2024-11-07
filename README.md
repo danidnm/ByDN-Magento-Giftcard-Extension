@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/db4bc3b6-3222-4187-ab22-1e9fafa6e480)# Magento 2 Giftcard Extension
+# Magento 2 Giftcard Extension
 
 This Magento 2 extension provides comprehensive gift card functionality, allowing customers to easily purchase and redeem gift cards, whether for personal use or as a thoughtful gift for special occasions. Store owners can effortlessly create, manage, and track gift cards, ensuring a smooth process for both customers and administrators.
 
