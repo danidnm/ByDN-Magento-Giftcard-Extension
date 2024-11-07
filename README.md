@@ -55,7 +55,7 @@ Just go to:
 
 And select “Gift card“ from the dropdown “Add Product”.
 
-<img alt="Add gift card product" height="50px" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/add-product.png"/>
+<img alt="Add gift card product" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/add-product.png"/>
 
 Set the common data for the gift card as you would for any other product (name, attribute set, SKU, stock configuration, categories, descriptions, etc.). Set the price to 0.
 
