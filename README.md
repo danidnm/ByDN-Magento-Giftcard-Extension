@@ -75,7 +75,7 @@ The extension provides two fields for customers to apply and redeem their gift c
 
 If you want to see a list of gift cards purchased and their current status, balance and movements, in the backoffice, go to:
 
-    Marketing => Gift card list![image](https://github.com/user-attachments/assets/5cc598a8-8626-418b-b151-394f123a3407)
+    Marketing => Gift card list.
 
 You will see the most important information directly in the listing, but for more details, you can click the “Edit” link (refer to the screenshot on the next page).
 
