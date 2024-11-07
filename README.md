@@ -115,7 +115,7 @@ From the back office, there is also the option to manually create a new gift car
 
 To do so, just go to the gift card list and press the button “Create gift card” on the top right (see section “Tracking gift cards in the backoffice”)
 
-## Having problems
+# Having problems
 
-Contact me at soy@solodani.com
+Contact me at soy at solodani.com
 
