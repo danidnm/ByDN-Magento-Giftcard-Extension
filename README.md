@@ -45,7 +45,7 @@ Please make sure to customize the email template according to your requirements 
 **Prevent purchasing gift card with another gift card**. If enabled, customers will not be allowed to redeem a gift card to purchase another. This is necessary if you want to apply discounts to gift cards.
 **Prevent applying discounts on gift card products**. Enable this option to ensure that customers cannot purchase a gift card with any discounts applied.
 
-## Creating a gift card
+# Creating a gift card
 
 Creating a gift card product is as simple as creating any other Magento product.
 
@@ -75,7 +75,7 @@ Once you create and configure your gift card, you should see something like this
 <img alt="Editing custom options of a gift card" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/custom-options.png"/>
 
 
-## Applying a gift card
+# Applying a gift card
 
 The extension provides two fields for customers to apply and redeem their gift card amount: one on the cart page and another on the checkout payment page.
 
@@ -87,7 +87,7 @@ Applying in the checkout
 <img alt="Applying a gift card in the checkout" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/applying-in-checkout.png"/>
 
 
-## Tracking gift cards in the backoffice
+# Tracking gift cards in the backoffice
 
 If you want to see a list of gift cards purchased and their current status, balance and movements, in the backoffice, go to:
 
@@ -109,7 +109,7 @@ On this screen, you can:
 <img alt="Edit a gift card in the backoffice" width="100%" src="https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/edit-giftcard.png"/>
 
 
-## Creating a gift card code manually
+# Creating a gift card code manually
 
 From the back office, there is also the option to manually create a new gift card code, which can be useful in certain situations to reward users who have experienced issues or to correct errors when purchasing a gift card from the frontend.
 
