@@ -55,7 +55,7 @@ Just go to:
 
 And select “Gift card“ from the dropdown “Add Product”.
 
-![Add a new Gift card product]([[https://myoctocat.com/assets/images/base-octocat.svg](https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/add-product.png)](https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/add-product.png))
+![Add a new Gift card product]([https://github.com/danidnm/ByDN-Magento-Giftcard-Extension/blob/master/docs/images/add-product.png "Logo Title Text 1")
 
 Set the common data for the gift card as you would for any other product (name, attribute set, SKU, stock configuration, categories, descriptions, etc.). Set the price to 0.
 
