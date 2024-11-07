@@ -40,6 +40,23 @@ Please make sure to customize the email template according to your requirements 
 **Enable gift card expiration**. Allows you to enable expiration for gift cards.
 **Expiration time (in days)**. Set the number of days after which the gift card will expire.
 
+## Discounts
+
+**Prevent purchasing gift card with another gift card**. If enabled, customers will not be allowed to redeem a gift card to purchase another. This is necessary if you want to apply discounts to gift cards.
+**Prevent applying discounts on gift card products**. Enable this option to ensure that customers cannot purchase a gift card with any discounts applied.
+
+## Creating a gift card
+
+Creating a gift card product is as simple as creating any other Magento product.
+
+Just go to:
+
+    Catalog => Products
+
+And select “Gift card“ from the dropdown “Add Product”.
+
+
+
 
 
 
