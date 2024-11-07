@@ -55,8 +55,46 @@ Just go to:
 
 And select “Gift card“ from the dropdown “Add Product”.
 
+Set the common data for the gift card as you would for any other product (name, attribute set, SKU, stock configuration, categories, descriptions, etc.). Set the price to 0.
 
+In the "Customizable Options" section, you will see several custom fields. Pay special attention to the "Card Amount" field, where you can define the available gift card values.
 
+The remaining fields will be required from the customer when purchasing a gift card, enabling the extension to send the gift card to the recipient via email.
 
+**Important: Do not modify the SKU code of the custom options.**
 
+See custom options configuration screenshot in the next page.
+
+Once you create and configure your gift card, you should see something like this in the frontend.
+
+## Applying a gift card
+
+The extension provides two fields for customers to apply and redeem their gift card amount: one on the cart page and another on the checkout payment page.
+
+## Tracking gift cards in the backoffice
+
+If you want to see a list of gift cards purchased and their current status, balance and movements, in the backoffice, go to:
+
+    Marketing => Gift card list![image](https://github.com/user-attachments/assets/5cc598a8-8626-418b-b151-394f123a3407)
+
+You will see the most important information directly in the listing, but for more details, you can click the “Edit” link (refer to the screenshot on the next page).
+
+On this screen, you can:
+
+- **Modify the gift card data**. Some fields (such as amounts) are locked to protect data integrity and ensure consistency with orders, balances, etc.
+- **Enable or disable the gift card**.
+- **Delete the gift card if necessary**. Be careful, as deleting it will result in the loss of balance tracking for that gift card. It is recommended to disable the gift card rather than delete it, especially if it was purchased and generated from an order.
+- **Adjust the email send date**. You can modify when the gift card will be sent by email.
+- **Change the expiration date**. This is particularly useful if you need to extend it for a specific customer.
+- **See detailed balance movements**.
+
+## Creating a gift card code manually
+
+From the back office, there is also the option to manually create a new gift card code, which can be useful in certain situations to reward users who have experienced issues or to correct errors when purchasing a gift card from the frontend.
+
+To do so, just go to the gift card list and press the button “Create gift card” on the top right (see section “Tracking gift cards in the backoffice”)
+
+## Having problems
+
+Contact me at soy@solodani.com
 
