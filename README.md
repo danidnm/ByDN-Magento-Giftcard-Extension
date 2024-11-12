@@ -11,6 +11,15 @@ With flexible configuration options, such as customizable card values and expira
 - Integration of gift card functionality into the checkout page.
 - Email notifications with customizable templates for sending gift card information to customers.
 
+# Instalation
+
+Run:
+```
+composer require bydn/giftcard
+./bin/magento module:enable Bydn_Giftcard
+./bin/magento setup:upgrade
+```
+
 # Configuration
 
 Access the configuration going to:
