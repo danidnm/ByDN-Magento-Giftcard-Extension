@@ -66,15 +66,6 @@
         </arguments>
     </type>
 
-    <!-- Klarna total -->
-    <type name="Klarna\Base\Model\Api\EntityHolder">
-        <arguments>
-            <argument name="instances" xsi:type="array">
-                <item name="bydn_giftcard" xsi:type="object">Bydn\Giftcard\Model\Total\Klarna\OrderLine</item>
-            </argument>
-        </arguments>
-    </type>
-
     <!-- Giftcard listing data provider and classes -->
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
