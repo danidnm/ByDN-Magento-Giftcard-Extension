@@ -26,7 +26,7 @@ class FinalPriceBox extends CatalogRender\FinalPriceBox
     {
 
         $config = $this->getConfig();
-        $showRange = $config->getShowPrices() == $config::SHOW_PRICES_RANGE && $this->hasRange();
+        $showRange = $config->showPriceRange() && $this->hasRange();
 
         return $showRange;
     }
@@ -34,11 +34,12 @@ class FinalPriceBox extends CatalogRender\FinalPriceBox
     public function showAsLowestPrice()
     {
         $config = $this->getConfig();
-        return $config->getShowPrices() == $config::SHOW_PRICES_LOWEST && $this->hasRange();
+        return $config->showPriceLowest() && $this->hasRange();
     }
 
     public function hasRange(): bool
     {
+        /** @var \Bydn\Giftcard\Pricing\Price\FinalPrice $finalPrice */
         $finalPrice = $this->getPrice();
         return $finalPrice->getMinimalPrice() != $finalPrice->getMaximalPrice();
     }

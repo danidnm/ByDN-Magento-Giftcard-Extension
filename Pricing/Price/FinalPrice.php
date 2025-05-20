@@ -108,14 +108,16 @@ class FinalPrice extends \Magento\Catalog\Pricing\Price\FinalPrice implements \M
      */
     private function loadProductCustomOptions()
     {
-        if (!$this->product->getOptions()) {
+        /** @var \Magento\Catalog\Model\Product $product */
+        $product = $this->product;
+        if (!$product->getOptions()) {
             $options = [];
-            foreach ($this->productOptionRepository->getProductOptions($this->product) as $option) {
+            foreach ($this->productOptionRepository->getProductOptions($product) as $option) {
+                /** @var \Magento\Catalog\Model\Product\Option $option */
                 $option->setProduct($this->product);
                 $options[] = $option;
             }
-            $this->product->setOptions($options);
+            $product->setOptions($options);
         }
     }
-
 }

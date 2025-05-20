@@ -59,6 +59,21 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
+    public function showPriceRange($store_id = null)
+    {
+        return $this->getShowPrices($store_id) == self::SHOW_PRICES_RANGE;
+    }
+
+    public function showPriceLowest($store_id = null)
+    {
+        return $this->getShowPrices($store_id) == self::SHOW_PRICES_LOWEST;
+    }
+
+    public function showPriceFixed($store_id = null)
+    {
+        return $this->getShowPrices($store_id) == self::SHOW_PRICES_FIXED;
+    }
+
     /**
      * Check if sending emails is enabled
      *
