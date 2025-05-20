@@ -5,6 +5,7 @@
             <general>
                 <enable>1</enable>
                 <default_amounts>30,50,75,100,150,200,250</default_amounts>
+                <show_prices>range</show_prices>
             </general>
             <emails>
                 <send_by_email>1</send_by_email>

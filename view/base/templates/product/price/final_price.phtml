@@ -1,0 +1,46 @@
+<?php
+
+// @codingStandardsIgnoreFile
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+/** @var \Bydn\Giftcard\Pricing\Render\FinalPriceBox $block */
+
+/** @var \Bydn\Giftcard\Pricing\Price\FinalPrice $finalPrice */
+$finalPrice = $block->getPrice();
+
+$minimalPrice = $finalPrice->getMinimalPrice();
+$maximalPrice = $finalPrice->getMaximalPrice();
+
+?>
+<?php if ($block->showAsLowestPrice()) : ?>
+    <p class="minimal-price">
+        <?= /* @noEscape */ $block->renderAmount($minimalPrice, [
+            'display_label'     => __('As low as'),
+            'price_id'          => $block->getPriceId('from-'),
+            'include_container' => true
+        ]); ?>
+    </p>
+<?php else : ?>
+    <?php if ($block->showRangePrice()) : ?>
+        <p class="price-from">
+            <?= /* @noEscape */ $block->renderAmount($minimalPrice, [
+                'display_label'     => __('From'),
+                'price_id'          => $block->getPriceId('from-'),
+                'price_type'        => 'minPrice',
+                'include_container' => true
+            ]); ?>
+        </p>
+        <p class="price-to">
+            <?= /* @noEscape */ $block->renderAmount($maximalPrice, [
+                'display_label'     => __('To'),
+                'price_id'          => $block->getPriceId('to-'),
+                'price_type'        => 'maxPrice',
+                'include_container' => true
+            ]); ?>
+        </p>
+    <?php else : ?>
+        <?= /* @noEscape */ $block->renderAmount($minimalPrice, [
+            'price_id'          => $block->getPriceId('product-price-'),
+            'include_container' => true
+        ]); ?>
+    <?php endif ?>
+<?php endif ?>

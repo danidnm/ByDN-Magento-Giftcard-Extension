@@ -6,6 +6,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
 {
     private const PATH_GIFTCARD_ENABLE = 'bydn_giftcard/general/enable';
     private const PATH_GIFTCARD_AMOUNTS = 'bydn_giftcard/general/amounts';
+    private const PATH_GIFTCARD_SHOW_PRICES = 'bydn_giftcard/general/show_prices';
     private const PATH_GIFTCARD_EMAIL_ENABLED = 'bydn_giftcard/emails/send_by_email';
     private const PATH_GIFTCARD_EMAIL_SENDER = 'bydn_giftcard/emails/sender_email_identity';
     private const PATH_GIFTCARD_EMAIL_TEMPLATE = 'bydn_giftcard/emails/email_template';
@@ -14,6 +15,10 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
     private const PATH_GIFTCARD_EXPIRATION_TIME = 'bydn_giftcard/expiration/expiration_time';
     private const PATH_GIFTCARD_WITH_GIFTCARD = 'bydn_giftcard/discounts/avoid_giftcard_with_giftcard';
     private const PATH_GIFTCARD_AVOID_DISCOUNTS = 'bydn_giftcard/discounts/avoid_discounts_on_giftcards';
+
+    public const SHOW_PRICES_RANGE = 'range';
+    public const SHOW_PRICES_LOWEST = 'lowest';
+    public const SHOW_PRICES_FIXED = 'fixed';
 
     /**
      * Get default giftcard amounts
@@ -40,6 +45,15 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->scopeConfig->getValue(
             self::PATH_GIFTCARD_AMOUNTS,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+            $store_id
+        );
+    }
+
+    public function getShowPrices($store_id = null)
+    {
+        return $this->scopeConfig->getValue(
+            self::PATH_GIFTCARD_SHOW_PRICES,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
             $store_id
         );

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
     <!-- CRUD model for giftcard entities (giftcard) -->
     <preference for="Bydn\Giftcard\Api\Data\GiftcardInterface" type="Bydn\Giftcard\Model\Giftcard" />
@@ -39,22 +39,22 @@
 
     <!-- Plugin for extension attributes (quote) -->
     <type name="Magento\Quote\Api\CartRepositoryInterface">
-        <plugin name="BydnGiftcardQuoteExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Quote\Api\CartRepositoryInterface"/>
+        <plugin name="BydnGiftcardQuoteExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Quote\Api\CartRepositoryInterface" />
     </type>
 
     <!-- Plugin for extension attributes (order) -->
     <type name="Magento\Sales\Api\OrderRepositoryInterface">
-        <plugin name="BydnGiftcardOrderExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\OrderRepositoryInterface"/>
+        <plugin name="BydnGiftcardOrderExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\OrderRepositoryInterface" />
     </type>
 
     <!-- Plugin for extension attributes (invoice) -->
     <type name="Magento\Sales\Api\InvoiceRepositoryInterface">
-        <plugin name="BydnGiftcardInvoiceExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\InvoiceRepositoryInterface"/>
+        <plugin name="BydnGiftcardInvoiceExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\InvoiceRepositoryInterface" />
     </type>
 
     <!-- Plugin for extension attributes (creditmemo) -->
     <type name="Magento\Sales\Api\CreditmemoRepositoryInterface">
-        <plugin name="BydnGiftcardCreditmemoExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\CreditmemoRepositoryInterface"/>
+        <plugin name="BydnGiftcardCreditmemoExtensionAttributes" type="Bydn\Giftcard\Plugin\Magento\Sales\Api\CreditmemoRepositoryInterface" />
     </type>
 
     <!-- Quote validations -->
@@ -229,5 +229,29 @@
         </arguments>
     </type>
 
-</config>
+    
+    <virtualType name="Bydn\Giftcard\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="final_price" xsi:type="string">Bydn\Giftcard\Pricing\Price\FinalPrice</item>
+            </argument>
+            <argument name="target" xsi:type="object">Magento\Catalog\Pricing\Price\Pool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Bydn\Giftcard\Pricing\Price\Collection" type="Magento\Framework\Pricing\Price\Collection">
+        <arguments>
+            <argument name="pool" xsi:type="object">Bydn\Giftcard\Pricing\Price\Pool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Pricing\PriceInfo\Factory">
+        <arguments>
+            <argument name="types" xsi:type="array">
+                <item name="giftcard" xsi:type="array">
+                    <item name="infoClass" xsi:type="string">Magento\Framework\Pricing\PriceInfo\Base</item>
+                    <item name="prices" xsi:type="string">Bydn\Giftcard\Pricing\Price\Collection</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
 
+</config>
