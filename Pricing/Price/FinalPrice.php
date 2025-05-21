@@ -25,16 +25,6 @@ class FinalPrice extends \Magento\Catalog\Pricing\Price\FinalPrice implements \M
     protected $minimalPrice;
 
     /**
-     * @var AmountInterface
-     */
-    protected $priceWithoutOption;
-
-    /**
-     * @var BundleOptionPrice
-     */
-    protected $bundleOptionPrice;
-
-    /**
      * @var ProductCustomOptionRepositoryInterface
      */
     private $productOptionRepository;
