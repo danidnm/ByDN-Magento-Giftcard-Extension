@@ -14,7 +14,7 @@ class Price extends \Magento\Catalog\Model\ResourceModel\Product\Indexer\Price\S
             $indexTableStructureFactory,
             $tableMaintainer,
             $basePriceModifier,
-            'giftcard' // The correct product type for gift cards
+            \Bydn\Giftcard\Model\Product\Type\Giftcard::TYPE_GIFTCARD // The correct product type for gift cards
         );
     }
 }
