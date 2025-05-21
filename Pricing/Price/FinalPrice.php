@@ -67,7 +67,7 @@ class FinalPrice extends \Magento\Catalog\Pricing\Price\FinalPrice implements \M
         if (!$this->maximalPrice) {
             /** @var CustomOptionPrice $customOptionPrice */
             $customOptionPrice = $this->priceInfo->getPrice(CustomOptionPrice::PRICE_CODE);
-            $price = $customOptionPrice->getCustomOptionRange(false);
+            $price = $this->getValue() + $customOptionPrice->getCustomOptionRange(false);
             $this->maximalPrice = $this->calculator->getAmount($price, $this->getProduct());
         }
 
@@ -95,7 +95,7 @@ class FinalPrice extends \Magento\Catalog\Pricing\Price\FinalPrice implements \M
             $this->loadProductCustomOptions();
             /** @var CustomOptionPrice $customOptionPrice */
             $customOptionPrice = $this->priceInfo->getPrice(CustomOptionPrice::PRICE_CODE);
-            $price = $customOptionPrice->getCustomOptionRange(true);
+            $price = $this->getValue() + $customOptionPrice->getCustomOptionRange(true);
             $this->minimalPrice = $this->calculator->getAmount($price, $this->getProduct());
         }
         return $this->minimalPrice;

@@ -233,6 +233,7 @@
     <virtualType name="Bydn\Giftcard\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
         <arguments>
             <argument name="prices" xsi:type="array">
+                <item name="regular_price" xsi:type="string">Bydn\Giftcard\Pricing\Price\RegularPrice</item>
                 <item name="final_price" xsi:type="string">Bydn\Giftcard\Pricing\Price\FinalPrice</item>
             </argument>
             <argument name="target" xsi:type="object">Magento\Catalog\Pricing\Price\Pool</argument>
