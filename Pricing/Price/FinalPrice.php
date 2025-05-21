@@ -10,7 +10,7 @@ use Magento\Framework\Pricing\Amount\AmountInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 
 /**
- * Final price model
+ * Giftcard Final price model
  */
 class FinalPrice extends \Magento\Catalog\Pricing\Price\FinalPrice implements \Magento\Catalog\Pricing\Price\FinalPriceInterface
 {

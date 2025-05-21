@@ -7,7 +7,7 @@ use Magento\Framework\Pricing\Amount\AmountInterface;
 use Magento\Catalog\Pricing\Price\CustomOptionPrice;
 
 /**
- * Bundle product regular price model
+ * Giftcard product regular price model
  */
 class RegularPrice extends \Magento\Catalog\Pricing\Price\RegularPrice implements \Magento\Framework\Pricing\Price\BasePriceProviderInterface, ResetAfterRequestInterface
 {
