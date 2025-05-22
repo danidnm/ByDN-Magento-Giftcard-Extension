@@ -16,6 +16,15 @@
                     <label>Card default amounts</label>
                     <comment>When you create a new giftcard product, this will be the amounts configured. You can change it later during the product creation.</comment>
                 </field>
+                <field id="show_prices" translate="label" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Prices</label>
+                    <options>
+                        <option label="Range">range</option>
+                        <option label="As Low As">lowest</option>
+                        <option label="Fixed Price">fixed</option>
+                    </options>
+                    <comment>Select how you want to display the prices for giftcards.</comment>
+                </field>
             </group>
             <group id="emails" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Email configuration</label>
