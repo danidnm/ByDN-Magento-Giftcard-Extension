@@ -30,6 +30,11 @@ class Save extends Action implements HttpPostActionInterface
     private SerializerInterface $serializer;
 
     /**
+     * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
+     */
+    private $dateFilter;
+
+    /**
      * Save constructor.
      *
      * @param Context $context
@@ -41,13 +46,17 @@ class Save extends Action implements HttpPostActionInterface
         Context             $context,
         GiftcardResource      $giftcardResource,
         GiftcardFactory       $giftcardFactory,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter,
+
     ) {
         parent::__construct($context);
 
         $this->giftcardResource = $giftcardResource;
         $this->giftcardFactory = $giftcardFactory;
         $this->serializer = $serializer;
+
+        $this->dateFilter = $dateFilter;
     }
 
     /**
@@ -60,6 +69,22 @@ class Save extends Action implements HttpPostActionInterface
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $giftcardPostData = $this->getRequest()->getPostValue();
+
+        // Sets the fields to be filtered
+        $filterValues = [
+            'email_date' => $this->dateFilter,
+            'expire_at' => $this->dateFilter
+        ];
+
+        // Fields are disabled but the value is still sent
+        if (isset($giftcardPostData['created_at'])) unset($giftcardPostData['created_at']);
+        if (isset($giftcardPostData['updated_at'])) unset($giftcardPostData['updated_at']);
+
+        // Converts the dates to the correct format
+        $inputFilter = new \Magento\Framework\Filter\FilterInput($filterValues, [], $giftcardPostData);
+
+        // Retrieve the filtered data
+        $giftcardPostData = $inputFilter->getUnescaped();
 
         $giftcard = $this->initGiftcard();
         $giftcardPostData = $this->saveStoreIds($giftcardPostData);
