@@ -7,7 +7,15 @@
     "type": "magento2-module",
     "version": "1.0.2",
     "license": [
-        "MIT"
+        "GPL-3.0-or-later"
+    ],
+    "authors": [
+        {
+            "name": "Daniel Navarro",
+            "email": "soy@solodani.com",
+            "homepage": "https://github.com/danidnm",
+            "role": "Developer"
+        }
     ],
     "autoload": {
         "files": [
