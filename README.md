@@ -128,3 +128,11 @@ To do so, just go to the gift card list and press the button “Create gift card
 
 Contact me at soy at solodani.com
 
+# License
+
+This Magento 2 extension was created and is maintained by Daniel Navarro (https://github.com/danidnm).
+
+If you fork, modify, or redistribute this extension, please:
+
+- Keep the code free and open source under the same GPL-3.0 license.
+- Mention the original author in your README, or composer.json.
